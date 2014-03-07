@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/white" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="10sp"
+                android:paddingTop="10sp"
+                android:text="账号管理"
+                android:textColor="@color/red"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/redline" />
+
+            <TextView
+                android:id="@+id/txt_return"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60sp"
+                android:layout_marginRight="60sp"
+                android:background="@drawable/dialog_button_bg"
+                android:drawableBottom="@drawable/ic_list_dividing_line"
+                android:drawableLeft="@drawable/btn_return"
+                android:drawablePadding="10sp"
+                android:gravity="center_vertical"
+                android:paddingTop="20sp"
+                android:text="返回登录界面"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60sp"
+                android:layout_marginRight="60sp"
+                android:background="@drawable/dialog_button_bg"
+                android:drawableBottom="@drawable/ic_list_dividing_line"
+                android:drawableLeft="@drawable/btn_resetpwd"
+                android:drawablePadding="10sp"
+                android:gravity="center_vertical"
+                android:paddingTop="20sp"
+                android:text="修改密码"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txt_exit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60sp"
+                android:layout_marginRight="60sp"
+                android:background="@drawable/dialog_button_bg"
+                android:drawableLeft="@drawable/btn_exit"
+                android:drawablePadding="10sp"
+                android:gravity="center_vertical"
+                android:paddingTop="20sp"
+                android:text="退出"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/dialogAccountManageCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginTop="20sp"
+                android:background="@drawable/button_default"
+                android:text="取消"
+                android:textColor="@color/red"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

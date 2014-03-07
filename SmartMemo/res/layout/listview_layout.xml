@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/lightgray">
+
+    <LinearLayout
+        android:id="@+id/memo_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/table_button_single_bg"
+         >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/textListContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.08"     
+                        android:text="textListContent"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textListCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical"
+                        android:drawableLeft="@drawable/alarm_icon_getup"
+                        android:text="textListCategory" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBarListItem"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:layout_gravity="center_vertical"
+                        android:stepSize="1" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

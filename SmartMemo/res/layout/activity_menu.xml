@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/amsc_bg_camera_pattern" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/menu_top_bg2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_userinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableBottom="@drawable/battery_horizontal_dividing_line"
+                    android:drawableLeft="@drawable/userinfo"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:text="   个人信息"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10sp"  
+                    android:layout_marginRight="10sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="备忘录"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                 
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_unfinish"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableBottom="@drawable/battery_horizontal_dividing_line"
+                    android:drawableLeft="@drawable/uncomplete"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:text="   未完成"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" 
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_finish"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableBottom="@drawable/battery_horizontal_dividing_line"
+                    android:drawableLeft="@drawable/complete"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:text="   已完成"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10sp"  
+                    android:layout_marginRight="10sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="系统"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableBottom="@drawable/battery_horizontal_dividing_line"
+                    android:drawableLeft="@drawable/setting"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:text="   设置"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10sp" 
+                    android:layout_marginRight="10sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableBottom="@drawable/battery_horizontal_dividing_line"
+                    android:drawableLeft="@drawable/book"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:text="   关于"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10sp" 
+                    android:layout_marginRight="10sp"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_return"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableLeft="@drawable/ic_logout"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:text="   返回登录界面"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10sp" 
+                    android:layout_marginRight="10sp"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_exit"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableLeft="@drawable/ic_exit"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:text="   退出"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10sp" 
+                    android:layout_marginRight="10sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

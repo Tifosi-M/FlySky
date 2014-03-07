@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">智慧备忘录</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_sliding">SlidingActivity</string>
+    <string name="usertel">电话：</string>
+    <string name="text_age">年龄：</string>
+    <string name="text_sex">性别：</string>
+    <string name="text_pro">职业：</string>
+    <string name="text_hob">爱好：</string>
+    <string name="text_tel">电话：</string>
+    <string name="btn_save_setuser">保存我的信息</string>
+    <string name="about_show_use_instruction">软件使用说明</string>
+    <string name="soft_current_version">当前版本:</string>
+    <string name="show_current_version">显示当前版本</string>
+    <string name="use_instruction">软件使用步骤:</string>
+    <string name="remind_text_distance">提醒距离：</string>
+    <string name="remind_city">城市设置：</string>
+    <string name="remind_province">省份设置：</string>
+    <string name="set_province">您设置的省份：</string>
+    <string name="select_provinces">您选择的省份</string>
+    <string name="city_choose">可选省份：</string>
+    <string name="btn_tomain">返回主界面</string>
+    <string name="use_instructions">以下是使用说明</string>
+    <string name="btn_return_main">返回</string>
+    <string name="set_choose_citys">可选城市：</string>
+    <string name="set_choose_city">您设置的城市：</string>
+    <string name="set_distance">您设置的距离：</string>
+    <string name="choose_distance">您选择的距离</string>
+
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pager1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" 
+        android:background="@drawable/welcome_bg2">
+
+       <LinearLayout
+            android:layout_width="252dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+        </LinearLayout>
+
+    </FrameLayout>

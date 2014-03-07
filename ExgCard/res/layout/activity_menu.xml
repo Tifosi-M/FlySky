@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/line_bg_normal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_card_management"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/menu_button_bg"
+                    android:drawableLeft="@drawable/icon_card_management"
+                    android:drawablePadding="13sp"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:text="名片管理"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_account_management"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/menu_button_bg"
+                    android:drawableLeft="@drawable/icon_account_managment"
+                    android:drawablePadding="13sp"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:text="账号管理"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_check_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/menu_button_bg"
+                    android:drawableLeft="@drawable/icon_check_version"
+                    android:drawablePadding="13sp"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:text="检测版本"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/menu_button_bg"
+                    android:drawableLeft="@drawable/icon_setting"
+                    android:drawablePadding="13sp"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:text="数据同步"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_opinion"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/menu_button_bg"
+                    android:drawableLeft="@drawable/icon_opinion"
+                    android:drawablePadding="13sp"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:text="意见留言"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/menu_button_bg"
+                    android:drawableLeft="@drawable/icon_news"
+                    android:drawablePadding="13sp"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:text="消息资讯"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:background="@drawable/line_bg_pressed"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_other"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:text="其它"
+                    android:textColor="@color/main_bg"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/menu_button_bg"
+                    android:drawableLeft="@drawable/icon_share"
+                    android:drawablePadding="13sp"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:text="好友分享"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_weibo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/menu_button_bg"
+                    android:drawableLeft="@drawable/icon_weibo"
+                    android:drawablePadding="13sp"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:text="官方微博"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt_about_us"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/menu_button_bg"
+                    android:drawableLeft="@drawable/icon_about_us"
+                    android:drawablePadding="13sp"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15sp"
+                    android:text="关于我们"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

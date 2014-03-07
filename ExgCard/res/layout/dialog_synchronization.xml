@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/white" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="10sp"
+                android:paddingTop="10sp"
+                android:text="数据同步"
+                android:textColor="@color/red"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/redline" />
+
+            <TextView
+                android:id="@+id/tv_backup_cloud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60sp"
+                android:layout_marginRight="60sp"
+                android:background="@drawable/dialog_button_bg"
+                android:drawableBottom="@drawable/ic_list_dividing_line"
+                android:drawableLeft="@drawable/icon_backup_cloud"
+                android:drawablePadding="10sp"
+                android:gravity="center_vertical"
+                android:paddingTop="20sp"
+                android:text="备份到云端"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_synchronization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60sp"
+                android:layout_marginRight="60sp"
+                android:background="@drawable/dialog_button_bg"
+                android:drawableLeft="@drawable/icon_check_version"
+                android:drawablePadding="10sp"
+                android:gravity="center_vertical"
+                android:paddingBottom="20sp"
+                android:paddingTop="20sp"
+                android:text="同步到本地"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,72 @@
+#
+# generated on 2014/03/06 08:26:26
+#
+# --table-start--
+dataClass=com.findyou.domain.entity.Friends
+tableName=friends
+# --table-fields-start--
+# --field-start--
+fieldName=friendId
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=friendName
+canBeNull=false
+# --field-end--
+# --field-start--
+fieldName=friendNameFirstAlpha
+canBeNull=false
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.findyou.domain.entity.News
+tableName=news
+# --table-fields-start--
+# --field-start--
+fieldName=newsId
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=newsUserId
+canBeNull=false
+# --field-end--
+# --field-start--
+fieldName=newsUserName
+canBeNull=false
+# --field-end--
+# --field-start--
+fieldName=newsStyle
+canBeNull=false
+# --field-end--
+# --field-start--
+fieldName=newsContent
+canBeNull=false
+# --field-end--
+# --field-start--
+fieldName=newsLocation
+canBeNull=false
+# --field-end--
+# --field-start--
+fieldName=newsTime
+canBeNull=false
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.findyou.domain.entity.User
+tableName=user
+# --table-fields-start--
+# --field-start--
+fieldName=userPhone
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=password
+canBeNull=false
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

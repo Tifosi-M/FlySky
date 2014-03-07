@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableBottom="@drawable/line_info"
+            android:text="系统设置"
+            android:textColor="@color/skyblue"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="15sp"
+            android:gravity="center"
+            android:text="所在省份："
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/set_province"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="15sp"
+            android:layout_weight="0.8" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/soft_current_version_onSet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableBottom="@drawable/ic_list_dividing_line"
+        android:text=""
+        android:textSize="4dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="15sp"
+            android:gravity="center"
+            android:text="所在城市："
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/set_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="15sp"
+            android:layout_weight="0.8" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/soft_current_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableBottom="@drawable/ic_list_dividing_line"
+        android:text=""
+        android:textSize="4dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="15sp"
+            android:gravity="center"
+            android:text="设置提醒的距离："
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/set_reminddistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="15sp"
+            android:layout_weight="0.8" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableBottom="@drawable/ic_list_dividing_line"
+        android:text=""
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="15sp"
+            android:gravity="center"
+            android:text="定位时间间隔："
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/set_loctiontime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="15sp"
+            android:layout_weight="0.8" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_setOk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
+        android:background="@drawable/xml_layout_background"
+        android:text="保存设置"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btn_syn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:layout_weight="1"
+            android:background="@drawable/xml_layout_background"
+            android:text="上传到云端"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_syn_to_here"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:layout_weight="1"
+            android:background="@drawable/xml_layout_background"
+            android:text="同步到本地"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>
