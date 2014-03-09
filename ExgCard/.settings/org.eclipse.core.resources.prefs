@@ -1,10 +1,4 @@
 eclipse.preferences.version=1
-encoding//bin/AndroidManifest.xml=UTF-8
-encoding//gen/com/actionbarsherlock/R.java=UTF-8
-encoding//gen/com/businesscard/mobile/BuildConfig.java=UTF-8
-encoding//gen/com/businesscard/mobile/Manifest.java=UTF-8
-encoding//gen/com/businesscard/mobile/R.java=UTF-8
-encoding//gen/com/jeremyfeinstein/slidingmenu/lib/R.java=UTF-8
 encoding//res/anim/loading_animation.xml=UTF-8
 encoding//res/drawable-hdpi/button_default.xml=UTF-8
 encoding//res/drawable-hdpi/dialog_button_bg.xml=UTF-8

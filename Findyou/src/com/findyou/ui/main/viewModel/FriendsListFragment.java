@@ -51,9 +51,7 @@ public class FriendsListFragment extends Fragment{
 				((SlidingActivity) getActivity()).getSlidingMenu().showMenu();
 			}
 		});
-		
 		return view;
-		
 	}
 	
 	public void initFriendsList()

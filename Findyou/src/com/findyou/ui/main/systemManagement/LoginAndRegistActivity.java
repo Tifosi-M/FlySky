@@ -4,9 +4,7 @@ import java.util.HashMap;
 
 import webservice.WebServiceDelegate;
 import webservice.WebServiceUtils;
-
 import com.findyou.R;
-import com.findyou.domain.entity.User;
 import com.findyou.ui.main.SlidingActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,13 +24,13 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 	private SharedPreferences sp;// xml保持登录信息
 	private WebServiceUtils webService;
 	private boolean loginOrRegistr;// login=true,register=false
-	private User user;
+//	private User user;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_and_regist);
-		user=new User();
+//		user=new User();
 		etUserPhone=(EditText) findViewById(R.id.et_userphone);
 		etPassword=(EditText) findViewById(R.id.et_password);
 		
@@ -76,18 +74,10 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 			// 将登录状态改为已登录，并保存当前登录的用户用户名
 			userPhone = etUserPhone.getText().toString();
 			String password = etPassword.getText().toString();
-			user.setUserPhone(userPhone);
-			user.setPassword(password);
 			Editor editor = sp.edit();
 			editor.putBoolean("login_in", true);
 			editor.putString("user", userPhone);
 			editor.commit();
-			if((service.getUserByUserPhone(userPhone))==null){
-				service.addUser(user);
-			}
-			if (loginOrRegistr == false) {
-				service.addUser(user);
-			}
 			Intent intent = new Intent(LoginAndRegistActivity.this,
 					SlidingActivity.class);
 			startActivity(intent);

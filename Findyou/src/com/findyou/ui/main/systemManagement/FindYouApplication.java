@@ -3,7 +3,6 @@ package com.findyou.ui.main.systemManagement;
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.MKGeneralListener;
 import com.baidu.mapapi.map.MKEvent;
-import com.findyou.data.dbDriver.CreateDB;
 import com.findyou.data.dbDriver.DataHelper;
 
 import android.annotation.SuppressLint;
@@ -40,24 +39,23 @@ public class FindYouApplication extends  Application{
 		// TODO Auto-generated method stub
 		super.onCreate();
 		
-		// 初始化全局变量
-		DATAHELPER = new DataHelper(getApplicationContext(), DATAFILENAME);
+		SharedPreferences sharedPreferences = getSharedPreferences("database_init",
+				MODE_PRIVATE);
+		if (sharedPreferences.getString("database_init", "").equals("")){
+			// 初始化全局变量
+			DATAHELPER = new DataHelper(getApplicationContext(), DATAFILENAME);
+			
+			SharedPreferences sharedPreferences2 = getSharedPreferences(
+					"itcast", MODE_PRIVATE);
+			Editor editor = sharedPreferences2.edit();
+			editor.putString("database_init", "true");
+			editor.commit();		
+		}
 		
 		mInstance = this;
 		initEngineManager(this);
 		
-		SharedPreferences sharedPreferences = getSharedPreferences("itcast",
-				MODE_PRIVATE);
-		if (sharedPreferences.getString("pathload", "").equals(""))
-		{
-			String path = "/data/data/com.findyou/databases/";
-			new CreateDB(path,FindYouApplication.this);
-			SharedPreferences sharedPreferences2 = getSharedPreferences(
-					"itcast", MODE_PRIVATE);
-			Editor editor = sharedPreferences2.edit();
-			editor.putString("pathload", path);
-			editor.commit();		
-		}
+
 	}
 	
 	public void initEngineManager(Context context) {

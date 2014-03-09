@@ -2,9 +2,7 @@ package com.findyou.domain.Service;
 
 import java.sql.SQLException;
 
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.findyou.data.dbDriver.DataContext;
 import com.findyou.data.dbDriver.IDataContext;
 import com.findyou.domain.IService.IFriendsService;

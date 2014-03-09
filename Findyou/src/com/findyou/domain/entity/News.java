@@ -20,7 +20,7 @@ public class News {
 	private String newsUserName;
 	
 	@DatabaseField(canBeNull=false)
-	private String newsStyle;
+	private String newsType;
 	
 	@DatabaseField(canBeNull=false)
 	private String newsContent;
@@ -30,48 +30,62 @@ public class News {
 	
 	@DatabaseField(canBeNull=false)
 	private String newsTime;
-	
+
 	public String getNewsId() {
 		return newsId;
 	}
+
 	public void setNewsId(String newsId) {
 		this.newsId = newsId;
 	}
+
 	public String getNewsUserId() {
 		return newsUserId;
 	}
+
 	public void setNewsUserId(String newsUserId) {
 		this.newsUserId = newsUserId;
 	}
+
 	public String getNewsUserName() {
 		return newsUserName;
 	}
+
 	public void setNewsUserName(String newsUserName) {
 		this.newsUserName = newsUserName;
 	}
-	public String getNewsStyle() {
-		return newsStyle;
+
+	public String getNewsType() {
+		return newsType;
 	}
-	public void setNewsStyle(String newsStyle) {
-		this.newsStyle = newsStyle;
+
+	public void setNewsType(String newsType) {
+		this.newsType = newsType;
 	}
+
 	public String getNewsContent() {
 		return newsContent;
 	}
+
 	public void setNewsContent(String newsContent) {
 		this.newsContent = newsContent;
 	}
+
 	public String getNewsLocation() {
 		return newsLocation;
 	}
+
 	public void setNewsLocation(String newsLocation) {
 		this.newsLocation = newsLocation;
 	}
+
 	public String getNewsTime() {
 		return newsTime;
 	}
+
 	public void setNewsTime(String newsTime) {
 		this.newsTime = newsTime;
 	}
+	
 	
 }
