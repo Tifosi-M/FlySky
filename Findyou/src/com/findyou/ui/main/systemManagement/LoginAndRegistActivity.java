@@ -26,7 +26,6 @@ import android.content.SharedPreferences.Editor;
 public class LoginAndRegistActivity extends Activity implements WebServiceDelegate {
 	private String userPhone="";
 	private Button btnLogin,btnRegist;
-	private DataContext database;
 	private EditText etUserPhone,etPassword;
 	private SharedPreferences sp;// xml保持登录信息
 	private WebServiceUtils webService;
@@ -37,7 +36,6 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_and_regist);
-		database=new DataContext();
 		webService= new WebServiceUtils(MemoWebPara.SM_NAMESPACE,
 				MemoWebPara.SM_URL, this);
 		etUserPhone=(EditText) findViewById(R.id.et_userphone);
