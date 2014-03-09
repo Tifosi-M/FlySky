@@ -3,12 +3,12 @@ package com.findyou.domain.entity;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName="friends")
-public class Friends {
+@DatabaseTable(tableName="friend")
+public class Friend {
 
 //	private static final long serialVersionUID = 7874823823497497357L;
 			
-	public Friends(){
+	public Friend(){
 		friendId=0;
 		friendName="";
 		friendSex="";

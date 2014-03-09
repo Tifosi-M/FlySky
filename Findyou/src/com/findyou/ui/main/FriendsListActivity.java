@@ -4,7 +4,7 @@ import com.findyou.R;
 import com.findyou.data.Adapter.FriendsCursorAdapter;
 import com.findyou.data.Adapter.LatestNewsCursorAdapter;
 import com.findyou.data.dbDriver.DataContext;
-import com.findyou.domain.Service.FriendsService;
+import com.findyou.domain.Service.FriendService;
 import com.findyou.domain.Service.NewsService;
 
 import android.app.Activity;
@@ -19,22 +19,23 @@ import android.widget.ListView;
 public class FriendsListActivity extends Activity {
 	private SQLiteDatabase db;
 	private ListView friends_list;
-	private DataContext database;
-	private FriendsService friendsService;
+	private FriendsCursorAdapter friendsCursorAdapter;
+	private FriendService friendsService;
 	private Cursor cursor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_friends_list);
-		database=new  DataContext();
+		db = openOrCreateDatabase("findyou.db",
+				MODE_PRIVATE, null);
 		friends_list=(ListView) findViewById(R.id.friends_list);
-		friendsService=new FriendsService(db);
+		friendsService=new FriendService(db);
 		initFriendsList();
 	}
 	public void initFriendsList()
 	{
-//		cursor=friendsService.FindFriends();
+		cursor=friendsService.findFriends();
 		friendsCursorAdapter = new FriendsCursorAdapter(this,
 				R.layout.item_friends_list, cursor, new String[] {"FriendName"},
 				new int[] {R.id.tv_card_list_item_name});

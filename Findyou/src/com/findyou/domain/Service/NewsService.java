@@ -3,15 +3,18 @@ package com.findyou.domain.Service;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.findyou.data.dbDriver.DataContext;
 import com.findyou.domain.IService.INewsService;
 
 public class NewsService implements INewsService{
 
+	private DataContext database;
 	private SQLiteDatabase db;
 	private Cursor cursor;
 	private String sql;
 
 	public NewsService(SQLiteDatabase db) {
+		database=new DataContext();
 		this.db = db;
 	}
 	

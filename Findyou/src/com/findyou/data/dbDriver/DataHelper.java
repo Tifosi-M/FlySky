@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.findyou.R;
-import com.findyou.domain.entity.Friends;
+import com.findyou.domain.entity.Friend;
 import com.findyou.domain.entity.News;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;

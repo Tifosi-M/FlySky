@@ -1,6 +1,5 @@
 package com.findyou.ui.main.systemManagement;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 
 import webservice.MemoWebPara;
@@ -9,9 +8,7 @@ import webservice.WebServiceUtils;
 
 import com.findyou.R;
 import com.findyou.data.dbDriver.DataContext;
-import com.findyou.data.dbDriver.DataHelper;
 import com.findyou.ui.main.SlidingActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,6 +23,7 @@ import android.content.SharedPreferences.Editor;
 public class LoginAndRegistActivity extends Activity implements WebServiceDelegate {
 	private String userPhone="";
 	private Button btnLogin,btnRegist;
+	private DataContext database;
 	private EditText etUserPhone,etPassword;
 	private SharedPreferences sp;// xml保持登录信息
 	private WebServiceUtils webService;
@@ -36,6 +34,7 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_and_regist);
+		database=new DataContext();
 		webService= new WebServiceUtils(MemoWebPara.SM_NAMESPACE,
 				MemoWebPara.SM_URL, this);
 		etUserPhone=(EditText) findViewById(R.id.et_userphone);
@@ -45,22 +44,54 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 			
 				@Override
 				public void onClick(View v) {
-					userPhone = etUserPhone.getText().toString();
-
-					String password = etUserPhone.getText().toString();
-					if (userPhone.equals("") || password.equals("")) {
-						Toast toast = Toast.makeText(LoginAndRegistActivity.this,
-								"用户名密码请填完整", Toast.LENGTH_SHORT);
-						toast.show();
-					} else {
-						loginOrRegistr = true;
-						HashMap<String, Object> args = new HashMap<String, Object>();
-						args.put("tel", userPhone);
-						args.put("pwd", password);
-						webService.callWebService("login", args, boolean.class);
-					}
-
+					
+					Intent intent = new Intent(LoginAndRegistActivity.this,
+							SlidingActivity.class);
+					startActivity(intent);
+					LoginAndRegistActivity.this.finish();
+					
+//					userPhone = etUserPhone.getText().toString();
+//					String password = etUserPhone.getText().toString();
+//					if (userPhone.equals("") || password.equals("")) {
+//						Toast toast = Toast.makeText(LoginAndRegistActivity.this,
+//								"用户名密码请填完整", Toast.LENGTH_SHORT);
+//						toast.show();
+//					} else {
+//						loginOrRegistr = true;
+//						HashMap<String, Object> args = new HashMap<String, Object>();
+//						args.put("tel", userPhone);
+//						args.put("pwd", password);
+//						webService.callWebService("login", args, boolean.class);
+//					}
 				}
+		});
+		
+		
+		btnRegist.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				userPhone = etUserPhone.getText().toString();
+				String password = etPassword.getText().toString();
+				loginOrRegistr = false;
+				if (userPhone.equals("") || password.equals("")) {
+					Toast toast = Toast.makeText(LoginAndRegistActivity.this,
+							"用户名密码请填完整", Toast.LENGTH_SHORT);
+					toast.show();
+				} else if (!userPhone.matches("^(13|15|18)\\d{9}$")) {
+					Toast.makeText(getApplicationContext(), "电话号码格式不正确！",
+							Toast.LENGTH_SHORT).show();
+				} else {
+					HashMap<String, Object> args = new HashMap<String, Object>();
+					args.put("tel", userPhone);
+					args.put("pwd", password);
+					//调用web服务
+					webService.callWebService("register", args, boolean.class);
+					Toast.makeText(getApplicationContext(), "注册成功！", Toast.LENGTH_SHORT).show();
+				}
+			}
 		});
 	}
 
@@ -70,7 +101,6 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 		Toast toast = Toast.makeText(LoginAndRegistActivity.this, "请检查网络连接",
 				Toast.LENGTH_SHORT);
 		toast.show();
-
 	}
 	//处理web返回结果
 	@Override

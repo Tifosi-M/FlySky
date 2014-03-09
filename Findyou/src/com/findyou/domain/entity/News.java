@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName="news")
 public class News {
 	
-	private static final long serialVersionUID = 6874823823497497357L;
+//	private static final long serialVersionUID = 6874823823497497357L;
 	
 	public News(){
 		newsId=0;

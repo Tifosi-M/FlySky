@@ -43,7 +43,7 @@ public class SlidingActivity extends SlidingFragmentActivity {
 		sm.setBehindOffset(130);
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		sm.setMode(SlidingMenu.LEFT);
-		db = openOrCreateDatabase("FindYou.db3",
+		db = openOrCreateDatabase("findyou.db",
 				MODE_PRIVATE, null);
 		setDb(db);
 	}
