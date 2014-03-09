@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.findyou.R;
+import com.findyou.domain.entity.Friends;
+import com.findyou.domain.entity.News;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.DatabaseTableConfig;
@@ -59,7 +61,7 @@ public class DataHelper extends OrmLiteSqliteOpenHelper {
 	private void createTable(SQLiteDatabase db,ConnectionSource connectionSource) {
 
 		try {
-			Log.d("DataHelper", "create database");
+			Log.e("DataHelper", "create database");
 			InputStream is = this.context.getResources().openRawResource(
 					R.raw.ormlite_config);
 			InputStreamReader isr = new InputStreamReader(is);
@@ -67,8 +69,7 @@ public class DataHelper extends OrmLiteSqliteOpenHelper {
 			List<DatabaseTableConfig<?>> tableConfigs = DatabaseTableConfigLoader
 					.loadDatabaseConfigFromReader(reader);
 			for (DatabaseTableConfig<?> databaseTableConfig : tableConfigs) {
-				TableUtils.createTableIfNotExists(connectionSource,
-						databaseTableConfig);
+				TableUtils.createTableIfNotExists(connectionSource,databaseTableConfig);
 			}
 			is.close();
 			isr.close();

@@ -1,8 +1,11 @@
-package com.findyou.ui.main.systemManagement;
+package com.findyou.app;
+
+import java.sql.SQLException;
 
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.MKGeneralListener;
 import com.baidu.mapapi.map.MKEvent;
+import com.findyou.data.dbDriver.DataContext;
 import com.findyou.data.dbDriver.DataHelper;
 
 import android.annotation.SuppressLint;
@@ -16,9 +19,9 @@ public class FindYouApplication extends  Application{
 	
 	// 数据库助手
 	public static DataHelper DATAHELPER;
-
+	private DataContext database;
 	// 数据库名
-	public static String DATAFILENAME = "findyou.db3";
+	public static String DATAFILENAME = "findyou.db";
 	
     private static FindYouApplication mInstance = null;
     public boolean m_bKeyRight = true;
@@ -33,7 +36,6 @@ public class FindYouApplication extends  Application{
      */
     public static final String strKey = "pDGDqKMr1KzNnz8RCveGnTSP";	
 	
-	@SuppressLint("SdCardPath")
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
@@ -44,7 +46,7 @@ public class FindYouApplication extends  Application{
 		if (sharedPreferences.getString("database_init", "").equals("")){
 			// 初始化全局变量
 			DATAHELPER = new DataHelper(getApplicationContext(), DATAFILENAME);
-			
+
 			SharedPreferences sharedPreferences2 = getSharedPreferences(
 					"itcast", MODE_PRIVATE);
 			Editor editor = sharedPreferences2.edit();
@@ -54,8 +56,6 @@ public class FindYouApplication extends  Application{
 		
 		mInstance = this;
 		initEngineManager(this);
-		
-
 	}
 	
 	public void initEngineManager(Context context) {

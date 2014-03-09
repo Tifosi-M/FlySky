@@ -4,7 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import android.database.sqlite.SQLiteDatabase;
-import com.findyou.ui.main.systemManagement.FindYouApplication;
+
+import com.findyou.app.FindYouApplication;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.GenericRawResults;

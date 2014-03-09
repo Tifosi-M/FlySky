@@ -33,7 +33,7 @@ public class FriendsListActivity extends Activity {
 	}
 	public void initFriendsList()
 	{
-		cursor=friendsService.FindFriends();
+//		cursor=friendsService.FindFriends();
 		friendsCursorAdapter = new FriendsCursorAdapter(this,
 				R.layout.item_friends_list, cursor, new String[] {"FriendName"},
 				new int[] {R.id.tv_card_list_item_name});

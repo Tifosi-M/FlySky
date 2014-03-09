@@ -19,7 +19,7 @@ import com.baidu.mapapi.search.MKTransitRouteResult;
 import com.baidu.mapapi.search.MKWalkingRouteResult;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.findyou.R;
-import com.findyou.ui.main.systemManagement.FindYouApplication;
+import com.findyou.app.FindYouApplication;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -9,8 +9,8 @@ import com.baidu.mapapi.map.PopupClickListener;
 import com.baidu.mapapi.map.PopupOverlay;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.findyou.R;
+import com.findyou.app.FindYouApplication;
 import com.findyou.domain.tool.BMapUtil;
-import com.findyou.ui.main.systemManagement.FindYouApplication;
 
 import android.app.Activity;
 import android.graphics.Bitmap;

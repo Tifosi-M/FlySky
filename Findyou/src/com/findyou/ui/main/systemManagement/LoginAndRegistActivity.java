@@ -1,11 +1,17 @@
 package com.findyou.ui.main.systemManagement;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 
+import webservice.MemoWebPara;
 import webservice.WebServiceDelegate;
 import webservice.WebServiceUtils;
+
 import com.findyou.R;
+import com.findyou.data.dbDriver.DataContext;
+import com.findyou.data.dbDriver.DataHelper;
 import com.findyou.ui.main.SlidingActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +26,7 @@ import android.content.SharedPreferences.Editor;
 public class LoginAndRegistActivity extends Activity implements WebServiceDelegate {
 	private String userPhone="";
 	private Button btnLogin,btnRegist;
+	private DataContext database;
 	private EditText etUserPhone,etPassword;
 	private SharedPreferences sp;// xml保持登录信息
 	private WebServiceUtils webService;
@@ -30,10 +37,11 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_and_regist);
-//		user=new User();
+		database=new DataContext();
+		webService= new WebServiceUtils(MemoWebPara.SM_NAMESPACE,
+				MemoWebPara.SM_URL, this);
 		etUserPhone=(EditText) findViewById(R.id.et_userphone);
 		etPassword=(EditText) findViewById(R.id.et_password);
-		
 		btnLogin=(Button) findViewById(R.id.btn_login);
 		btnLogin.setOnClickListener(new OnClickListener() {
 			

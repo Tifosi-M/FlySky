@@ -1,18 +1,26 @@
 package com.findyou.domain.entity;
 
-import com.hp.hpl.sparta.xpath.TrueExpr;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName="friends")
 public class Friends {
 
+//	private static final long serialVersionUID = 7874823823497497357L;
+			
 	public Friends(){
-		
+		friendId=0;
+		friendName="";
+		friendSex="";
+		friendMail="";
+		friendQQ="";
+		friendHobby="";
+		friendCity="";
+		friendNameFirstAlpha="";
 	}
 	
 	@DatabaseField(generatedId=true)
-	private String friendId;
+	private int friendId;
 	
 	@DatabaseField(canBeNull=false)
 	private String friendName;
@@ -35,11 +43,11 @@ public class Friends {
 	@DatabaseField(canBeNull=false)
 	private String friendNameFirstAlpha;
 
-	public String getFriendId() {
+	public int getFriendId() {
 		return friendId;
 	}
 
-	public void setFriendId(String friendId) {
+	public void setFriendId(int friendId) {
 		this.friendId = friendId;
 	}
 

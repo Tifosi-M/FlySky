@@ -6,12 +6,20 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName="news")
 public class News {
 	
+	private static final long serialVersionUID = 6874823823497497357L;
+	
 	public News(){
-		
+		newsId=0;
+		newsUserId="";
+		newsUserName="";
+		newsType="";
+		newsContent="";
+		newsLocation="";
+		newsTime="";
 	}
 	
 	@DatabaseField(generatedId = true)
-	private String newsId;
+	private int newsId;
 	
 	@DatabaseField(canBeNull=false)
 	private String newsUserId;
@@ -31,11 +39,11 @@ public class News {
 	@DatabaseField(canBeNull=false)
 	private String newsTime;
 
-	public String getNewsId() {
+	public int getNewsId() {
 		return newsId;
 	}
 
-	public void setNewsId(String newsId) {
+	public void setNewsId(int newsId) {
 		this.newsId = newsId;
 	}
 
