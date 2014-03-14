@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="SmartMemoWeb"
+  id="myeclipse.1379742158159"
+  context-root="/SmartMemoWeb"
+  j2ee-spec="6.0"
+  archive="SmartMemoWeb.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
