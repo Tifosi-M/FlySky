@@ -10,19 +10,21 @@ public class News {
 	
 	public News(){
 		newsId=0;
-		newsUserId="";
+		newsUserPhone="";
 		newsUserName="";
 		newsType="";
 		newsContent="";
-		newsLocation="";
+		newsLatitude=0;
+		newsLongtitude=0;
 		newsTime="";
+		newsAddress="";
 	}
 	
 	@DatabaseField(generatedId = true)
 	private int newsId;
 	
 	@DatabaseField(canBeNull=false)
-	private String newsUserId;
+	private String newsUserPhone;
 	
 	@DatabaseField(canBeNull=false)
 	private String newsUserName;
@@ -34,10 +36,16 @@ public class News {
 	private String newsContent;
 	
 	@DatabaseField(canBeNull=false)
-	private String newsLocation;
+	private double newsLatitude;
+	
+	@DatabaseField(canBeNull=false)
+	private double newsLongtitude;
 	
 	@DatabaseField(canBeNull=false)
 	private String newsTime;
+
+	@DatabaseField(canBeNull=false)
+	private String newsAddress;
 
 	public int getNewsId() {
 		return newsId;
@@ -47,12 +55,12 @@ public class News {
 		this.newsId = newsId;
 	}
 
-	public String getNewsUserId() {
-		return newsUserId;
+	public String getNewsUserPhone() {
+		return newsUserPhone;
 	}
 
-	public void setNewsUserId(String newsUserId) {
-		this.newsUserId = newsUserId;
+	public void setNewsUserPhone(String newsUserPhone) {
+		this.newsUserPhone = newsUserPhone;
 	}
 
 	public String getNewsUserName() {
@@ -79,12 +87,20 @@ public class News {
 		this.newsContent = newsContent;
 	}
 
-	public String getNewsLocation() {
-		return newsLocation;
+	public double getNewsLatitude() {
+		return newsLatitude;
 	}
 
-	public void setNewsLocation(String newsLocation) {
-		this.newsLocation = newsLocation;
+	public void setNewsLatitude(double newsLatitude) {
+		this.newsLatitude = newsLatitude;
+	}
+
+	public double getNewsLongtitude() {
+		return newsLongtitude;
+	}
+
+	public void setNewsLongtitude(double newsLongtitude) {
+		this.newsLongtitude = newsLongtitude;
 	}
 
 	public String getNewsTime() {
@@ -94,6 +110,16 @@ public class News {
 	public void setNewsTime(String newsTime) {
 		this.newsTime = newsTime;
 	}
+
+	public String getNewsAddress() {
+		return newsAddress;
+	}
+
+	public void setNewsAddress(String newsAddress) {
+		this.newsAddress = newsAddress;
+	}
+	
+	
 	
 	
 }

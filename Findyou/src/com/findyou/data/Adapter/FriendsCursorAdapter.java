@@ -45,18 +45,18 @@ public class FriendsCursorAdapter extends SimpleCursorAdapter {
 		view.setTag(friendsListView);
 
 		Cursor cursor = (Cursor) getItem(position);
-		int userNameIndex = cursor.getColumnIndex("FriendName");
+		int userNameIndex = cursor.getColumnIndex("userName");
 		String userName = cursor.getString(userNameIndex);
 		tv_card_list_item_name.setText(userName);
 
-		int imageIndex = cursor.getColumnIndex("FriendImage");
+		int imageIndex = cursor.getColumnIndex("userImage");
 		String imageId = cursor.getString(imageIndex);
 		SetTitleImage sti = new SetTitleImage();
 		Drawable drawable = sti.setListTitleImage(imageId, context);
 		tv_card_list_item_name.setCompoundDrawablesWithIntrinsicBounds(
 				drawable, null, null, null);
 
-		int unfaIndex = cursor.getColumnIndex("FriendNameFirstAlpha");
+		int unfaIndex = cursor.getColumnIndex("userNameFirstAlpha");
 		String unfa = cursor.getString(unfaIndex).substring(0, 1);
 		
         if(cursor.getCount()==1||position==0)
@@ -66,7 +66,7 @@ public class FriendsCursorAdapter extends SimpleCursorAdapter {
         }
         else  {
 			Cursor cursor2 = (Cursor) getItem(position - 1);
-			int unfaIndex2Index = cursor2.getColumnIndex("FriendNameFirstAlpha");
+			int unfaIndex2Index = cursor2.getColumnIndex("userNameFirstAlpha");
 			String unfa2 = cursor2.getString(unfaIndex2Index).substring(0, 1);
 
 			if (!unfa.equals(unfa2)) {

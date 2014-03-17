@@ -1,6 +1,7 @@
 package com.findyou.data.Adapter;
 
 import com.findyou.R;
+import com.findyou.domain.tool.LocationToAddress;
 import com.findyou.ui.main.viewModel.NewsListView;
 
 import android.content.Context;
@@ -30,38 +31,40 @@ public class LatestNewsCursorAdapter extends SimpleCursorAdapter {
 		// TODO Auto-generated method stub
 		LayoutInflater lf = LayoutInflater.from(context);
 		View view = lf.inflate(layout, null);
-		TextView tv_friend_info_name, tv_date, tv_style, tv_location, tv_content;
+		TextView tv_friend_info_name, tv_date, tv_style, tv_address, tv_content;
 
 		tv_friend_info_name = (TextView) view
 				.findViewById(R.id.tv_friend_info_name);
 		tv_date = (TextView) view.findViewById(R.id.tv_date);
 		tv_style = (TextView) view.findViewById(R.id.tv_style);
-		tv_location = (TextView) view.findViewById(R.id.tv_location);
+		tv_address = (TextView) view.findViewById(R.id.tv_location);
 		tv_content = (TextView) view.findViewById(R.id.tv_content);
 
 		newsListView = new NewsListView(tv_friend_info_name, tv_date, tv_style,
-				tv_location, tv_content);
+				tv_address, tv_content);
 
 		view.setTag(newsListView);
 		
 		Cursor cursor = (Cursor) getItem(position);
-		int newsUserNameIndex = cursor.getColumnIndex("NewsUserName");
+		int newsUserNameIndex = cursor.getColumnIndex("newsUserName");
 		String newsUserName = cursor.getString(newsUserNameIndex);
 		tv_friend_info_name.setText(newsUserName);
 
-		int newsStyleIndex = cursor.getColumnIndex("NewsStyle");
+		int newsStyleIndex = cursor.getColumnIndex("newsType");
 		String newsStyle = cursor.getString(newsStyleIndex);
 		tv_style.setText(newsStyle);
 		
-		int newsContentIndex = cursor.getColumnIndex("NewsContent");
+		int newsContentIndex = cursor.getColumnIndex("newsContent");
 		String newsContent = cursor.getString(newsContentIndex);
 		tv_content.setText(newsContent);
 
-		int newsLocationIndex = cursor.getColumnIndex("NewsLocation");
-		String newsLocation = cursor.getString(newsLocationIndex);
-		tv_location.setText(newsLocation);
+		int newsLatitudeIndex = cursor.getColumnIndex("newsLatitude");
+		int newsLongtitudeIndex = cursor.getColumnIndex("newsLongtitude");
+		double newsLatitude = cursor.getDouble((int) newsLatitudeIndex);
+		double newsLongtitude = cursor.getDouble((int) newsLongtitudeIndex);
+		tv_address.setText(LocationToAddress.locationToAddress(newsLatitude, newsLongtitude));
 		
-		int newsTimeIndex = cursor.getColumnIndex("NewsTime");
+		int newsTimeIndex = cursor.getColumnIndex("newsTime");
 		String newsTime = cursor.getString(newsTimeIndex);
 		tv_date.setText(newsTime);
 

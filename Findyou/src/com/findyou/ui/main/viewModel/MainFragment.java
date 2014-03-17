@@ -2,7 +2,7 @@ package com.findyou.ui.main.viewModel;
 import com.findyou.R;
 import com.findyou.data.Adapter.FriendsCursorAdapter;
 import com.findyou.data.Adapter.LatestNewsCursorAdapter;
-import com.findyou.domain.Service.FriendService;
+import com.findyou.domain.Service.UserInfoService;
 import com.findyou.domain.Service.NewsService;
 import com.findyou.ui.main.SlidingActivity;
 
@@ -58,15 +58,15 @@ public class MainFragment extends Fragment{
 		return view;
 	}
 	public void initLastetNewsList() {
-		cursor = newsService.FindNews();
-		latestNewsCursorAdapter = new LatestNewsCursorAdapter(((SlidingActivity)getActivity()),
-				R.layout.item_friend_find, cursor, new String[] {
-						"newsUserName", "newsType", "newsContent",
-						"newsLocation", "newsTime" }, new int[] {
-						R.id.tv_friend_info_name, R.id.tv_style,
-						R.id.tv_location, R.id.tv_content,
-						R.id.tv_date });
-		lastet_news_list.setAdapter(latestNewsCursorAdapter);
+//		cursor = newsService.FindNews();
+//		latestNewsCursorAdapter = new LatestNewsCursorAdapter(((SlidingActivity)getActivity()),
+//				R.layout.item_friend_find, cursor, new String[] {
+//						"newsUserName", "newsType", "newsContent",
+//						"newsLocation", "newsTime" }, new int[] {
+//						R.id.tv_friend_info_name, R.id.tv_style,
+//						R.id.tv_location, R.id.tv_content,
+//						R.id.tv_date });
+//		lastet_news_list.setAdapter(latestNewsCursorAdapter);
 	}
 
 }

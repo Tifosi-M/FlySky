@@ -20,10 +20,11 @@ import com.baidu.mapapi.search.MKWalkingRouteResult;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.findyou.R;
 import com.findyou.app.FindYouApplication;
-import com.findyou.domain.Service.MyLocationService;
-import com.findyou.model.LocationInfo;
+import com.findyou.domain.Service.MyNewsService;
+import com.findyou.domain.entity.News;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,16 +37,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ShareMyLoctionActivity extends Activity{
+public class ShareMyNewsActivity extends Activity{
 	
 	private String categoryString = null;
 	private String mylocationplcaeString = null;
-	private MyLocationService mLocationService=null;
+	private MyNewsService mNewsService=null;
 	private LocationClient mLocationClient;
 	private LocationData locationData = null;
+	private SharedPreferences sp;
 	private MKSearch mSearch = null;
 	private FindYouApplication app;
-	private LocationInfo mLocation;
+	private News mNews;
 	private ArrayAdapter<String> categoryAdapter= null;
 	
 	private Button sharemylocation_publishButton;
@@ -58,7 +60,7 @@ public class ShareMyLoctionActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
+		sp=getPreferences(MODE_PRIVATE);
 		 app = (FindYouApplication)this.getApplication();
 	        if (app.mBMapManager == null) {
 	            app.mBMapManager = new BMapManager(getApplicationContext());
@@ -94,11 +96,11 @@ public class ShareMyLoctionActivity extends Activity{
 					return;
 				}
 				//在这里 将获取到的位置  还有经纬度  还有分享的内容 类别 发布到服务器
-				if(mLocationService.shareMyLocation(mLocation.getLatitude(), mLocation.getLontitude(), categoryString, shareinfoString)){
-					Toast.makeText(ShareMyLoctionActivity.this, "发布成功！", Toast.LENGTH_SHORT).show();
+				if(mNewsService.shareMyUserInfo(mNews.getNewsLatitude(), mNews.getNewsLongtitude(), categoryString, shareinfoString)){
+					Toast.makeText(ShareMyNewsActivity.this, "发布成功！", Toast.LENGTH_SHORT).show();
 					finish();
 				}else{
-					Toast.makeText(ShareMyLoctionActivity.this, "发布失败！", Toast.LENGTH_SHORT).show();
+					Toast.makeText(ShareMyNewsActivity.this, "发布失败！", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -107,11 +109,11 @@ public class ShareMyLoctionActivity extends Activity{
 	
 	//初始化各控件
 	private void init() {
-		mLocationService=new MyLocationService();
+		mNewsService=new MyNewsService();
 		sharemylocation_publishButton = (Button) findViewById(R.id.bt_sharemylocation_publish);
 		
-		mLocation=new LocationInfo();
-		mLocation.setName(app.userName);
+		mNews=new News();
+		mNews.setNewsUserName(sp.getString("userName", ""));
 		sharemylocation_placetTextView = (TextView)findViewById(R.id.tv_sharemylocation_place);
 		
 		sharemylocation_categorySpinner =  (Spinner) findViewById(R.id.sp_sharemylocation_category);
@@ -166,8 +168,8 @@ public class ShareMyLoctionActivity extends Activity{
 			
 			locationData.longitude = location.getLongitude();
 			locationData.latitude = location.getLatitude();
-			mLocation.setLontitude(locationData.longitude);
-			mLocation.setLatitude(locationData.latitude);
+			mNews.setNewsLongtitude(locationData.longitude);
+			mNews.setNewsLatitude(locationData.latitude);
 			if(locationData != null){
 			
 				mSearch.reverseGeocode(new GeoPoint((int) (location.getLatitude() * 1e6),(int) (location.getLongitude() * 1e6)));

@@ -22,7 +22,7 @@ public class FindYouApplication extends  Application{
     private static FindYouApplication mInstance = null;
     public boolean m_bKeyRight = true;
     public BMapManager mBMapManager = null;
-    public static String userName=null;
+
     /**
      * wwb-社交名片debug： pDGDqKMr1KzNnz8RCveGnTSP
      * wwb-社交名片发布：yr9ulLsBASVistGaNQQH2zUi
@@ -47,7 +47,7 @@ public class FindYouApplication extends  Application{
 					"itcast", MODE_PRIVATE);
 			Editor editor = sharedPreferences2.edit();
 			editor.putString("database_init", "true");
-			editor.commit();		
+			editor.commit();
 		}
 		
 		mInstance = this;

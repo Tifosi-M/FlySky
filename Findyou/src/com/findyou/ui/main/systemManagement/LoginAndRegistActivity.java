@@ -35,6 +35,7 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_and_regist);
 		database=new DataContext();
+		sp=getPreferences(MODE_PRIVATE);
 		webService= new WebServiceUtils(MemoWebPara.SM_NAMESPACE,
 				MemoWebPara.SM_URL, this);
 		etUserPhone=(EditText) findViewById(R.id.et_userphone);
@@ -46,7 +47,8 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 			
 				@Override
 				public void onClick(View v) {
-					
+					Editor edit=sp.edit();
+					edit.putString("userName", etUserPhone.getText().toString());
 					Intent intent = new Intent(LoginAndRegistActivity.this,
 							SlidingActivity.class);
 					startActivity(intent);

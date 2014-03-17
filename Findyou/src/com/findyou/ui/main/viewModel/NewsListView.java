@@ -3,7 +3,7 @@ package com.findyou.ui.main.viewModel;
 import android.widget.TextView;
 
 public class NewsListView {
-	TextView tv_friend_info_name,tv_date,tv_style,tv_location,tv_content;
+	TextView tv_friend_info_name,tv_date,tv_style,tv_address,tv_content;
 
 	public NewsListView(TextView tv_friend_info_name, TextView tv_date,
 			TextView tv_style, TextView tv_location, TextView tv_content) {
@@ -11,7 +11,7 @@ public class NewsListView {
 		this.tv_friend_info_name = tv_friend_info_name;
 		this.tv_date = tv_date;
 		this.tv_style = tv_style;
-		this.tv_location = tv_location;
+		this.tv_address = tv_location;
 		this.tv_content = tv_content;
 	}
 
@@ -40,11 +40,11 @@ public class NewsListView {
 	}
 
 	public TextView getTv_location() {
-		return tv_location;
+		return tv_address;
 	}
 
 	public void setTv_location(TextView tv_location) {
-		this.tv_location = tv_location;
+		this.tv_address = tv_location;
 	}
 
 	public TextView getTv_content() {
