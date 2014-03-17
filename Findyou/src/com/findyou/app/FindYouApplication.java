@@ -47,7 +47,7 @@ public class FindYouApplication extends  Application{
 					"itcast", MODE_PRIVATE);
 			Editor editor = sharedPreferences2.edit();
 			editor.putString("database_init", "true");
-			editor.commit();		
+			editor.commit();
 		}
 		
 		mInstance = this;
