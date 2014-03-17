@@ -1,5 +1,7 @@
 package com.findyou.ui.main;
 
+import java.util.List;
+
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.map.ItemizedOverlay;
 import com.baidu.mapapi.map.MapController;
@@ -10,7 +12,9 @@ import com.baidu.mapapi.map.PopupOverlay;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.findyou.R;
 import com.findyou.app.FindYouApplication;
+import com.findyou.domain.Service.MyLocationService;
 import com.findyou.domain.tool.BMapUtil;
+import com.findyou.model.LocationInfo;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -25,7 +29,7 @@ public class MyFootprintActivity extends Activity{
 	
 	private MapView mMapView = null;
 	private FindYouApplication app;
-	
+	private MyLocationService mLocationService=null;
 	private Button mClearBtn;
 	private Button mResetBtn;
 	
@@ -44,6 +48,7 @@ public class MyFootprintActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		app = (FindYouApplication)this.getApplication();
+		mLocationService=new MyLocationService();
         if (app.mBMapManager == null) {
             app.mBMapManager = new BMapManager(getApplicationContext());
             app.mBMapManager.init(FindYouApplication.strKey,null);
@@ -57,7 +62,6 @@ public class MyFootprintActivity extends Activity{
 		
 		@Override
 		public void onClick(View v) {
-
 			clearOverlay();
 		}
 	});
@@ -117,18 +121,24 @@ public  void clearOverlay(){
 
 		//添加标志
 		public void initOverlay(){
-			
+			List<LocationInfo> mLocationList;
 			//这里填写要显示的地点的经纬度  举例四个
-			double mLat1 = 39.90923;
-			double mLon1 = 116.397428;
-			double mLat2 = 39.9022;
-			double mLon2 = 116.3922;
-			double mLat3 = 39.917723;
-			double mLon3 = 116.3722;
+//			double mLat1 = 39.90923;
+//			double mLon1 = 116.397428;
+//			double mLat2 = 39.9022;
+//			double mLon2 = 116.3922;
+//			double mLat3 = 39.917723;
+//			double mLon3 = 116.3722;
+			mLocationList=mLocationService.getMyLocatinoList();
+			
 			// 用给定的经纬度构造GeoPoint，单位是微度 (度 * 1E6)
-			GeoPoint p1 = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
-			GeoPoint p2 = new GeoPoint((int) (mLat2 * 1E6), (int) (mLon2 * 1E6));
-			GeoPoint p3 = new GeoPoint((int) (mLat3 * 1E6), (int) (mLon3 * 1E6));
+//			GeoPoint p = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
+//			GeoPoint p2 = new GeoPoint((int) (mLat2 * 1E6), (int) (mLon2 * 1E6));
+//			GeoPoint p3 = new GeoPoint((int) (mLat3 * 1E6), (int) (mLon3 * 1E6));
+			GeoPoint[] p=null;
+			for(int i=0;i<mLocationList.size();i++){
+				p[i]=new GeoPoint((int)(mLocationList.get(i).getLatitude() * 1E6),(int)(mLocationList.get(i).getLontitude() * 1E6));
+			}
 			//准备overlay图像数据，根据实情情况修复
 			Drawable mark= getResources().getDrawable(R.drawable.icon_marka);
 			//用OverlayItem准备Overlay数据
@@ -223,8 +233,6 @@ public  void clearOverlay(){
 		                super.onTap(pt,mapView);
 		                return false;
 		        }
-		        
+
 		}     
-		
-		 
 }

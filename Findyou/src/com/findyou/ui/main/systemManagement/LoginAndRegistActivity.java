@@ -40,6 +40,8 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 		etUserPhone=(EditText) findViewById(R.id.et_userphone);
 		etPassword=(EditText) findViewById(R.id.et_password);
 		btnLogin=(Button) findViewById(R.id.btn_login);
+		btnRegist=(Button) findViewById(R.id.btn_regist);
+		
 		btnLogin.setOnClickListener(new OnClickListener() {
 			
 				@Override

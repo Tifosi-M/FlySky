@@ -2,9 +2,11 @@ package com.findyou.model;
 
 public class LocationInfo {
 	private int userPhone;
+	private String name;
 	private double latitude;//经度
 	private double lontitude;//纬度 
 	private String addres;
+	private String content;
 	
 	public int getUserPhone() {
 		return userPhone;
@@ -29,6 +31,18 @@ public class LocationInfo {
 	}
 	public void setAddres(String addres) {
 		this.addres = addres;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 	
