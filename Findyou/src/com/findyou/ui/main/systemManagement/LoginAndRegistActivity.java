@@ -66,7 +66,7 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 				}
 		});
 		
-		
+		btnRegist = (Button)findViewById(R.id.btn_regist);
 		btnRegist.setOnClickListener(new OnClickListener() {
 			
 			@Override
