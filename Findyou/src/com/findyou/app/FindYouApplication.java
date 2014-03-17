@@ -1,14 +1,10 @@
 package com.findyou.app;
 
-import java.sql.SQLException;
-
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.MKGeneralListener;
 import com.baidu.mapapi.map.MKEvent;
-import com.findyou.data.dbDriver.DataContext;
 import com.findyou.data.dbDriver.DataHelper;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,7 +15,7 @@ public class FindYouApplication extends  Application{
 	
 	// 数据库助手
 	public static DataHelper DATAHELPER;
-	private DataContext database;
+
 	// 数据库名
 	public static String DATAFILENAME = "findyou.db";
 	

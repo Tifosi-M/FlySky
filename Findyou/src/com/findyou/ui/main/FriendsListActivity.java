@@ -2,11 +2,7 @@ package com.findyou.ui.main;
 
 import com.findyou.R;
 import com.findyou.data.Adapter.FriendsCursorAdapter;
-import com.findyou.data.Adapter.LatestNewsCursorAdapter;
-import com.findyou.data.dbDriver.DataContext;
 import com.findyou.domain.Service.FriendService;
-import com.findyou.domain.Service.NewsService;
-
 import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

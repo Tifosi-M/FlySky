@@ -8,7 +8,7 @@ import com.findyou.domain.IService.INewsService;
 
 public class NewsService implements INewsService{
 
-	private DataContext database;
+	private DataContext database=null;
 	private SQLiteDatabase db;
 	private Cursor cursor;
 	private String sql;
