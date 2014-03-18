@@ -30,7 +30,9 @@ public class FindYouApplication extends  Application{
      * zyc-社交名片debug：9wbm32lD9NKtV7vNttUYZMKu
      * zyc-社交名片发布：AbUlyP3e9eDcfUGEb7DAvGO5
      */
+
     public static final String strKey = "pDGDqKMr1KzNnz8RCveGnTSP";	
+
 	
 	@Override
 	public void onCreate() {

@@ -1,5 +1,6 @@
 package com.findyou.ui.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.baidu.mapapi.BMapManager;
@@ -122,7 +123,7 @@ public  void clearOverlay(){
 
 		//添加标志
 		public void initOverlay(){
-			List<News> mNewsList;
+			List<News> mNewsList = new ArrayList<News>();
 			//这里填写要显示的地点的经纬度  举例四个
 //			double mLat1 = 39.90923;
 //			double mLon1 = 116.397428;
@@ -136,9 +137,16 @@ public  void clearOverlay(){
 //			GeoPoint p = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
 //			GeoPoint p2 = new GeoPoint((int) (mLat2 * 1E6), (int) (mLon2 * 1E6));
 //			GeoPoint p3 = new GeoPoint((int) (mLat3 * 1E6), (int) (mLon3 * 1E6));
-			GeoPoint[] p = null;
+
+			
+			List<GeoPoint> listPoint =  new ArrayList<GeoPoint>();
+			
+//			GeoPoint[] p=null;
+//			GeoPoint tempGeoPoint  = new GeoPoint();
+
 			for(int i=0;i<mNewsList.size();i++){
-				p[i]=new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
+				GeoPoint point =new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
+				listPoint.add(point);
 			}
 			//准备overlay图像数据，根据实情情况修复
 			Drawable mark= getResources().getDrawable(R.drawable.icon_marka);
@@ -150,10 +158,11 @@ public  void clearOverlay(){
 //			item2.setMarker(mark);
 //			OverlayItem item3 = new OverlayItem(p3,"天啦！北京西城也有福建小吃","item3");
 			 
-			OverlayItem[] item=null;
+			List<OverlayItem> listItems = new ArrayList<OverlayItem>();
+//			OverlayItem[] item=null;
 			for(int i=0;i<mNewsList.size();i++){
-				item[i]=new OverlayItem(p[i], mNewsList.get(i).getNewsContent(), "");
-				itemOverlay.addItem(item[i]);
+				OverlayItem item =new OverlayItem(listPoint.get(i), mNewsList.get(i).getNewsContent(), "");
+				itemOverlay.addItem(item);
 			}
 			
 			
