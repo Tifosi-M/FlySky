@@ -3,6 +3,7 @@
  */
 package com.findyou.domain.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.findyou.domain.IService.IMyNewsService;
@@ -32,7 +33,20 @@ public class MyNewsService implements IMyNewsService {
 	@Override
 	public List<News> getMyNewsList() {
 		// TODO Auto-generated method stub
-		return null;
+		News temp=new News();
+		News temp2=new News();
+		News temp3=new News();
+		List<News> mNews=new ArrayList<News>();
+//		double mLat1 = 39.90923;
+//		double mLon1 = 116.397428;
+//		double mLat2 = 39.9022;
+//		double mLon2 = 116.3922;
+//		double mLat3 = 39.917723;
+//		double mLon3 = 116.3722;
+		temp.setNewsLatitude(39.90923);
+		temp.setNewsLongtitude(116.39742);
+		mNews.add(temp);
+		return mNews;
 	}
 
 }

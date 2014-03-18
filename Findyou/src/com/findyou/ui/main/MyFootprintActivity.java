@@ -136,7 +136,7 @@ public  void clearOverlay(){
 //			GeoPoint p = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
 //			GeoPoint p2 = new GeoPoint((int) (mLat2 * 1E6), (int) (mLon2 * 1E6));
 //			GeoPoint p3 = new GeoPoint((int) (mLat3 * 1E6), (int) (mLon3 * 1E6));
-			GeoPoint[] p=null;
+			GeoPoint[] p = null;
 			for(int i=0;i<mNewsList.size();i++){
 				p[i]=new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
 			}
