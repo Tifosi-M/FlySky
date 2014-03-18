@@ -141,12 +141,12 @@ public  void clearOverlay(){
 			
 			List<GeoPoint> listPoint =  new ArrayList<GeoPoint>();
 			
-//			GeoPoint[] p=null;
+			GeoPoint[] point=null;
 //			GeoPoint tempGeoPoint  = new GeoPoint();
 
 			for(int i=0;i<mNewsList.size();i++){
-				GeoPoint point =new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
-				listPoint.add(point);
+				point[i] =new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
+				listPoint.add(point[i]);
 			}
 			//准备overlay图像数据，根据实情情况修复
 			Drawable mark= getResources().getDrawable(R.drawable.icon_marka);

@@ -17,8 +17,9 @@ import com.findyou.domain.entity.UserInfo;
  */
 public class MyNewsService implements IMyNewsService {
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.findyou.domain.IService.IMyLocationService#shareMyLocation(double, double, java.lang.String, java.lang.String)
+	 * @return true 分享成功；false 分享失败
 	 */
 	@Override
 	public boolean shareMyUserInfo(double latitude, double longtitude,
@@ -27,7 +28,7 @@ public class MyNewsService implements IMyNewsService {
 		return false;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.findyou.domain.IService.IMyLocationService#getMyLocatinoList()
 	 */
 	@Override
