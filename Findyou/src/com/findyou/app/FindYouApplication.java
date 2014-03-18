@@ -1,14 +1,10 @@
 package com.findyou.app;
 
-import java.sql.SQLException;
-
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.MKGeneralListener;
 import com.baidu.mapapi.map.MKEvent;
-import com.findyou.data.dbDriver.DataContext;
 import com.findyou.data.dbDriver.DataHelper;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,7 +15,7 @@ public class FindYouApplication extends  Application{
 	
 	// 数据库助手
 	public static DataHelper DATAHELPER;
-	private DataContext database;
+
 	// 数据库名
 	public static String DATAFILENAME = "findyou.db";
 	
@@ -31,10 +27,10 @@ public class FindYouApplication extends  Application{
      * wwb-社交名片debug： pDGDqKMr1KzNnz8RCveGnTSP
      * wwb-社交名片发布：yr9ulLsBASVistGaNQQH2zUi
      * 
-     * zyc-社交名片debug：
-     * zyc-社交名片发布：
+     * zyc-社交名片debug：9wbm32lD9NKtV7vNttUYZMKu
+     * zyc-社交名片发布：AbUlyP3e9eDcfUGEb7DAvGO5
      */
-    public static final String strKey = "pDGDqKMr1KzNnz8RCveGnTSP";	
+    public static final String strKey = "9wbm32lD9NKtV7vNttUYZMKu";	
 	
 	@Override
 	public void onCreate() {
@@ -51,7 +47,7 @@ public class FindYouApplication extends  Application{
 					"itcast", MODE_PRIVATE);
 			Editor editor = sharedPreferences2.edit();
 			editor.putString("database_init", "true");
-			editor.commit();		
+			editor.commit();
 		}
 		
 		mInstance = this;

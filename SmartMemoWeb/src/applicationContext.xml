@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://cxf.apache.org/bindings/soap 
+		http://cxf.apache.org/schemas/configuration/soap.xsd   
+		http://cxf.apache.org/jaxws   
+		http://cxf.apache.org/schemas/jaxws.xsd">
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql://localhost:3306/memo"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>domain/SystemManagement/User.hbm.xml</value>
+				<value>domain/Memo/Realtime.hbm.xml</value>
+				<value>domain/Memo/Timing.hbm.xml</value>
+				<value>domain/Memo/UserDb.hbm.xml</value>
+				<value>domain/SystemManagement/Account.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- SystemManagerment -->
+	<bean id="SystemManagement" class="domain.Service.SystemManagement.SystemManagement">
+	</bean>
+	<jaxws:server id="management"
+		serviceClass="domain.Service.SystemManagement.ISystemManagement"
+		address="/SystemManagement">
+		<jaxws:serviceBean>
+			<ref bean="SystemManagement" /> <!-- 要暴露的 bean 的引用 -->
+		</jaxws:serviceBean>
+	</jaxws:server>
+	<bean id="UserDAO" class="domain.SystemManagement.UserDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- Memo -->
+	<bean id="Memo" class="domain.Service.Memo.MemoService">
+	</bean>
+	<jaxws:server id="memo" serviceClass="domain.Service.Memo.IMemoService"
+		address="/Memo">
+		<jaxws:serviceBean>
+			<ref bean="Memo" /> <!-- 要暴露的 bean 的引用 -->
+		</jaxws:serviceBean>
+	</jaxws:server>
+	<bean id="RealtimeDAO" class="domain.Memo.RealtimeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="TimingDAO" class="domain.Memo.TimingDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UserDbDAO" class="domain.Memo.UserDbDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AccountDAO" class="domain.SystemManagement.AccountDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+</beans>

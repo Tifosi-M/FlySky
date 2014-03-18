@@ -2,11 +2,7 @@ package com.findyou.ui.main;
 
 import com.findyou.R;
 import com.findyou.data.Adapter.FriendsCursorAdapter;
-import com.findyou.data.Adapter.LatestNewsCursorAdapter;
-import com.findyou.data.dbDriver.DataContext;
-import com.findyou.domain.Service.FriendService;
-import com.findyou.domain.Service.NewsService;
-
+import com.findyou.domain.Service.UserInfoService;
 import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,7 +16,7 @@ public class FriendsListActivity extends Activity {
 	private SQLiteDatabase db;
 	private ListView friends_list;
 	private FriendsCursorAdapter friendsCursorAdapter;
-	private FriendService friendsService;
+	private UserInfoService friendsService;
 	private Cursor cursor;
 
 	@Override
@@ -30,7 +26,7 @@ public class FriendsListActivity extends Activity {
 		db = openOrCreateDatabase("findyou.db",
 				MODE_PRIVATE, null);
 		friends_list=(ListView) findViewById(R.id.friends_list);
-		friendsService=new FriendService(db);
+		friendsService=new UserInfoService(db);
 		initFriendsList();
 	}
 	public void initFriendsList()

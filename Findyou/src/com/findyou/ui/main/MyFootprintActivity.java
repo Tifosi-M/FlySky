@@ -1,5 +1,8 @@
 package com.findyou.ui.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.map.ItemizedOverlay;
 import com.baidu.mapapi.map.MapController;
@@ -10,6 +13,9 @@ import com.baidu.mapapi.map.PopupOverlay;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.findyou.R;
 import com.findyou.app.FindYouApplication;
+import com.findyou.domain.Service.MyNewsService;
+import com.findyou.domain.entity.News;
+import com.findyou.domain.entity.UserInfo;
 import com.findyou.domain.tool.BMapUtil;
 
 import android.app.Activity;
@@ -25,7 +31,7 @@ public class MyFootprintActivity extends Activity{
 	
 	private MapView mMapView = null;
 	private FindYouApplication app;
-	
+	private MyNewsService mNewsService=null;
 	private Button mClearBtn;
 	private Button mResetBtn;
 	
@@ -44,6 +50,7 @@ public class MyFootprintActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		app = (FindYouApplication)this.getApplication();
+		mNewsService=new MyNewsService();
         if (app.mBMapManager == null) {
             app.mBMapManager = new BMapManager(getApplicationContext());
             app.mBMapManager.init(FindYouApplication.strKey,null);
@@ -57,7 +64,6 @@ public class MyFootprintActivity extends Activity{
 		
 		@Override
 		public void onClick(View v) {
-
 			clearOverlay();
 		}
 	});
@@ -117,28 +123,47 @@ public  void clearOverlay(){
 
 		//添加标志
 		public void initOverlay(){
-			
+			List<News> mNewsList = new ArrayList<News>();
 			//这里填写要显示的地点的经纬度  举例四个
-			double mLat1 = 39.90923;
-			double mLon1 = 116.397428;
-			double mLat2 = 39.9022;
-			double mLon2 = 116.3922;
-			double mLat3 = 39.917723;
-			double mLon3 = 116.3722;
+//			double mLat1 = 39.90923;
+//			double mLon1 = 116.397428;
+//			double mLat2 = 39.9022;
+//			double mLon2 = 116.3922;
+//			double mLat3 = 39.917723;
+//			double mLon3 = 116.3722;
+			mNewsList=mNewsService.getMyNewsList();
+			
 			// 用给定的经纬度构造GeoPoint，单位是微度 (度 * 1E6)
-			GeoPoint p1 = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
-			GeoPoint p2 = new GeoPoint((int) (mLat2 * 1E6), (int) (mLon2 * 1E6));
-			GeoPoint p3 = new GeoPoint((int) (mLat3 * 1E6), (int) (mLon3 * 1E6));
+//			GeoPoint p = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
+//			GeoPoint p2 = new GeoPoint((int) (mLat2 * 1E6), (int) (mLon2 * 1E6));
+//			GeoPoint p3 = new GeoPoint((int) (mLat3 * 1E6), (int) (mLon3 * 1E6));
+			
+			List<GeoPoint> listPoint =  new ArrayList<GeoPoint>();
+			
+//			GeoPoint[] p=null;
+//			GeoPoint tempGeoPoint  = new GeoPoint();
+			for(int i=0;i<mNewsList.size();i++){
+				GeoPoint point =new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
+				listPoint.add(point);
+			}
 			//准备overlay图像数据，根据实情情况修复
 			Drawable mark= getResources().getDrawable(R.drawable.icon_marka);
 			//用OverlayItem准备Overlay数据
-			OverlayItem item1 = new OverlayItem(p1,"这里的景色很好哦","item1");
+//			OverlayItem item1 = new OverlayItem(p1,"这里的景色很好哦","item1");
 		
 			//使用setMarker()方法设置overlay图片,如果不设置则使用构建ItemizedOverlay时的默认设置
-			OverlayItem item2 = new OverlayItem(p2,"宣武门····","item2");
-			item2.setMarker(mark);
-			OverlayItem item3 = new OverlayItem(p3,"天啦！北京西城也有福建小吃","item3");
+//			OverlayItem item2 = new OverlayItem(p2,"宣武门····","item2");
+//			item2.setMarker(mark);
+//			OverlayItem item3 = new OverlayItem(p3,"天啦！北京西城也有福建小吃","item3");
 			 
+			List<OverlayItem> listItems = new ArrayList<OverlayItem>();
+//			OverlayItem[] item=null;
+			for(int i=0;i<mNewsList.size();i++){
+				OverlayItem item =new OverlayItem(listPoint.get(i), mNewsList.get(i).getNewsContent(), "");
+				itemOverlay.addItem(item);
+			}
+			
+			
 			//创建IteminizedOverlay
 			itemOverlay = new OverlayTest(mark, mMapView);
 			//将IteminizedOverlay添加到MapView中
@@ -156,9 +181,9 @@ public  void clearOverlay(){
 			 
 			//现在所有准备工作已准备好，使用以下方法管理overlay.
 			//添加overlay, 当批量添加Overlay时使用addItem(List<OverlayItem>)效率更高
-			itemOverlay.addItem(item1);
-			itemOverlay.addItem(item2);
-			itemOverlay.addItem(item3);
+//			itemOverlay.addItem(item1);
+//			itemOverlay.addItem(item2);
+//			itemOverlay.addItem(item3);
 			mMapView.refresh();
 			 
 		}
@@ -223,8 +248,6 @@ public  void clearOverlay(){
 		                super.onTap(pt,mapView);
 		                return false;
 		        }
-		        
+
 		}     
-		
-		 
 }

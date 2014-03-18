@@ -59,7 +59,7 @@ public class ViewPagerActivity extends Activity {
 
 		Intent i1 = new Intent(context,MyFootprintActivity.class);
 		listViews.add(getView("MyFootprintActivity", i1));
-		Intent i2 = new Intent(context, ShareMyLoctionActivity.class);
+		Intent i2 = new Intent(context, ShareMyNewsActivity.class);
 		listViews.add(getView("ShareMyLoctionActivity", i2));
 		RelativeLayout tabIndicator1 = (RelativeLayout) LayoutInflater.from(
 				this).inflate(R.layout.tabwidget, null);

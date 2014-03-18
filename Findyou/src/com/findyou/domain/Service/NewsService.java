@@ -8,7 +8,7 @@ import com.findyou.domain.IService.INewsService;
 
 public class NewsService implements INewsService{
 
-	private DataContext database;
+	private DataContext database=null;
 	private SQLiteDatabase db;
 	private Cursor cursor;
 	private String sql;
@@ -21,7 +21,7 @@ public class NewsService implements INewsService{
 	@Override
 	public Cursor FindNews() {
 		// TODO Auto-generated method stub
-		sql = "select a.[rowid] as _id,* from News as a";
+		sql = "select a.[rowid] as _id,* from news as a";
 		cursor = db.rawQuery(sql, null);
 		return cursor;
 	}
