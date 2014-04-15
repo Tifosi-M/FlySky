@@ -182,10 +182,7 @@ public class ShareMyNewsActivity extends Activity{
 			if(poiLocation ==  null)
 				return;
 		}
-		
 	}
-	
-	
 	//搜索
 	public class MySearchListenner implements MKSearchListener{
 
