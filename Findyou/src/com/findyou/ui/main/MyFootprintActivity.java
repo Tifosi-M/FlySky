@@ -56,7 +56,8 @@ public class MyFootprintActivity extends Activity{
 	            app.mBMapManager.init(FindYouApplication.strKey,null);
 	        }
 		
-		setContentView(R.layout.activity_my_footprint);
+//		setContentView(R.layout.activity_my_footprint);
+	    setContentView(R.layout.activity_new_my_footprint);
 		
 		mMapView=(MapView)findViewById(R.id.bmapsView);
 		mClearBtn = (Button) findViewById(R.id.clear);
@@ -167,12 +168,12 @@ public class MyFootprintActivity extends Activity{
 			
 			List<GeoPoint> listPoint =  new ArrayList<GeoPoint>();
 			
-			GeoPoint[] point=null;
+			
 //			GeoPoint tempGeoPoint  = new GeoPoint();
 
 			for(int i=0;i<mNewsList.size();i++){
-				point[i] =new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
-				listPoint.add(point[i]);
+				GeoPoint point =new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
+				listPoint.add(point);
 			}
 			//准备overlay图像数据，根据实情情况修复
 			Drawable mark= getResources().getDrawable(R.drawable.icon_marka);
@@ -183,6 +184,9 @@ public class MyFootprintActivity extends Activity{
 //			OverlayItem item2 = new OverlayItem(p2,"宣武门····","item2");
 //			item2.setMarker(mark);
 //			OverlayItem item3 = new OverlayItem(p3,"天啦！北京西城也有福建小吃","item3");
+			
+			//创建IteminizedOverlay
+			itemOverlay = new OverlayTest(mark, mMapView);
 			 
 			List<OverlayItem> listItems = new ArrayList<OverlayItem>();
 //			OverlayItem[] item=null;
@@ -192,8 +196,7 @@ public class MyFootprintActivity extends Activity{
 			}
 			
 			
-			//创建IteminizedOverlay
-			itemOverlay = new OverlayTest(mark, mMapView);
+			
 			//将IteminizedOverlay添加到MapView中
 		
 			mMapView.getOverlays().clear();
