@@ -140,13 +140,15 @@ public class MyFootprintActivity extends Activity{
 			
 			new1.setNewsLatitude(39.90923);
 			new1.setNewsLongtitude(116.397428);
+			new1.setNewsContent("new1");
 			
 			new2.setNewsLatitude(39.9022);
 			new2.setNewsLongtitude(116.3922);
+			new2.setNewsContent("new2");
 			
 			new3.setNewsLatitude(39.917723);
 			new3.setNewsLongtitude(116.3722);
-			
+			new3.setNewsContent("new3");
 			
 			mNewsList.add(new1);
 			mNewsList.add(new2);
@@ -158,7 +160,7 @@ public class MyFootprintActivity extends Activity{
 //			mNewsList=mNewsService.getMyNewsList();
 			
 			// 用给定的经纬度构造GeoPoint，单位是微度 (度 * 1E6)
-//			GeoPoint p = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
+//			GeoPoint p1 = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
 //			GeoPoint p2 = new GeoPoint((int) (mLat2 * 1E6), (int) (mLon2 * 1E6));
 //			GeoPoint p3 = new GeoPoint((int) (mLat3 * 1E6), (int) (mLon3 * 1E6));
 			
