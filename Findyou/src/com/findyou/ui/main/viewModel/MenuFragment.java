@@ -52,6 +52,7 @@ public class MenuFragment extends Fragment {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(((SlidingActivity) getActivity()),
 						MyInfoActivity.class);
+				intent.putExtra("editable", false);
 				startActivity(intent);
 			}
 		});

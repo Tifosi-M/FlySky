@@ -25,7 +25,7 @@
                 android:src="@drawable/go_back" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/textMyInfoTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignBottom="@+id/btn_edit_card_back"
@@ -95,14 +95,15 @@
                         android:textColor="@color/red"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_watch_card_info_email"
+                    <EditText
+                        android:id="@+id/tv_watch_card_info_sex"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:hint="性别"
                         android:textColor="@color/cardinfo"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:background="@null" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -125,14 +126,15 @@
                         android:textColor="@color/red"
                         android:textSize="14sp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/tv_watch_card_info_mobilephone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:hint="手机号码"
                         android:textColor="@color/cardinfo"
-                        android:textSize="16sp" />
+                        android:textSize="16sp" 
+                        android:background="@null"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -155,14 +157,15 @@
                         android:textColor="@color/red"
                         android:textSize="14sp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/tv_watch_card_info_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:hint="邮箱地址"
                         android:textColor="@color/cardinfo"
-                        android:textSize="16sp" />
+                        android:textSize="16sp" 
+                        android:background="@null"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -185,14 +188,15 @@
                         android:textColor="@color/red"
                         android:textSize="14sp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/tv_watch_card_info_QQ"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:hint="QQ号码"
                         android:textColor="@color/cardinfo"
-                        android:textSize="16sp" />
+                        android:textSize="16sp" 
+                        android:background="@null"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -215,14 +219,15 @@
                         android:textColor="@color/red"
                         android:textSize="14sp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/tv_watch_card_info_professional"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:hint="爱好"
                         android:textColor="@color/cardinfo"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:background="@null" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -245,14 +250,15 @@
                         android:textColor="@color/red"
                         android:textSize="14sp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/tv_watch_card_info_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:hint="地址信息"
                         android:textColor="@color/cardinfo"
-                        android:textSize="16sp" />
+                        android:textSize="16sp" 
+                        android:background="@null"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -263,13 +269,15 @@
                     android:layout_weight="0.01" >
 
                     <TextView
-                        android:id="@+id/btn_edit"
+                        android:id="@+id/text_edit_userInfo"
                         android:layout_width="match_parent"
                         android:layout_height="40sp"
                         android:layout_marginLeft="10sp"
                         android:layout_marginRight="10sp"
                         android:background="@drawable/main_button"
                         android:gravity="center"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:text="编  辑"
                         android:textColor="@color/white"
                         android:textSize="16sp"
