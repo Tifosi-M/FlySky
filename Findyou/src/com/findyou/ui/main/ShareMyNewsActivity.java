@@ -46,11 +46,7 @@ public class ShareMyNewsActivity extends Activity{
 	private String categoryString = null;
 	private String mylocationplcaeString = null;
 	private MyNewsService mNewsService=null;
-	private LocationClient mLocationClient;
-	private LocationData locationData = null;
 	private SharedPreferences sp;
-	private MKSearch mSearch = null;
-	private FindYouApplication app;
 	private News mNews;
 	private ArrayAdapter<String> categoryAdapter= null;
 	
@@ -68,31 +64,11 @@ public class ShareMyNewsActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		sp=getPreferences(MODE_PRIVATE);
-		 app = (FindYouApplication)this.getApplication();
-	        if (app.mBMapManager == null) {
-	            app.mBMapManager = new BMapManager(getApplicationContext());
-	            app.mBMapManager.init(FindYouApplication.strKey,null);
-	        }
 		
 		setContentView(R.layout.activity_share_mylocation);
 		
 		init();
 
-		//定位初始化
-		mLocationClient = new LocationClient(getApplicationContext());
-		locationData = new LocationData();
-		MyLocationListenner myListenner = new MyLocationListenner();
-		mLocationClient.registerLocationListener(myListenner);
-		LocationClientOption option = new LocationClientOption();
-		option.setOpenGps(true);
-		option.setScanSpan(5000);
-		mLocationClient.setLocOption(option);
-		mLocationClient.start();
-		
-		//初始化搜索模块  注册搜索事件监听
-		mSearch = new MKSearch();
-		mSearch.init(app.mBMapManager, new MySearchListenner());
-		
 		sharemylocation_publishButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -142,6 +118,12 @@ public class ShareMyNewsActivity extends Activity{
 		mNews.setNewsUserName(sp.getString("userName", ""));
 		sharemylocation_placetTextView = (TextView)findViewById(R.id.tv_sharemylocation_place);
 		
+		SharedPreferences ferences=getSharedPreferences("LOCATION_INFO",0);  
+        String mylocationplcaeString = ferences.getString("Location_name", "");  
+        
+        sharemylocation_placetTextView.setText(mylocationplcaeString);
+		
+		
 		sharemylocation_categorySpinner =  (Spinner) findViewById(R.id.sp_sharemylocation_category);
 		categoryAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,category);
 		categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -156,7 +138,7 @@ public class ShareMyNewsActivity extends Activity{
 		new Thread(){
 
 			public void run() {
-				Calculation.calculate(8);//在8秒时间内获取数据
+				Calculation.calculate(4);//在8秒时间内获取数据
 				
 				//向handler发消息
 				pd_handlerFirst.sendEmptyMessage(0);
@@ -195,7 +177,6 @@ public class ShareMyNewsActivity extends Activity{
 			
 			TextView tv = (TextView)view;
 			tv.setTextColor(getResources().getColor(R.color.black));//设置显示字体的颜色
-//			tv.setTextSize(12.0f);//设置字体大小 
 			
 			switch (num) {
 			case 0:
@@ -215,101 +196,9 @@ public class ShareMyNewsActivity extends Activity{
 		
 	}
 	
-	//定位
-	public class MyLocationListenner implements BDLocationListener{
-
-		@Override
-		public void onReceiveLocation(BDLocation location) {
-			
-			if(location == null)
-				return;
-			
-//			Toast.makeText(getApplicationContext(), location.getLongitude() + " "+location.getLatitude(), Toast.LENGTH_SHORT).show();
-			
-			locationData.longitude = location.getLongitude();
-			locationData.latitude = location.getLatitude();
-			mNews.setNewsLongtitude(locationData.longitude);
-			mNews.setNewsLatitude(locationData.latitude);
-			if(locationData != null){
-			
-				mSearch.reverseGeocode(new GeoPoint((int) (location.getLatitude() * 1e6),(int) (location.getLongitude() * 1e6)));
-			}
-		}
-
-		@Override
-		public void onReceivePoi(BDLocation poiLocation) {
-
-			if(poiLocation ==  null)
-				return;
-		}
-		
-	}
-	
-	
-	//搜索
-	public class MySearchListenner implements MKSearchListener{
-
-		@Override
-		public void onGetAddrResult(MKAddrInfo result, int iError) {
-			MKGeocoderAddressComponent kk = result.addressComponents;
-			mylocationplcaeString = kk.city + kk.district + kk.street + kk.streetNumber;
-			Toast.makeText(getApplicationContext(), mylocationplcaeString, Toast.LENGTH_SHORT).show();
-			
-			sharemylocation_placetTextView.setText(mylocationplcaeString);
-			
-			mLocationClient.stop();
-		}
-
-		@Override
-		public void onGetBusDetailResult(MKBusLineResult arg0, int arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void onGetDrivingRouteResult(MKDrivingRouteResult arg0, int arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void onGetPoiDetailSearchResult(int arg0, int arg1) {
-		}
-
-		@Override
-		public void onGetPoiResult(MKPoiResult arg0, int arg1, int arg2) {
-			//返回 poi 搜索结果
-		}
-
-		@Override
-		public void onGetShareUrlResult(MKShareUrlResult arg0, int arg1,
-				int arg2) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void onGetSuggestionResult(MKSuggestionResult arg0, int arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void onGetTransitRouteResult(MKTransitRouteResult arg0, int arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void onGetWalkingRouteResult(MKWalkingRouteResult arg0, int arg1) {
-			// TODO Auto-generated method stub
-		}
-	}
 	
 	@Override
 	protected void onDestroy() {
-		if(mLocationClient != null)
-			mLocationClient.stop();
 		super.onDestroy();
 	}
 	
