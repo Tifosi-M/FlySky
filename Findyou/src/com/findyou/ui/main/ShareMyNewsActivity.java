@@ -1,26 +1,7 @@
 package com.findyou.ui.main;
 
 import com.findyou.domain.tool.Calculation;
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-import com.baidu.mapapi.BMapManager;
-import com.baidu.mapapi.map.LocationData;
-import com.baidu.mapapi.search.MKAddrInfo;
-import com.baidu.mapapi.search.MKBusLineResult;
-import com.baidu.mapapi.search.MKDrivingRouteResult;
-import com.baidu.mapapi.search.MKGeocoderAddressComponent;
-import com.baidu.mapapi.search.MKPoiResult;
-import com.baidu.mapapi.search.MKSearch;
-import com.baidu.mapapi.search.MKSearchListener;
-import com.baidu.mapapi.search.MKShareUrlResult;
-import com.baidu.mapapi.search.MKSuggestionResult;
-import com.baidu.mapapi.search.MKTransitRouteResult;
-import com.baidu.mapapi.search.MKWalkingRouteResult;
-import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.findyou.R;
-import com.findyou.app.FindYouApplication;
 import com.findyou.domain.Service.MyNewsService;
 import com.findyou.domain.entity.News;
 
@@ -93,7 +74,7 @@ public class ShareMyNewsActivity extends Activity{
 					new Thread(){
 
 						public void run() {
-							Calculation.calculate(8);//在8秒时间内获取数据
+							Calculation.calculate(4);//在8秒时间内获取数据
 							
 							//向handler发消息
 							pd_handler.sendEmptyMessage(0);

@@ -49,24 +49,21 @@ public class LoginAndRegistActivity extends Activity implements WebServiceDelega
 				public void onClick(View v) {
 					Editor edit=sp.edit();
 					edit.putString("userName", etUserPhone.getText().toString());
-					Intent intent = new Intent(LoginAndRegistActivity.this,
-							SlidingActivity.class);
-					startActivity(intent);
-					LoginAndRegistActivity.this.finish();
-					
-//					userPhone = etUserPhone.getText().toString();
-//					String password = etUserPhone.getText().toString();
-//					if (userPhone.equals("") || password.equals("")) {
-//						Toast toast = Toast.makeText(LoginAndRegistActivity.this,
-//								"用户名密码请填完整", Toast.LENGTH_SHORT);
-//						toast.show();
-//					} else {
-//						loginOrRegistr = true;
-//						HashMap<String, Object> args = new HashMap<String, Object>();
-//						args.put("tel", userPhone);
-//						args.put("pwd", password);
-//						webService.callWebService("login", args, boolean.class);
-//					}
+					userPhone = etUserPhone.getText().toString();
+					String password = etPassword.getText().toString();
+					if (userPhone.equals("") || password.equals("")) {
+						Toast toast = Toast.makeText(LoginAndRegistActivity.this,
+								"用户名密码请填完整", Toast.LENGTH_SHORT);
+						toast.show();
+					} else {
+						loginOrRegistr = true;
+						HashMap<String, Object> args = new HashMap<String, Object>();
+						args.put("tel", userPhone);
+						args.put("pwd", password);
+						webService.callWebService("login", args, boolean.class);
+//					Intent intent=new Intent(LoginAndRegistActivity.this,SlidingActivity.class);
+//					startActivity(intent);
+					}
 				}
 		});
 		

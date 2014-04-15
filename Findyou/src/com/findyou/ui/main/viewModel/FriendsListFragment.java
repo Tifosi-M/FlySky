@@ -56,9 +56,9 @@ public class FriendsListFragment extends Fragment{
 	
 	public void initFriendsList()
 	{
-//		cursor=friendsService.FindFriends();
+		cursor=friendsService.findFriends();
 		friendsCursorAdapter = new FriendsCursorAdapter(((SlidingActivity)getActivity()),
-				R.layout.item_friends_list, cursor, new String[] {"FriendName"},
+				R.layout.item_friends_list, cursor, new String[] {"userName"},
 				new int[] {R.id.tv_card_list_item_name});
 		friends_list.setAdapter(friendsCursorAdapter);
 		friends_list.setOnItemClickListener(new OnItemClickListener() {
