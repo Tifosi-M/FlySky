@@ -141,7 +141,7 @@ public  void clearOverlay(){
 			
 			List<GeoPoint> listPoint =  new ArrayList<GeoPoint>();
 			
-			GeoPoint[] point=null;
+			GeoPoint[] point=new GeoPoint[mNewsList.size()];
 //			GeoPoint tempGeoPoint  = new GeoPoint();
 
 			for(int i=0;i<mNewsList.size();i++){
@@ -158,18 +158,17 @@ public  void clearOverlay(){
 //			item2.setMarker(mark);
 //			OverlayItem item3 = new OverlayItem(p3,"天啦！北京西城也有福建小吃","item3");
 			 
-			List<OverlayItem> listItems = new ArrayList<OverlayItem>();
 //			OverlayItem[] item=null;
-			for(int i=0;i<mNewsList.size();i++){
-				OverlayItem item =new OverlayItem(listPoint.get(i), mNewsList.get(i).getNewsContent(), "");
-				itemOverlay.addItem(item);
-			}
+
 			
 			
 			//创建IteminizedOverlay
 			itemOverlay = new OverlayTest(mark, mMapView);
 			//将IteminizedOverlay添加到MapView中
-		
+			for(int i=0;i<mNewsList.size();i++){
+				OverlayItem item =new OverlayItem(listPoint.get(i), mNewsList.get(i).getNewsContent(), "");
+				itemOverlay.addItem(item);
+			}
 			mMapView.getOverlays().clear();
 			mMapView.getOverlays().add(itemOverlay);
 			
