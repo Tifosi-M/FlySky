@@ -1,10 +1,12 @@
 package com.findyou.ui.main;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.findyou.R;
+import com.findyou.domain.Service.locationService;
 import com.findyou.ui.main.viewModel.FriendsListFragment;
 import com.findyou.ui.main.viewModel.MainFragment;
 import com.findyou.ui.main.viewModel.MenuFragment;
@@ -46,6 +48,12 @@ public class SlidingActivity extends SlidingFragmentActivity {
 		db = openOrCreateDatabase("findyou.db",
 				MODE_PRIVATE, null);
 		setDb(db);
+		
+		
+		Intent intent = new Intent(SlidingActivity.this,locationService.class);
+		startService(intent);
+		
+		
 	}
 	public SQLiteDatabase getDb() {
 		return db;

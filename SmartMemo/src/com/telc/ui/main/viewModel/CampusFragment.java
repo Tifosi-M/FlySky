@@ -66,17 +66,19 @@ public class CampusFragment extends Fragment{
 						"campusname", "campusstate","campusby" }, new int[] {
 				R.id.textListContent, R.id.btn_state ,R.id.textListCategory});
 		campusList.setAdapter(campusCursorAdapter);
-	
+		
 		campusList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				String campus_id=CampusCursorAdapter.list_campusid.get(arg2);
 				Toast toast = Toast.makeText(getActivity(),
 						"sessss", Toast.LENGTH_SHORT);
 				toast.show();
+				String campus_id=CampusCursorAdapter.list_campusid.get(arg2);
+		
+				
 				
 				System.out.println(campus_id);
 				Intent intent=new Intent(getActivity(),CampusDetailActivity.class);

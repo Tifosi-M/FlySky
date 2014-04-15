@@ -57,6 +57,7 @@ public class UserInfoService implements IUserInfoService {
 	public Cursor findFriends() {
 		// TODO Auto-generated method stub
 		sql = "select a.[rowid] as _id,* from userInfo as a";
+		System.out.println("===============");
 		cursor = db.rawQuery(sql, null);
 		return cursor;
 	}
