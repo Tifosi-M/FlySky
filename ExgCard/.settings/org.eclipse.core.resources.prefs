@@ -46,7 +46,6 @@ encoding//res/values/strings.xml=UTF-8
 encoding//res/values/styles.xml=UTF-8
 encoding//src/com/businesscard/data/Adapter/BusinessCardCursorAdapter.java=UTF-8
 encoding//src/com/businesscard/data/Adapter/NormalCardCursorAdapter.java=UTF-8
-encoding//src/com/businesscard/data/dbDriver/CreateDB.java=UTF-8
 encoding//src/com/businesscard/data/dbDriver/CreateUserDB.java=UTF-8
 encoding//src/com/businesscard/domain/Emtity/Accounts.java=UTF-8
 encoding//src/com/businesscard/domain/Emtity/BusinessCardInfo.java=UTF-8
