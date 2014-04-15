@@ -158,10 +158,6 @@ public  void clearOverlay(){
 //			item2.setMarker(mark);
 //			OverlayItem item3 = new OverlayItem(p3,"天啦！北京西城也有福建小吃","item3");
 			 
-//			OverlayItem[] item=null;
-
-			
-			
 			//创建IteminizedOverlay
 			itemOverlay = new OverlayTest(mark, mMapView);
 			//将IteminizedOverlay添加到MapView中
