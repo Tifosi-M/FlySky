@@ -29,10 +29,11 @@ public class MenuFragment extends Fragment{
 	TextView textSetting;
 	TextView textExit;
 	TextView textReturn;
+	TextView txt_campus;
 	FinishFragment finishFragment;
 	UnfinishFragment unfinishFragment;
 	Drawable drawable;
-
+    CampusFragment campusFragment;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -52,7 +53,7 @@ public class MenuFragment extends Fragment{
 		textSetting = (TextView) view.findViewById(R.id.txt_setting);
 		textExit = (TextView) view.findViewById(R.id.txt_exit);
 		textReturn = (TextView) view.findViewById(R.id.txt_return);
-
+		txt_campus=(TextView) view.findViewById(R.id.txt_campus);
 		textUnfinish.setBackgroundDrawable(drawable);
 		
 		textUserInfo.setOnClickListener(new OnClickListener() {
@@ -72,7 +73,7 @@ public class MenuFragment extends Fragment{
 				textAbout.setBackgroundDrawable(null);
 				textReturn.setBackgroundDrawable(null);
 				textExit.setBackgroundDrawable(null);
-
+				txt_campus.setBackgroundDrawable(null);
 				FragmentManager fm = ((SlidingActivity) getActivity())
 						.getFragmentManager();
 				/**
@@ -106,7 +107,7 @@ public class MenuFragment extends Fragment{
 				textAbout.setBackgroundDrawable(null);
 				textReturn.setBackgroundDrawable(null);
 				textExit.setBackgroundDrawable(null);
-
+				txt_campus.setBackgroundDrawable(null);
 				/**
 				 * @parma replace（被替换的layout，新的fragment）
 				 */
@@ -137,6 +138,7 @@ public class MenuFragment extends Fragment{
 				textFinished.setBackgroundDrawable(drawable);
 				textUnfinish.setBackgroundDrawable(null);
 				textSetting.setBackgroundDrawable(null);
+				txt_campus.setBackgroundDrawable(null);
 				textAbout.setBackgroundDrawable(null);
 				textReturn.setBackgroundDrawable(null);
 				textExit.setBackgroundDrawable(null);
@@ -144,6 +146,31 @@ public class MenuFragment extends Fragment{
 			}
 		});
 
+		txt_campus.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				 if(index==5)
+					 ((SlidingActivity)getActivity()).getSlidingMenu().toggle();
+				 index=5;
+				FragmentManager fm = ((SlidingActivity) getActivity())
+						.getFragmentManager();
+				fm.beginTransaction().replace(R.id.unfinish, campusFragment == null ?new CampusFragment():campusFragment )
+				.commit();
+				((SlidingActivity)getActivity()).getSlidingMenu().showContent();
+				drawable = getResources().getDrawable(R.drawable.bg_press);
+				textUserInfo.setBackgroundDrawable(null);
+				textFinished.setBackgroundDrawable(null);
+				textUnfinish.setBackgroundDrawable(null);
+				textSetting.setBackgroundDrawable(null);
+				textAbout.setBackgroundDrawable(null);
+				textReturn.setBackgroundDrawable(null);
+				textExit.setBackgroundDrawable(null);
+				txt_campus.setBackgroundDrawable(drawable);
+			}
+		});
+		
 		textReturn.setOnClickListener(new OnClickListener() {
 
 			@SuppressWarnings("deprecation")
@@ -162,7 +189,7 @@ public class MenuFragment extends Fragment{
 				textAbout.setBackgroundDrawable(null);
 				textReturn.setBackgroundDrawable(drawable);
 				textExit.setBackgroundDrawable(null);
-
+				txt_campus.setBackgroundDrawable(null);
 				Intent intent = new Intent(getActivity(),
 						LoginAndRegisterActivity.class);
 				startActivity(intent);
@@ -198,6 +225,7 @@ public class MenuFragment extends Fragment{
 				textAbout.setBackgroundDrawable(null);
 				textReturn.setBackgroundDrawable(null);
 				textExit.setBackgroundDrawable(null);
+				txt_campus.setBackgroundDrawable(null);
 				if (index == 4)
 					((SlidingActivity) getActivity()).getSlidingMenu().toggle();
 				index = 4;
@@ -223,7 +251,7 @@ public class MenuFragment extends Fragment{
 				textAbout.setBackgroundDrawable(drawable);
 				textReturn.setBackgroundDrawable(null);
 				textExit.setBackgroundDrawable(null);
-				
+				txt_campus.setBackgroundDrawable(null);
 				if (index == 5)
 					((SlidingActivity) getActivity()).getSlidingMenu().toggle();
 				index = 5;

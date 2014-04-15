@@ -98,7 +98,26 @@
                     android:layout_marginRight="10sp"/>
 
             </LinearLayout>
+<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
+                <TextView
+                    android:id="@+id/txt_campus"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableBottom="@drawable/battery_horizontal_dividing_line"
+                    android:drawableLeft="@drawable/ic_campus"
+                    android:drawableRight="@drawable/goto_view"
+                    android:gravity="center_vertical"
+                    android:text="   校园活动备忘"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10sp"  
+                    android:layout_marginRight="10sp"/>
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

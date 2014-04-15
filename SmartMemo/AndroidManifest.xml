@@ -107,6 +107,12 @@
             android:theme="@android:style/Theme.Holo.Light.NoActionBar">
 
         </activity>
+          <activity
+            android:name="com.telc.ui.Memos.CampusCardActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
+
+        </activity>
          <activity
             android:name="com.telc.resource.baidumap.getPoisitionActivity"
             android:windowSoftInputMode="adjustResize"
