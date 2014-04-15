@@ -28,99 +28,101 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MyFootprintActivity extends Activity{
+		
+		private MapView mMapView = null;
+		private FindYouApplication app;
+		private MyNewsService mNewsService=null;
+		private Button mClearBtn;
+		private Button mResetBtn;
+		
+		private PopupOverlay   pop  = null;
 	
-	private MapView mMapView = null;
-	private FindYouApplication app;
-	private MyNewsService mNewsService=null;
-	private Button mClearBtn;
-	private Button mResetBtn;
-	
-	private PopupOverlay   pop  = null;
-
-	private TextView  popupText = null;
-	private View viewCache = null;
-	private View popupInfo = null;
-	private View popupLeft = null;
-	private View popupRight = null;
-
-	OverlayTest itemOverlay=null;
-	private OverlayItem mCurItem = null;
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		app = (FindYouApplication)this.getApplication();
-		mNewsService=new MyNewsService();
-        if (app.mBMapManager == null) {
-            app.mBMapManager = new BMapManager(getApplicationContext());
-            app.mBMapManager.init(FindYouApplication.strKey,null);
-        }
-	
-	setContentView(R.layout.activity_my_footprint);
-	
-	mMapView=(MapView)findViewById(R.id.bmapsView);
-	mClearBtn = (Button) findViewById(R.id.clear);
-	mClearBtn.setOnClickListener(new OnClickListener() {
+		private TextView  popupText = null;
+		private View viewCache = null;
+		private View popupInfo = null;
+		private View popupLeft = null;
+		private View popupRight = null;
+		
+		OverlayTest itemOverlay=null;
+		private OverlayItem mCurItem = null;
 		
 		@Override
-		public void onClick(View v) {
-			clearOverlay();
-		}
-	});
-    mResetBtn = (Button) findViewById(R.id.reset);
-    mResetBtn.setOnClickListener(new OnClickListener() {
+		protected void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			app = (FindYouApplication)this.getApplication();
+			mNewsService=new MyNewsService();
+	        if (app.mBMapManager == null) {
+	            app.mBMapManager = new BMapManager(getApplicationContext());
+	            app.mBMapManager.init(FindYouApplication.strKey,null);
+	        }
 		
-		@Override
-		public void onClick(View v) {
-
-			initOverlay();
+//		setContentView(R.layout.activity_my_footprint);
+	    setContentView(R.layout.activity_new_my_footprint);
+		
+		mMapView=(MapView)findViewById(R.id.bmapsView);
+		mClearBtn = (Button) findViewById(R.id.clear);
+		mClearBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				clearOverlay();
+			}
+		});
+		
+	    mResetBtn = (Button) findViewById(R.id.reset);
+	    mResetBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+	
+				initOverlay();
+			}
+		});
+			
+			
+		mMapView.setBuiltInZoomControls(true);
+		//设置启用内置的缩放控件
+		MapController mMapController=mMapView.getController();
+		// 得到mMapView的控制权,可以用它控制和驱动平移和缩放
+		GeoPoint point =new GeoPoint((int)(39.915* 1E6),(int)(116.404* 1E6));
+		//用给定的经纬度构造一个GeoPoint，单位是微度 (度 * 1E6)
+		mMapController.setCenter(point);//设置地图中心点
+		mMapController.setZoom(12);//设置地图zoom级别
+		
+	
+	    pop = new PopupOverlay(mMapView,popListener);
+		    
 		}
-	});
-	
-	
-	mMapView.setBuiltInZoomControls(true);
-	//设置启用内置的缩放控件
-	MapController mMapController=mMapView.getController();
-	// 得到mMapView的控制权,可以用它控制和驱动平移和缩放
-	GeoPoint point =new GeoPoint((int)(39.915* 1E6),(int)(116.404* 1E6));
-	//用给定的经纬度构造一个GeoPoint，单位是微度 (度 * 1E6)
-	mMapController.setCenter(point);//设置地图中心点
-	mMapController.setZoom(12);//设置地图zoom级别
-	
-
-    pop = new PopupOverlay(mMapView,popListener);
-    
-}
-
-////创建pop对象，注册点击事件监听接口
-//PopupOverlay pop = new PopupOverlay(mMapView,new PopupClickListener() {                
-//        @Override
-//        public void onClickedPopup(int index) {
-//                //在此处理pop点击事件，index为点击区域索引,点击区域最多可有三个
-//        }
-//});
-
-/**
- * 创建一个popupoverlay
- */
-PopupClickListener popListener = new PopupClickListener(){
-	@Override
-	public void onClickedPopup(int index) {
-		//写上 pop的响应事件
-	}
-};
-
-//清除屏幕上的标志 
-public  void clearOverlay(){
-	
-	if (pop != null){
-        pop.hidePop();
-	}
-	//清除overlay  
-	 itemOverlay.removeAll();  
-	 mMapView.refresh();
-}
-
+		
+		////创建pop对象，注册点击事件监听接口
+		//PopupOverlay pop = new PopupOverlay(mMapView,new PopupClickListener() {                
+		//        @Override
+		//        public void onClickedPopup(int index) {
+		//                //在此处理pop点击事件，index为点击区域索引,点击区域最多可有三个
+		//        }
+		//});
+		
+		/**
+		 * 创建一个popupoverlay
+		 */
+		PopupClickListener popListener = new PopupClickListener(){
+			@Override
+			public void onClickedPopup(int index) {
+				//写上 pop的响应事件
+			}
+		};
+		
+		//清除屏幕上的标志 
+		public  void clearOverlay(){
+			
+			if (pop != null){
+		        pop.hidePop();
+			}
+			//清除overlay  
+			 itemOverlay.removeAll();  
+			 mMapView.refresh();
+		}
+		
 		//添加标志
 		public void initOverlay(){
 			List<News> mNewsList = new ArrayList<News>();
@@ -131,10 +133,35 @@ public  void clearOverlay(){
 //			double mLon2 = 116.3922;
 //			double mLat3 = 39.917723;
 //			double mLon3 = 116.3722;
-			mNewsList=mNewsService.getMyNewsList();
+			
+			
+			News new1 = new News();
+			News new2 = new News();
+			News new3 = new News();
+			
+			new1.setNewsLatitude(39.90923);
+			new1.setNewsLongtitude(116.397428);
+			new1.setNewsContent("new1");
+			
+			new2.setNewsLatitude(39.9022);
+			new2.setNewsLongtitude(116.3922);
+			new2.setNewsContent("new2");
+			
+			new3.setNewsLatitude(39.917723);
+			new3.setNewsLongtitude(116.3722);
+			new3.setNewsContent("new3");
+			
+			mNewsList.add(new1);
+			mNewsList.add(new2);
+			mNewsList.add(new3);
+			
+			/*
+			 * 暂时注释掉     这个地方是从服务器上获取列表数据  现在用上面的假数据代替下
+			 * */
+//			mNewsList=mNewsService.getMyNewsList();
 			
 			// 用给定的经纬度构造GeoPoint，单位是微度 (度 * 1E6)
-//			GeoPoint p = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
+//			GeoPoint p1 = new GeoPoint((int) (mLat1 * 1E6), (int) (mLon1 * 1E6));
 //			GeoPoint p2 = new GeoPoint((int) (mLat2 * 1E6), (int) (mLon2 * 1E6));
 //			GeoPoint p3 = new GeoPoint((int) (mLat3 * 1E6), (int) (mLon3 * 1E6));
 
@@ -142,7 +169,6 @@ public  void clearOverlay(){
 			List<GeoPoint> listPoint =  new ArrayList<GeoPoint>();
 			
 			GeoPoint[] point=new GeoPoint[mNewsList.size()];
-//			GeoPoint tempGeoPoint  = new GeoPoint();
 
 			for(int i=0;i<mNewsList.size();i++){
 				point[i] =new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
@@ -157,6 +183,9 @@ public  void clearOverlay(){
 //			OverlayItem item2 = new OverlayItem(p2,"宣武门····","item2");
 //			item2.setMarker(mark);
 //			OverlayItem item3 = new OverlayItem(p3,"天啦！北京西城也有福建小吃","item3");
+			
+			//创建IteminizedOverlay
+			itemOverlay = new OverlayTest(mark, mMapView);
 			 
 			//创建IteminizedOverlay
 			itemOverlay = new OverlayTest(mark, mMapView);

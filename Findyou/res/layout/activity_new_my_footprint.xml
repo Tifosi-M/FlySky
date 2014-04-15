@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <com.baidu.mapapi.map.MapView android:id="@+id/bmapsView"
+	                android:layout_width="fill_parent"
+	                android:layout_height="fill_parent"
+	                android:clickable="true" />
+    
+     <Button
+         android:id="@+id/location_button"
+         android:layout_width="40dp"
+         android:layout_height="40dp"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentTop="true"
+         android:layout_marginRight="10dp"
+         android:layout_marginTop="10dip"
+         android:background="@drawable/location_button"
+         android:textColor="#FF000000" />
+
+    	<Button
+    	    android:id="@+id/clear"
+    	    android:layout_width="100dp"
+    	    android:layout_height="40dp"
+    	    android:layout_alignBaseline="@+id/location_button"
+    	    android:layout_alignBottom="@+id/location_button"
+    	    android:layout_marginRight="30dp"
+    	    android:layout_toLeftOf="@+id/location_button"
+    	    android:text="clear"
+    	    android:textColor="#FF000000" />
+
+    	<Button
+    	    android:id="@+id/reset"
+    	    android:layout_width="100dp"
+    	    android:layout_height="40dp"
+    	    android:layout_alignBaseline="@+id/clear"
+    	    android:layout_alignBottom="@+id/clear"
+    	    android:layout_marginRight="19dp"
+    	    android:layout_toLeftOf="@+id/clear"
+    	    android:text="find" />
+
+</RelativeLayout>
