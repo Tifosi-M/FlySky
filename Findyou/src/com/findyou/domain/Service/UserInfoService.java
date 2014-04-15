@@ -22,6 +22,9 @@ public class UserInfoService implements IUserInfoService {
 		this.db=db;
 		ctx=new DataContext();
 	}
+	public UserInfoService(){
+		ctx=new DataContext();
+	}
 
 	@Override
 	public boolean add(UserInfo friend) {
@@ -61,7 +64,7 @@ public class UserInfoService implements IUserInfoService {
 	@Override
 	public UserInfo getMyUserInfo(String userPhone) {
 		// TODO Auto-generated method stub
-		UserInfo myInfo = null;
+		UserInfo myInfo = new UserInfo();
 		try {
 			myInfo=ctx.queryById(UserInfo.class, String.class,userPhone);
 		} catch (SQLException e) {

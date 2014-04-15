@@ -7,6 +7,7 @@ import com.findyou.ui.main.SlidingActivity;
 import com.findyou.ui.main.ViewPagerActivity;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,15 +15,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MenuFragment extends Fragment {
 
-	TextView txt_user_info, txt_my_share, txt_friend_list, txt_my_lastet;
-
+	public Context ctx=null;
+	TextView txt_user_info, txt_my_share, txt_friend_list, txt_my_lastet,txt_account_management,
+					txt_system_setting,txt_share_for_friends,txt_check_version,txt_about_us;
+	private MyClickListener mListener=new MyClickListener();
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		ctx=this.getActivity();
 	}
 
 	@Override
@@ -33,6 +39,12 @@ public class MenuFragment extends Fragment {
 		txt_my_share = (TextView) view.findViewById(R.id.txt_my_share);
 		txt_friend_list = (TextView) view.findViewById(R.id.txt_friend_list);
 		txt_my_lastet = (TextView) view.findViewById(R.id.txt_my_lastet);
+		txt_account_management = (TextView) view.findViewById(R.id.txt_account_management);
+		txt_system_setting=(TextView) view.findViewById(R.id.txt_system_setting);
+		txt_share_for_friends=(TextView) view.findViewById(R.id.txt_share_for_friends);
+		txt_check_version=(TextView) view.findViewById(R.id.txt_check_version);
+		txt_about_us=(TextView) view.findViewById(R.id.txt_about_us);
+		
 		txt_user_info.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -40,6 +52,7 @@ public class MenuFragment extends Fragment {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(((SlidingActivity) getActivity()),
 						MyInfoActivity.class);
+				intent.putExtra("editable", false);
 				startActivity(intent);
 			}
 		});
@@ -82,9 +95,6 @@ public class MenuFragment extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				// Intent intent = new Intent(((SlidingActivity) getActivity()),
-				// FriendsListActivity.class);
-				// startActivity(intent);
 				if(((SlidingActivity) getActivity())
 						.getFlag()!=("activity_friends_list")){
 				((SlidingActivity) getActivity())
@@ -102,6 +112,23 @@ public class MenuFragment extends Fragment {
 				.showContent();
 			}
 		});
+		
+		txt_about_us.setOnClickListener(mListener);
+		txt_account_management.setOnClickListener(mListener);
+		txt_system_setting.setOnClickListener(mListener);
+		txt_share_for_friends.setOnClickListener(mListener);
+		txt_check_version.setOnClickListener(mListener);
 		return view;
 	}
+	
+	public class MyClickListener implements OnClickListener{
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Toast.makeText(getActivity(), "暂未开放，敬请期待！", Toast.LENGTH_SHORT).show();
+		}
+	}
 }
+
+

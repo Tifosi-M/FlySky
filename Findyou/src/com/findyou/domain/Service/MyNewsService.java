@@ -46,7 +46,13 @@ public class MyNewsService implements IMyNewsService {
 //		double mLon3 = 116.3722;
 		temp.setNewsLatitude(39.90923);
 		temp.setNewsLongtitude(116.39742);
+		temp2.setNewsLatitude(39.00923);
+		temp2.setNewsLongtitude(116.09742);
+		temp3.setNewsLatitude(40.90923);
+		temp3.setNewsLongtitude(116.09742);
 		mNews.add(temp);
+		mNews.add(temp2);
+		mNews.add(temp2);
 		return mNews;
 	}
 

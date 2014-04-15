@@ -227,12 +227,11 @@ public class MyFootprintActivity extends Activity{
 		
 			List<GeoPoint> listPoint =  new ArrayList<GeoPoint>();
 			
-			
-//			GeoPoint tempGeoPoint  = new GeoPoint();
+			GeoPoint[] point=new GeoPoint[mNewsList.size()];
 
 			for(int i=0;i<mNewsList.size();i++){
-				GeoPoint point =new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
-				listPoint.add(point);
+				point[i] =new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
+				listPoint.add(point[i]);
 			}
 			//准备overlay图像数据，根据实情情况修复
 			Drawable mark= getResources().getDrawable(R.drawable.icon_marka);
@@ -249,15 +248,13 @@ public class MyFootprintActivity extends Activity{
 			 
 			List<OverlayItem> listItems = new ArrayList<OverlayItem>();
 
+			//创建IteminizedOverlay
+			itemOverlay = new OverlayTest(mark, mMapView);
+			//将IteminizedOverlay添加到MapView中
 			for(int i=0;i<mNewsList.size();i++){
 				OverlayItem item =new OverlayItem(listPoint.get(i), mNewsList.get(i).getNewsContent(), "");
 				itemOverlay.addItem(item);
 			}
-			
-			
-			
-			//将IteminizedOverlay添加到MapView中
-		
 			mMapView.getOverlays().clear();
 			mMapView.getOverlays().add(itemOverlay);
 			
