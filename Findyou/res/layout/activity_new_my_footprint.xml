@@ -17,28 +17,26 @@
          android:layout_alignParentTop="true"
          android:layout_marginRight="10dp"
          android:layout_marginTop="10dip"
-         android:background="@drawable/location_button"
-         android:textColor="#FF000000" />
-
-    	<Button
-    	    android:id="@+id/clear"
-    	    android:layout_width="100dp"
-    	    android:layout_height="40dp"
-    	    android:layout_alignBaseline="@+id/location_button"
-    	    android:layout_alignBottom="@+id/location_button"
-    	    android:layout_marginRight="30dp"
-    	    android:layout_toLeftOf="@+id/location_button"
-    	    android:text="clear"
-    	    android:textColor="#FF000000" />
+         android:background="@drawable/selector_location_button"
+         />
 
     	<Button
     	    android:id="@+id/reset"
-    	    android:layout_width="100dp"
+    	    android:layout_width="40dp"
     	    android:layout_height="40dp"
-    	    android:layout_alignBaseline="@+id/clear"
-    	    android:layout_alignBottom="@+id/clear"
-    	    android:layout_marginRight="19dp"
-    	    android:layout_toLeftOf="@+id/clear"
-    	    android:text="find" />
+    	    android:layout_alignRight="@+id/location_button"
+    	    android:layout_below="@+id/clear"
+    	    android:layout_marginTop="21dp"
+    	    android:background="@drawable/selector_find_button"
+    	     />
+
+    	<Button
+    	    android:id="@+id/clear"
+    	    android:layout_width="40dp"
+    	    android:layout_height="40dp"
+    	    android:layout_alignLeft="@+id/location_button"
+    	    android:layout_below="@+id/location_button"
+    	    android:layout_marginTop="22dp"
+    	    android:background="@drawable/selector_clear_button" />
 
 </RelativeLayout>
