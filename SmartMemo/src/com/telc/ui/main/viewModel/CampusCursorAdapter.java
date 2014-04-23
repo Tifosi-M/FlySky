@@ -46,22 +46,27 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		LayoutInflater lf = LayoutInflater.from(context);
-		final int mPositon = position;
-		View view = lf.inflate(layout, null);
-		
+		final int mPosition=position;
+		View view=null;
+		if(convertView!=null){
+			view=convertView;
+		}
+		view = lf.inflate(layout, null);
 		
 		TextView textListContent,textListCategory;
 		textListContent = (TextView) view
 				.findViewById(R.id.textListContent);
 		textListCategory = (TextView) view.findViewById(R.id.textListCategory);
 		btn_state = (Button) view.findViewById(R.id.btn_state);
+		
 		btn_state.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				String campusId=cursor.getString(cursor.getColumnIndex("campusid"));
-				String flag=cursor.getString(cursor.getColumnIndex("campusstate"));
+				String campusId=list_campusid.get(mPosition);
+				String flag=v.getTag().toString();
+				
 				if("Y".equals(flag)){
 					campusService.updateCampusStatus(campusId,false);
 				}else if("N".equals(flag)){
@@ -95,6 +100,7 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 		
 		int CampusstateIndex = cursor.getColumnIndex("campusstate");
 		String Campusstate = cursor.getString(CampusstateIndex);
+		btn_state.setTag(Campusstate);
 		if(Campusstate.equals("N"))
 		{
 			btn_state.setText("未关注");
