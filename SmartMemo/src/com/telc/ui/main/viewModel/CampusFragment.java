@@ -46,6 +46,7 @@ public class CampusFragment extends Fragment{
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,12 +64,12 @@ public class CampusFragment extends Fragment{
 		cursor=campusService.findCampus();
 		campusCursorAdapter=new CampusCursorAdapter(getActivity(),
 				R.layout.listview_campus_layout, cursor, new String[] {
-						"campusname", "campusstate","campusby" }, new int[] {
-				R.id.textListContent, R.id.btn_state ,R.id.textListCategory});
+						"campusid","campusname", "campusstate","campusby" }, new int[] {
+				R.id.textCampusId,R.id.textListContent, R.id.btn_state ,R.id.textListCategory});
 		campusList.setAdapter(campusCursorAdapter);
 		
 		campusList.setOnItemClickListener(new OnItemClickListener() {
-
+			
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
@@ -78,8 +79,6 @@ public class CampusFragment extends Fragment{
 				toast.show();
 				String campus_id=CampusCursorAdapter.list_campusid.get(arg2);
 		
-				
-				
 				System.out.println(campus_id);
 				Intent intent=new Intent(getActivity(),CampusDetailActivity.class);
 				Bundle bundle = new Bundle(); // ����Bundle����

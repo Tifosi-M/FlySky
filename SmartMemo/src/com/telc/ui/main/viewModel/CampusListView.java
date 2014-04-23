@@ -32,6 +32,5 @@ public class CampusListView {
 	public void setBtn_state(Button btn_state) {
 		this.btn_state = btn_state;
 	}
-
 	
 }
