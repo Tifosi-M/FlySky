@@ -65,7 +65,7 @@ public class CampusFragment extends Fragment{
 		campusCursorAdapter=new CampusCursorAdapter(getActivity(),
 				R.layout.listview_campus_layout, cursor, new String[] {
 						"campusid","campusname", "campusstate","campusby" }, new int[] {
-				R.id.textCampusId,R.id.textListContent, R.id.btn_state ,R.id.textListCategory});
+				R.id.textCampusId,R.id.textListContent, R.id.btn_state ,R.id.textListCategory},campusList);
 		campusList.setAdapter(campusCursorAdapter);
 		
 		campusList.setOnItemClickListener(new OnItemClickListener() {

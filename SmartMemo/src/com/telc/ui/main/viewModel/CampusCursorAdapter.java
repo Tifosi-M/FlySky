@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 	private Context context;
 	private int layout;
 	private CampusListView  campusListView;
+	private ListView list;
 	public static List<String> list_campusid=new ArrayList<String>();
 	private Button btn_state;
 	private CampusService campusService=null;
@@ -31,7 +33,7 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 	private SQLiteDatabase db;
 	@SuppressWarnings("deprecation")
 	public CampusCursorAdapter(Context context, int layout, Cursor c,
-			String[] from, int[] to) {
+			String[] from, int[] to,ListView list) {
 		super(context, layout, c, from, to);
 		// TODO Auto-generated constructor stub
 		db = context.openOrCreateDatabase(DBConstant.DB_FILENAME,
@@ -39,6 +41,7 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 		campusService=new CampusService(db);
 		this.context = context;
 		this.layout = layout;
+		this.list=list;
 	}
 
 	@SuppressWarnings("deprecation")
