@@ -40,27 +40,32 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		LayoutInflater lf = LayoutInflater.from(context);
-		View view = lf.inflate(layout, null);
-
+		convertView = lf.inflate(layout, null);
+		final int pp = position;
 		
 		TextView textListContent,textListCategory;
-		textListContent = (TextView) view
+		textListContent = (TextView) convertView
 				.findViewById(R.id.textListContent);
-		textListCategory = (TextView) view.findViewById(R.id.textListCategory);
-		btn_state = (Button) view.findViewById(R.id.btn_state);
+		textListCategory = (TextView) convertView.findViewById(R.id.textListCategory);
+		btn_state = (Button) convertView.findViewById(R.id.btn_state);
 		btn_state.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(context, "he", Toast.LENGTH_LONG).show();
-				btn_state.setText("gaibianle");
+				
+				int i = pp;
+				
+//				Toast.makeText(context,list_campusid.get(i) , Toast.LENGTH_SHORT).show();
+				Toast.makeText(context,list_campusid.get(i)  + "    " + v.getTag().toString() , Toast.LENGTH_SHORT).show();
+
+				
 			}
 		});
 		
 		
 		
 		campusListView=new CampusListView(textListContent, textListCategory, btn_state);
-		view.setTag(campusListView);
+		convertView.setTag(campusListView);
 
 		Cursor cursor = (Cursor) getItem(position);
 		int CampusnameIndex = cursor.getColumnIndex("campusname");
@@ -83,6 +88,7 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 		
 		int CampusstateIndex = cursor.getColumnIndex("campusstate");
 		String Campusstate = cursor.getString(CampusstateIndex);
+		btn_state.setTag(Campusstate);//aaa
 		if(Campusstate.equals("N"))
 		{
 			btn_state.setText("未关注");
@@ -94,6 +100,6 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 			btn_state.setBackgroundColor(context.getResources().getColor(R.color.red));
 		}
 		
-		return view;
+		return convertView;
 	}
 }
