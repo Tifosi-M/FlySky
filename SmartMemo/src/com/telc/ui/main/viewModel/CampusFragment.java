@@ -46,6 +46,7 @@ public class CampusFragment extends Fragment{
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

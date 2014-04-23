@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CampusCursorAdapter extends SimpleCursorAdapter {
 	private Context context;
@@ -47,6 +48,17 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 				.findViewById(R.id.textListContent);
 		textListCategory = (TextView) view.findViewById(R.id.textListCategory);
 		btn_state = (Button) view.findViewById(R.id.btn_state);
+		btn_state.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(context, "he", Toast.LENGTH_LONG).show();
+				btn_state.setText("gaibianle");
+			}
+		});
+		
+		
+		
 		campusListView=new CampusListView(textListContent, textListCategory, btn_state);
 		view.setTag(campusListView);
 

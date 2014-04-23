@@ -108,7 +108,7 @@
 
         </activity>
           <activity
-            android:name="com.telc.ui.Memos.CampusCardActivity"
+            android:name="com.telc.ui.Memos.CampusDetailActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar">
 
