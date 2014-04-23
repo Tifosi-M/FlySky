@@ -47,17 +47,17 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 		// TODO Auto-generated method stub
 		LayoutInflater lf = LayoutInflater.from(context);
 		final int mPosition=position;
-		View view=null;
-		if(convertView!=null){
-			view=convertView;
-		}
-		view = lf.inflate(layout, null);
+//		View view=null;
+//		if(convertView!=null){
+//			view=convertView;
+//		}
+		convertView = lf.inflate(layout, null);
 		
 		TextView textListContent,textListCategory;
-		textListContent = (TextView) view
+		textListContent = (TextView) convertView
 				.findViewById(R.id.textListContent);
-		textListCategory = (TextView) view.findViewById(R.id.textListCategory);
-		btn_state = (Button) view.findViewById(R.id.btn_state);
+		textListCategory = (TextView) convertView.findViewById(R.id.textListCategory);
+		btn_state = (Button) convertView.findViewById(R.id.btn_state);
 		
 		btn_state.setOnClickListener(new OnClickListener() {
 			
@@ -74,10 +74,11 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 				}else{
 					Toast.makeText(context, "状态异常，请重试", Toast.LENGTH_SHORT).show();
 				}
+				
 			}
 		});
 		campusListView=new CampusListView(textListContent, textListCategory, btn_state);
-		view.setTag(campusListView);
+		convertView.setTag(campusListView);
 
 		cursor = (Cursor) getItem(position);
 		int CampusnameIndex = cursor.getColumnIndex("campusname");
@@ -112,6 +113,6 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 			btn_state.setBackgroundColor(context.getResources().getColor(R.color.red));
 		}
 		
-		return view;
+		return convertView;
 	}
 }

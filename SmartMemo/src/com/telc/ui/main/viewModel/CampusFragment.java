@@ -78,11 +78,10 @@ public class CampusFragment extends Fragment{
 						"sessss", Toast.LENGTH_SHORT);
 				toast.show();
 				String campus_id=CampusCursorAdapter.list_campusid.get(arg2);
-		
-				System.out.println(campus_id);
+
 				Intent intent=new Intent(getActivity(),CampusDetailActivity.class);
-				Bundle bundle = new Bundle(); // ����Bundle����
-				bundle.putString("campusid", campus_id); // װ�����
+				Bundle bundle = new Bundle(); 
+				bundle.putString("campusid", campus_id); 
 				intent.putExtras(bundle);
 				startActivity(intent);
 			}
