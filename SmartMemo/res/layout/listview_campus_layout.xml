@@ -49,15 +49,25 @@
                         android:drawableLeft="@drawable/alarm_icon_getup"
                         android:text="textListCategory" />
 
+                    <TextView
+                        android:id="@+id/textCampusId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="" />
+
                     <Button
                         android:id="@+id/btn_state"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
-                        android:background="@color/main_bg"
-                        android:text="未关注"
                         android:layout_marginRight="20sp"
-                        android:textColor="@color/white" />
+                        android:background="@color/main_bg"
+                        android:focusable="false"
+                        android:text="未关注"
+                        android:textColor="@color/white" >
+                        
+                        </Button>
 
                 </LinearLayout>
             </LinearLayout>
