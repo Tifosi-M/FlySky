@@ -20,4 +20,5 @@ public interface ISystemManagement {
 
 	public boolean register(@WebParam(name = "tel")String tel,
 			@WebParam(name = "pwd")String pwd);
+	
 }

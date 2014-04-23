@@ -46,8 +46,6 @@ public class CampusFragment extends Fragment{
 	Cursor cursor;
 	Button btn_state;
 	CampusCursorAdapter campusCursorAdapter;
-	static CampusCursorAdapter campusCursorAdapterStatic; //复制一个副本
-	private Handler messagerHandler;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -75,7 +73,6 @@ public class CampusFragment extends Fragment{
 						"campusid","campusname", "campusstate","campusby" }, new int[] {
 				R.id.textCampusId,R.id.textListContent, R.id.btn_state ,R.id.textListCategory});
 		campusList.setAdapter(campusCursorAdapter);
-//		campusCursorAdapterStatic = campusCursorAdapter;// 复制一个副本
 		
 		campusList.setOnItemClickListener(new OnItemClickListener() {
 			
@@ -87,11 +84,10 @@ public class CampusFragment extends Fragment{
 						"sessss", Toast.LENGTH_SHORT);
 				toast.show();
 				String campus_id=CampusCursorAdapter.list_campusid.get(arg2);
-		
-				System.out.println(campus_id);
+
 				Intent intent=new Intent(getActivity(),CampusDetailActivity.class);
-				Bundle bundle = new Bundle(); // ����Bundle����
-				bundle.putString("campusid", campus_id); // װ�����
+				Bundle bundle = new Bundle(); 
+				bundle.putString("campusid", campus_id); 
 				intent.putExtras(bundle);
 				startActivity(intent);
 			}
