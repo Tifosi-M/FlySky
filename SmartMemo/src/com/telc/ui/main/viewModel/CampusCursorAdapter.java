@@ -66,7 +66,6 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 				// TODO Auto-generated method stub
 				String campusId=list_campusid.get(mPosition);
 				String flag=v.getTag().toString();
-				
 				if("Y".equals(flag)){
 					campusService.updateCampusStatus(campusId,false);
 				}else if("N".equals(flag)){
