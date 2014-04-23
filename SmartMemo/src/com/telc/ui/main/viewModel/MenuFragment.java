@@ -1,5 +1,18 @@
 package com.telc.ui.main.viewModel;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+
+import org.kobjects.base64.Base64;
+
+import webservice.WebServiceDelegate;
+import webservice.WebServiceUtils;
+
 import com.telc.smartmemo.R;
 import com.telc.ui.main.SlidingActivity;
 import com.telc.ui.other.AboutFragment;
@@ -9,19 +22,26 @@ import com.telc.ui.systemManagement.PersonalInfoFragment;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MenuFragment extends Fragment{
+public class MenuFragment extends Fragment implements WebServiceDelegate{
 	int index = 0;
-
+	private WebServiceUtils webService;
+	private boolean webflag = false;
+	private SharedPreferences sp;
 	TextView textUserInfo;
 	TextView textFinished;
 	TextView textUnfinish;
@@ -38,7 +58,8 @@ public class MenuFragment extends Fragment{
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-
+		sp=getActivity().getSharedPreferences("Login",
+				getActivity().MODE_PRIVATE);
 	}
 
 	@Override
@@ -168,6 +189,12 @@ public class MenuFragment extends Fragment{
 				textReturn.setBackgroundDrawable(null);
 				textExit.setBackgroundDrawable(null);
 				txt_campus.setBackgroundDrawable(drawable);
+					webflag = false;
+					String tel = "10000";
+					HashMap<String, Object> args = new HashMap<String, Object>();
+					args.put("tel", tel);
+					webService.callWebService("downloadMemoDBFile", args,
+							byte[].class);
 			}
 		});
 		
@@ -302,4 +329,95 @@ public class MenuFragment extends Fragment{
 		super.onStop();
 	}
 
+	public static boolean isConnect(Context context) {
+		// 获取手机所有连接管理对象（包括对wi-fi,net等连接的管理）
+		try {
+			ConnectivityManager connectivity = (ConnectivityManager) context
+					.getSystemService(Context.CONNECTIVITY_SERVICE);
+			if (connectivity != null) {
+				// 获取网络连接管理的对象
+				NetworkInfo info = connectivity.getActiveNetworkInfo();
+				if (info != null && info.isConnected()) {
+					// 判断当前网络是否已经连接
+					if (info.getState() == NetworkInfo.State.CONNECTED) {
+						return true;
+					}
+				}
+			}
+		} catch (Exception e) {
+		}
+		return false;
+	}
+
+	public byte[] getbyte() {
+
+		byte[] tmp = new byte[1000];
+		byte[] db = null;
+		ByteArrayOutputStream os = new ByteArrayOutputStream(1000);
+		int n;
+		try {
+			File file = new File(
+					"/data/data/com.telc.smartmemo/databases/campus.db3");
+			FileInputStream is = new FileInputStream(file);
+			while ((n = is.read(tmp)) != -1) {
+				os.write(tmp, 0, n);
+			}
+			is.close();
+			os.close();
+			db = os.toByteArray();
+
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return db;
+	}
+
+	@Override
+	public void handleException(Object ex) {
+		Toast toast = Toast.makeText(getActivity(), "请检查网络连接",
+				Toast.LENGTH_SHORT);
+		toast.show();
+
+	}
+
+	@Override
+	public void handleResultOfWebService(String methodName, Object result) {
+		if (webflag == true) {
+			boolean flag = (Boolean) result;
+			if (flag == true) {
+				Toast toast = Toast.makeText(getActivity(), "同步成功",
+						Toast.LENGTH_SHORT);
+				toast.show();
+			} else {
+				Toast toast = Toast.makeText(getActivity(), "同步失败",
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}
+		}else if(webflag == false){
+			String tmp = result.toString();
+			//转化成byte数组
+			byte[] retByte = Base64.decode(tmp);
+			createDatabase(retByte);
+		}
+	}
+	public void createDatabase(byte[] db){
+		String path = "/data/data/com.telc.smartmemo/databases/";
+		File file=new File(path);
+	    file.mkdir();
+	    path=path+"campus.db3";
+	    file=new File(path);
+	    try {
+			file.createNewFile();
+			 FileOutputStream os=new FileOutputStream(file);
+			 os.write(db);
+			 os.close();
+			 System.out.println("success");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
