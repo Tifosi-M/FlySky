@@ -30,7 +30,7 @@
 <color name="deeppink">#FF1493</color><!--深粉红色 -->  
 <color name="fuchsia">#FF00FF</color><!--紫红色 -->  
 <color name="magenta">#FF00FF</color><!--红紫色 -->  
-<color name="red">#FF0000</color><!--红色 -->  
+<color name="red">#FFEA384E</color><!--红色 -->  
 <color name="oldlace">#FDF5E6</color><!--老花色 -->  
 <color name="lightgoldenrodyellow">#FAFAD2</color><!--亮金黄色 -->  
 <color name="linen">#FAF0E6</color><!--亚麻色 -->  
@@ -77,7 +77,7 @@
 <color name="lightsteelblue">#B0C4DE</color><!--亮钢兰色 -->  
 <color name="paleturquoise">#AFEEEE</color><!--苍宝石绿 -->  
 <color name="greenyellow">#ADFF2F</color><!--黄绿色 -->  
-<color name="darkgray">#A9A9A9</color><!--暗灰色 -->  
+<color name="darkgray">#2e2e2e</color><!--暗灰色 -->  
 <color name="darkgrey">#A9A9A9</color><!--暗灰色 -->  
 <color name="brown">#A52A2A</color><!--褐色 -->  
 <color name="sienna">#A0522D</color><!--赭色 -->  
@@ -150,6 +150,9 @@
 <color name="breanpink">#FF77B3</color><!-- 脑残粉 -->
 <color name="bluegreen">#0BD7CA</color><!-- 蓝绿 -->
 <color name="oringeyello">#FFCC00</color><!-- 偏橘黄 -->
+<color name="main_bg">#FFDDDBDD</color>
+<color name="cardinfo">#FF6B6868</color>
+<color name="main_red">#FFF45E5E</color>
 
 
 </resources>  

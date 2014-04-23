@@ -23,7 +23,6 @@ import com.findyou.domain.Service.MyNewsService;
 import com.findyou.domain.entity.News;
 import com.findyou.domain.entity.UserInfo;
 import com.findyou.domain.tool.BMapUtil;
-import com.findyou.ui.main.ShareMyNewsActivity.MyLocationListenner;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
