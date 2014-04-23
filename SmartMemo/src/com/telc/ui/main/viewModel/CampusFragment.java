@@ -9,10 +9,14 @@ import com.telc.smartmemo.R;
 import com.telc.ui.Memos.CampusDetailActivity;
 
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,12 +46,14 @@ public class CampusFragment extends Fragment{
 	Cursor cursor;
 	Button btn_state;
 	CampusCursorAdapter campusCursorAdapter;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
 	}
+	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -89,5 +95,40 @@ public class CampusFragment extends Fragment{
 		return view;
 	}
 	
+	//注册一个广播接收类
+	public void registerBroadcastReceiver(){
+		IntentFilter mIntentFilter = new IntentFilter();
+		mIntentFilter.addAction("UPDATE_ADAPTER");
+		getActivity().registerReceiver(mBroadcastReceiver, mIntentFilter);
+	}
+	
+	//定义一个广播接收类
+	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver(){
+		
+		public void onReceive(android.content.Context context, Intent intent) {
+			String action = intent.getAction();  
+            if(action.equals("UPDATE_ADAPTER")){  
+                cursor=campusService.findCampus();
+        		campusCursorAdapter=new CampusCursorAdapter(getActivity(),
+        				R.layout.listview_campus_layout, cursor, new String[] {
+					"campusid","campusname", "campusstate","campusby" }, new int[] {
+			R.id.textCampusId,R.id.textListContent, R.id.btn_state ,R.id.textListCategory},campusList);
+        		campusList.setAdapter(campusCursorAdapter);
+            }  
+		}
+	};
+
+	@Override
+	public void onResume() {
+		registerBroadcastReceiver();//注册广播类
+		super.onResume();
+	}
+	
+	@Override
+	public void onStop() {
+
+		getActivity().unregisterReceiver(mBroadcastReceiver);
+		super.onStop();
+	}
 	
 }

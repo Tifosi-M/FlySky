@@ -9,8 +9,10 @@ import com.telc.domain.Service.CampusService;
 import com.telc.smartmemo.R;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +33,9 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 	private CampusService campusService=null;
 	private Cursor cursor;
 	private SQLiteDatabase db;
+	private Handler messageHandler;
+
+	
 	@SuppressWarnings("deprecation")
 	public CampusCursorAdapter(Context context, int layout, Cursor c,
 			String[] from, int[] to,ListView list) {
@@ -41,7 +46,6 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 		campusService=new CampusService(db);
 		this.context = context;
 		this.layout = layout;
-		this.list=list;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -49,6 +53,7 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		LayoutInflater lf = LayoutInflater.from(context);
+
 		final int mPosition=position;
 //		View view=null;
 //		if(convertView!=null){
@@ -66,6 +71,7 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 			
 			@Override
 			public void onClick(View v) {
+
 				// TODO Auto-generated method stub
 				String campusId=list_campusid.get(mPosition);
 				String flag=v.getTag().toString();
@@ -77,6 +83,9 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 				}else{
 					Toast.makeText(context, "状态异常，请重试", Toast.LENGTH_SHORT).show();
 				}
+				
+				Intent mIntent = new Intent("UPDATE_ADAPTER");
+				context.sendBroadcast(mIntent);
 				
 			}
 		});
