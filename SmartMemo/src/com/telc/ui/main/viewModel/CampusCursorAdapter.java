@@ -115,4 +115,6 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 		
 		return convertView;
 	}
+	
+		
 }

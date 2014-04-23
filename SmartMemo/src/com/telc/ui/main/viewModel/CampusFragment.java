@@ -88,4 +88,6 @@ public class CampusFragment extends Fragment{
 		});
 		return view;
 	}
+	
+	
 }
