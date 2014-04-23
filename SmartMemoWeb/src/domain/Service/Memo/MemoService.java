@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import redis.clients.jedis.Jedis;
+
 import domain.Helper.RTMemoHelper;
 import domain.Helper.TMMemoHelper;
 import domain.Memo.Realtime;
@@ -24,6 +26,8 @@ public class MemoService implements IMemoService {
 	private TimingDAO timingDao;
 	private UserDbDAO userDbDao;
 	private ApplicationContext ctx;
+	static String host = "127.0.0.1"; 
+	static int port = 6379; 
 
 	@Override
 	public boolean saveRealTimeMemo(RTMemoHelper rtHelper) {
@@ -195,24 +199,29 @@ public class MemoService implements IMemoService {
 
 	@Override
 	public boolean uploadMemoDBFile(String tel,byte[] db) {
-		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-		userDbDao = UserDbDAO.getFromApplicationContext(ctx);
-		UserDb userDb = new UserDb(tel, db);
-		try {
-			userDbDao.merge(userDb);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-		
+//		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+//		userDbDao = UserDbDAO.getFromApplicationContext(ctx);
+//		UserDb userDb = new UserDb(tel, db);
+//		try {
+//			userDbDao.merge(userDb);
+//			return true;
+//		} catch (Exception e) {
+//			return false;
+//		}
+		Jedis jedis = new Jedis(host,port);
+		jedis.set(tel.getBytes(), db);
+		return true;
 	}
 
 	@Override
 	public byte[] downloadMemoDBFile(String tel) {
-		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-		userDbDao = UserDbDAO.getFromApplicationContext(ctx);
-		UserDb userDb = userDbDao.findById(tel);
-		byte[] db = userDb.getMemoDb();
+//		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+//		userDbDao = UserDbDAO.getFromApplicationContext(ctx);
+//		UserDb userDb = userDbDao.findById(tel);
+//		byte[] db = userDb.getMemoDb();
+//		return db;
+		Jedis jedis = new Jedis(host,port);
+		byte[] db = jedis.get(tel.getBytes());
 		return db;
 	}
 
