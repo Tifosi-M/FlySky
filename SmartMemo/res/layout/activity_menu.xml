@@ -111,7 +111,7 @@
                     android:drawableLeft="@drawable/ic_campus"
                     android:drawableRight="@drawable/goto_view"
                     android:gravity="center_vertical"
-                    android:text="   校园活动备忘"
+                    android:text="   校园活动"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:layout_marginLeft="10sp"  

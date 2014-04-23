@@ -56,4 +56,15 @@ public class CampusService implements ICampusService {
 		return cursor;
 
 	}
+	@Override
+	public boolean updateCampusStatus(String campusId,boolean flag) {
+		// TODO Auto-generated method stub
+		if(true==flag){
+			sql="update CAMPUS set campusstate='Y' where campusid='"+campusId+"'";
+		}else{
+			sql="update CAMPUS set campusstate='N' where campusid='"+campusId+"'";
+		}
+		db.execSQL(sql);
+		return true;
+	}
 }
