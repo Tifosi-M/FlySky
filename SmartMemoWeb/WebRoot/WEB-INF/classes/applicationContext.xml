@@ -39,6 +39,7 @@
 				<value>domain/Memo/Timing.hbm.xml</value>
 				<value>domain/Memo/UserDb.hbm.xml</value>
 				<value>domain/SystemManagement/Account.hbm.xml</value>
+				<value>domain/Card/CardDb.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -74,6 +75,18 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	
+	<!-- Card -->
+	<bean id="Card" class="domain.Service.Card.CardService">
+	</bean>
+	<jaxws:server id="card" serviceClass="domain.Service.Card.ICardService"
+		address="/Card">
+		<jaxws:serviceBean>
+			<ref bean="Card" /> <!-- 要暴露的 bean 的引用 -->
+		</jaxws:serviceBean>
+	</jaxws:server>
+
 
 	<bean id="TimingDAO" class="domain.Memo.TimingDAO">
 		<property name="sessionFactory">
@@ -86,6 +99,11 @@
 		</property>
 	</bean>
 	<bean id="AccountDAO" class="domain.SystemManagement.AccountDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CardDbDAO" class="domain.Card.CardDbDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
