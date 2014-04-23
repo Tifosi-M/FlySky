@@ -16,11 +16,11 @@ import com.telc.domain.IService.ITimingService;
  * 
  */
 public class TimingService implements ITimingService {
-	private SQLiteDatabase db;
+	private SQLiteDatabase memoDb;
 	private Cursor cursor;
 
 	public TimingService(SQLiteDatabase db) {
-		this.db = db;
+		this.memoDb = db;
 	}
 
 	/**
@@ -33,7 +33,7 @@ public class TimingService implements ITimingService {
 		List<Timing> timing_list = new ArrayList<Timing>();
 		String sql = "select a.[rowid] as _id,* from TIMING as a where user_id='"
 				+ user_id + "'";
-		cursor = db.rawQuery(sql, null);
+		cursor = memoDb.rawQuery(sql, null);
 		if (cursor.moveToFirst() == false) {
 			return null;
 		} else {
@@ -100,7 +100,7 @@ public class TimingService implements ITimingService {
 				+ user_id
 				+ "','"
 				+ priority + "','" + isfinish + "','"+location_detail+"')";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 
@@ -112,7 +112,7 @@ public class TimingService implements ITimingService {
 		// TODO Auto-generated method stub
 
 		String sql = "delete from TIMING where timing_id='" + timing_id + "'";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 
@@ -122,7 +122,7 @@ public class TimingService implements ITimingService {
 		Timing timing = new Timing();
 		String sql = "select a.[rowid] as _id,* from TIMING as a where timing_id='"
 				+ id + "'";
-		cursor = db.rawQuery(sql, null);
+		cursor = memoDb.rawQuery(sql, null);
 		if (cursor.moveToFirst() == false) {
 			return null;
 		} else {
@@ -165,7 +165,7 @@ public class TimingService implements ITimingService {
 	public boolean updateTiming(Timing timing) {
 		// TODO Auto-generated method stub
 		String sql = "update TIMING set end_time='"+timing.getEnd_time()+"', location='"+timing.getLocation()+"', content='"+timing.getContent()+"',priority='"+timing.getPriority()+"',location_detail='"+timing.getLocation_detail()+"' where timing_id='"+timing.getTiming_id()+"'";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 
@@ -174,7 +174,7 @@ public class TimingService implements ITimingService {
 	public boolean updateIsfinish(String timing_id) {
 		// TODO Auto-generated method stub
 		String sql = "update TIMING set isfinish="+1+" where timing_id='"+timing_id+"'";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 

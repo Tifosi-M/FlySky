@@ -18,10 +18,12 @@ public class CreateDB {
 	{
 		try{
 			InputStream is=memoApplication.getResources().getAssets().open("mydb.db3");
+			InputStream is2=memoApplication.getResources().getAssets().open("campus.db3");
 		    File file=new File(path);
 		    file.mkdir();
-		    path=path+"mydb.db3";
-		    file=new File(path);
+		    String path1=path+"mydb.db3";
+		    String path2=path+"campus.db3";
+		    file=new File(path1);
 		    file.createNewFile();
 		    FileOutputStream os=new FileOutputStream(file);
 		    byte temp[]=new byte[1024];
@@ -31,6 +33,15 @@ public class CreateDB {
 		    }	    
 		    System.out.println("数据库创建成功");
 		    os.close();
+		    
+		    file=new File(path2);
+		    file.createNewFile();
+		    FileOutputStream os2=new FileOutputStream(file);
+		    byte temp1[]=new byte[1024];
+		    while(is2.read(temp1)!=-1){
+		    	os2.write(temp1);
+		    }
+		    os2.close();
 		}catch(IOException e)
 		{
 			e.printStackTrace();

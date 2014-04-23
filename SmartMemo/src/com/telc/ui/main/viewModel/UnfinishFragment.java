@@ -55,7 +55,7 @@ import android.widget.Toast;
 public class UnfinishFragment extends Fragment {
 
 	// 数据库
-	private SQLiteDatabase db;
+	private SQLiteDatabase memoDb,campusDb;
 	private TimingService timingService;
 	private RealTimeService realTimeService;
 	private PeriodicService periodicService;
@@ -84,10 +84,12 @@ public class UnfinishFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		db = getActivity().openOrCreateDatabase(DBConstant.DB_FILENAME,
+		memoDb = getActivity().openOrCreateDatabase(DBConstant.DB_FILENAME,
+				getActivity().MODE_PRIVATE, null);
+		campusDb=getActivity().openOrCreateDatabase(DBConstant.CAMPUSDBFILENAME,
 				getActivity().MODE_PRIVATE, null);
 		timService = TimeService.getInstance();
-		campusService=new CampusService(db);
+		campusService=new CampusService(campusDb);
 	}
 
 	@Override
@@ -217,9 +219,9 @@ public class UnfinishFragment extends Fragment {
 	private void initAdapert() {
 		// TODO Auto-generated method stub
 		// 实例化数据库服务
-		timingService = new TimingService(db);
-		realTimeService = new RealTimeService(db);
-		periodicService = new PeriodicService(db);
+		timingService = new TimingService(memoDb);
+		realTimeService = new RealTimeService(memoDb);
+		periodicService = new PeriodicService(memoDb);
 		// 获取userId
 		String userId = sp.getString("user", null);
 		// 数据库中获取的List<Timing>

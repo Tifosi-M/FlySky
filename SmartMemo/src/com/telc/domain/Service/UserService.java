@@ -15,11 +15,11 @@ import com.telc.domain.IService.IUserService;
  */
 public class UserService implements IUserService {
 
-	private SQLiteDatabase db;
+	private SQLiteDatabase memoDb;
 	private Cursor cursor;
 
 	public UserService(SQLiteDatabase db) {
-		this.db = db;
+		this.memoDb = db;
 	}
 
 	public UserService() {
@@ -31,7 +31,7 @@ public class UserService implements IUserService {
 		String sql = "select a.[rowid] as _id,* from USER_MA as a where tel='"
 				+ phoneNum + "'";
 
-		cursor = db.rawQuery(sql, null);
+		cursor = memoDb.rawQuery(sql, null);
 		if (cursor.moveToFirst() == false) {
 			return null;
 		} else {
@@ -78,11 +78,11 @@ public class UserService implements IUserService {
 		// 判斷用戶是否已註冊
 		String sql0 = "select a.[rowid] as _id,* from USER_MA as a where tel='"
 				+ userPhone + "'";
-		cursor = db.rawQuery(sql0, null);
+		cursor = memoDb.rawQuery(sql0, null);
 		if (cursor.moveToFirst() == false) {
 			String sql = "insert into USER_MA values ('" + userPhone + "','"
 					+ userPhone + "','null','" + userPwd + "','0','null','null','null','null')";
-			db.execSQL(sql);
+			memoDb.execSQL(sql);
 			return true;
 		} else {
 			return false;
@@ -101,7 +101,7 @@ public class UserService implements IUserService {
 		String sex = user.getSex();
 
 		String sql = "update USER_MA set nickName='"+name+"',age='"+age+"',sex='"+sex+"',hob='"+hob+"',image='"+image+"',prof='"+prof+"' where tel='"+phone+"'";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 
