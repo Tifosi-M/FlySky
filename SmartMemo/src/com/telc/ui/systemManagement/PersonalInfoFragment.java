@@ -77,7 +77,7 @@ public class PersonalInfoFragment extends Fragment implements DBConstant {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		SQLiteDatabase db = getActivity().openOrCreateDatabase(DB_FILENAME,
+		SQLiteDatabase memoDb = getActivity().openOrCreateDatabase(DB_FILENAME,
 				getActivity().MODE_PRIVATE, null);
 		// // 将可选内容与ArrayAdapter连接起来
 		// adapter = new ArrayAdapter<String>(getActivity(),
@@ -86,7 +86,7 @@ public class PersonalInfoFragment extends Fragment implements DBConstant {
 		// // 设置下拉列表的风格
 		// adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-		userService = new UserService(db);
+		userService = new UserService(memoDb);
 		sp = getActivity().getSharedPreferences("Login",
 				getActivity().MODE_PRIVATE);
 		userphone = sp.getString("user", null);

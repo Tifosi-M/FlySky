@@ -9,6 +9,7 @@ public interface DBConstant {
 	int VERSION = 1;
 	// 数据库文件名		
 	String DB_FILENAME = "mydb.db3";
+	String CAMPUSDBFILENAME="campus.db3";
 	// 用户表
 	String USER_MA = "USER_MA";
 }

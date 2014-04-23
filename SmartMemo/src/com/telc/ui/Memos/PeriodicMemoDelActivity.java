@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 public class PeriodicMemoDelActivity extends SherlockFragmentActivity {
 //	数据库
-	private SQLiteDatabase db;
+	private SQLiteDatabase memoDb;
 	private PeriodicService periodicHelper;
 //	xml保存userid
 	RatingBar ratingBarPeriodicPriority;
@@ -49,8 +49,8 @@ public class PeriodicMemoDelActivity extends SherlockFragmentActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_periodic);
-		db=openOrCreateDatabase(DBConstant.DB_FILENAME,MODE_PRIVATE, null);
-		periodicHelper=new PeriodicService(db);
+		memoDb=openOrCreateDatabase(DBConstant.DB_FILENAME,MODE_PRIVATE, null);
+		periodicHelper=new PeriodicService(memoDb);
 		
 		Intent intent=getIntent();
 		Bundle bundle=intent.getExtras();

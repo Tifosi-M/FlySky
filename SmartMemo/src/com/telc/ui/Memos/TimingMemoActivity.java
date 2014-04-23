@@ -152,9 +152,9 @@ public class TimingMemoActivity extends SherlockFragmentActivity {
 	}
 
 	public void init() {
-		SQLiteDatabase db = openOrCreateDatabase(DBConstant.DB_FILENAME,
+		SQLiteDatabase memoDb = openOrCreateDatabase(DBConstant.DB_FILENAME,
 				MODE_PRIVATE, null);
-		timingService = new TimingService(db);
+		timingService = new TimingService(memoDb);
 
 		ed_timing_time = (EditText) findViewById(R.id.ed_timing_time);
 

@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 public class RealtimeMemoDelActivity extends SherlockFragmentActivity {
 	//数据库
-	private SQLiteDatabase db;
+	private SQLiteDatabase memoDb;
 	private RealTimeService realTimeHelper;
 		
 	//xml 保存userid
@@ -53,8 +53,8 @@ public class RealtimeMemoDelActivity extends SherlockFragmentActivity {
 		mIndex=bundle.getString("index");
 		
 		
-		db=openOrCreateDatabase(DBConstant.DB_FILENAME,MODE_PRIVATE, null);
-		realTimeHelper=new RealTimeService(db);
+		memoDb=openOrCreateDatabase(DBConstant.DB_FILENAME,MODE_PRIVATE, null);
+		realTimeHelper=new RealTimeService(memoDb);
 		
 		mRealTime = new RealTime();
 		mRealTime = realTimeHelper.findRealTimeByStart(mIndex);

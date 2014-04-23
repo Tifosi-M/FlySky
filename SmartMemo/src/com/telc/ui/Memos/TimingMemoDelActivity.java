@@ -26,12 +26,12 @@ import android.widget.Toast;
 
 public class TimingMemoDelActivity extends SherlockFragmentActivity {
 
-	private SQLiteDatabase db;
+	private SQLiteDatabase memoDb;
 	private EditText ed_timing_time, ed_timing_loction, edit_Timing_Content;
 	private RatingBar ratingBarTimingPriority;
 	private Switch sw_timing;
 	private Timing timing = new Timing();
-	private ITimingService timingService = new TimingService(db);
+	private ITimingService timingService = new TimingService(memoDb);
 	
 	private String mIndex;
 	TableRow tabl_location, tabl_content;
