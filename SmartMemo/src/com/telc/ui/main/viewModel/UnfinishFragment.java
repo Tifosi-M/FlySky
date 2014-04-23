@@ -9,9 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.telc.data.dbDriver.DBConstant;
+import com.telc.domain.Emtity.Campus;
 import com.telc.domain.Emtity.Periodic;
 import com.telc.domain.Emtity.RealTime;
 import com.telc.domain.Emtity.Timing;
+import com.telc.domain.Service.CampusService;
 import com.telc.domain.Service.PeriodicService;
 import com.telc.domain.Service.RealTimeService;
 import com.telc.domain.Service.TimingService;
@@ -57,6 +59,7 @@ public class UnfinishFragment extends Fragment {
 	private TimingService timingService;
 	private RealTimeService realTimeService;
 	private PeriodicService periodicService;
+	private CampusService campusService;
 	private SharedPreferences sp;// 用来获取xml保存的useiId
 	View view = null;
 
@@ -81,7 +84,10 @@ public class UnfinishFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		db = getActivity().openOrCreateDatabase(DBConstant.DB_FILENAME,
+				getActivity().MODE_PRIVATE, null);
 		timService = TimeService.getInstance();
+		campusService=new CampusService(db);
 	}
 
 	@Override
@@ -162,33 +168,6 @@ public class UnfinishFragment extends Fragment {
 							mDialog.setContentView(dialogView);
 							mDialog.show();
 						}
-						// else if(categoryString.compareTo("周期性提醒")==0){
-						// // TODO Auto-generated method stub
-						// final Dialog mDialog = new Dialog(getActivity());
-						// mDialog.setTitle("更多操作：");
-						// LayoutInflater inflater =
-						// LayoutInflater.from(getActivity());
-						// final View dialogView =
-						// inflater.inflate(R.layout.sign_finish_dialog,
-						// null);
-						// textSign=(TextView)
-						// dialogView.findViewById(R.id.textSignFinish);
-						// textSign.setOnClickListener(new OnClickListener()
-						// {
-						// @Override
-						// public void onClick(View arg0) {
-						// // TODO Auto-generated method stub
-						// periodicService.updateIsfinish(index);
-						// Toast.makeText(getActivity(), "标记成功！",
-						// Toast.LENGTH_SHORT).show();
-						// initAdapert();
-						// uncompleteList.setAdapter(mAdapter);
-						// mDialog.dismiss();
-						// }
-						// });
-						// mDialog.setContentView(dialogView);
-						// mDialog.show();
-						// }
 						return true;
 					}
 				});
@@ -237,9 +216,6 @@ public class UnfinishFragment extends Fragment {
 
 	private void initAdapert() {
 		// TODO Auto-generated method stub
-
-		db = getActivity().openOrCreateDatabase(DBConstant.DB_FILENAME,
-				getActivity().MODE_PRIVATE, null);
 		// 实例化数据库服务
 		timingService = new TimingService(db);
 		realTimeService = new RealTimeService(db);
@@ -419,31 +395,12 @@ public class UnfinishFragment extends Fragment {
 					TextView textListCategory = (TextView) view;
 					textListCategory.setTextColor(color);
 					textListCategory.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-					
 				}
-
-//				if (view.getId() == R.id.imageView1_type) {
-//					if (category.equals("定时提醒")) {
-//						drawable = getResources().getDrawable(
-//								R.drawable.alarm_icon_getup);
-//					} else if (category.equals("实时提醒")) {
-//						drawable = getResources().getDrawable(
-//								R.drawable.alarm_icon_normal);
-//					} else if (category.equals("周期性提醒")) {
-//						drawable = getResources().getDrawable(
-//								R.drawable.alarm_icon_monthly);
-//					}
-//					ImageView imageView1_type = (ImageView) view;
-//					imageView1_type.setImageDrawable(drawable);
-//
-//				}
-
 				if (view.getId() == R.id.ratingBarListItem) {
 					Float value = (Float) data;
 					float ratingValue = value.floatValue();
 					RatingBar ratingBar = (RatingBar) view;
 					ratingBar.setRating(ratingValue);
-
 					return true;
 				} else
 					return false;
@@ -470,6 +427,7 @@ public class UnfinishFragment extends Fragment {
 				getTimingByUserID(sp.getString("user", null));
 		List<Periodic> periodicList=periodicService.
 				getPeriodicByUserID(sp.getString("user", null));
+		List<Campus> campusList=campusService.getAllCampus();
 		if (timingList != null) {
 			Collections.sort(timingList, new Comparator<Timing>() {
 				@Override
@@ -629,42 +587,5 @@ public class UnfinishFragment extends Fragment {
 				}
 			}
 		}
-
 	
-//	public void PeriodicRemind(){
-//		List<Periodic> periodicList=periodicService.getPeriodicByUserID(sp.getString("user", null));
-//		if (periodicList != null) {
-//			Collections.sort(periodicList, new Comparator<Periodic>() {
-//				@Override
-//				public int compare(Periodic lhs, Periodic rhs) {
-//					long periodicEndtime1 = timService.getSecondsFromDate(lhs.getEnd_time());
-//					long periodicEndtime2 = timService.getSecondsFromDate(rhs.getEnd_time());
-//					if (periodicEndtime1<=periodicEndtime2) {
-//						return -1;
-//					} else 
-//						return 1;
-//				}
-//			});
-//			for(int i=0;i<periodicList.size();i++){
-//				if(periodicList.get(i).getIsfinish()==0){
-//					String content=periodicList.get(i).getContent();
-//					String userId=sp.getString("user", null);
-//					long endTime= timService.getSecondsFromDate(periodicList.get(i).getEnd_time());
-//					
-//					Intent timingAlarm=new Intent(getActivity(),Receiver.class);
-//					Bundle bund=new Bundle();
-//					bund.putString("user", userId);
-//					bund.putString("content", content);
-//					bund.putString("periodicid", periodicList.get(i).getPeriodic_id());
-//					timingAlarm.putExtras(bund);
-//					PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, timingAlarm, PendingIntent.FLAG_UPDATE_CURRENT);
-//					AlarmManager timingManager=(AlarmManager) getActivity().getSystemService(getActivity().ALARM_SERVICE);
-//					timingManager.set(AlarmManager.RTC_WAKEUP, endTime, pendingIntent);
-//					return;
-//				}
-//			}
-//		}
-//	}
-	
-
 }

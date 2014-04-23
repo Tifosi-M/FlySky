@@ -1,8 +1,5 @@
 package com.telc.ui.main.viewModel;
 
-import java.util.List;
-import java.util.Map;
-
 import com.telc.data.dbDriver.DBConstant;
 import com.telc.domain.Service.CampusService;
 import com.telc.smartmemo.R;
@@ -15,11 +12,8 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -33,8 +27,6 @@ public class CampusFragment extends Fragment{
 	private SQLiteDatabase db;
 	private ListView campusList;
 	private CampusService campusService;
-	// 保存list中的item的列表
-	List<Map<String, Object>> mList;
 	// listView适配器
 	SimpleAdapter mAdapter = null;
 	// 适配器中的key
@@ -80,9 +72,6 @@ public class CampusFragment extends Fragment{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				Toast toast = Toast.makeText(getActivity(),
-						"sessss", Toast.LENGTH_SHORT);
-				toast.show();
 				String campus_id=CampusCursorAdapter.list_campusid.get(arg2);
 
 				Intent intent=new Intent(getActivity(),CampusDetailActivity.class);
@@ -107,7 +96,7 @@ public class CampusFragment extends Fragment{
 		
 		public void onReceive(android.content.Context context, Intent intent) {
 			String action = intent.getAction();  
-            if(action.equals("UPDATE_ADAPTER")){  
+            if(action.equals("UPDATE_ADAPTER")){
                 cursor=campusService.findCampus();
         		campusCursorAdapter=new CampusCursorAdapter(getActivity(),
         				R.layout.listview_campus_layout, cursor, new String[] {
@@ -122,11 +111,17 @@ public class CampusFragment extends Fragment{
 	public void onResume() {
 		registerBroadcastReceiver();//注册广播类
 		super.onResume();
+        cursor=campusService.findCampus();
+		campusCursorAdapter=new CampusCursorAdapter(getActivity(),
+				R.layout.listview_campus_layout, cursor, new String[] {
+				"campusid","campusname", "campusstate","campusby" }, new int[] {
+				R.id.textCampusId,R.id.textListContent, R.id.btn_state ,R.id.textListCategory},campusList);
+		campusList.setAdapter(campusCursorAdapter);
+    
 	}
 	
 	@Override
 	public void onStop() {
-
 		getActivity().unregisterReceiver(mBroadcastReceiver);
 		super.onStop();
 	}
