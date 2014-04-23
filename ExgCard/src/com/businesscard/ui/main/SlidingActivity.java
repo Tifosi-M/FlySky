@@ -1,6 +1,5 @@
 package com.businesscard.ui.main;
 
-import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
