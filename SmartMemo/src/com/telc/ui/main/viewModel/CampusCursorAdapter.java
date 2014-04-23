@@ -49,23 +49,32 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		LayoutInflater lf = LayoutInflater.from(context);
+<<<<<<< HEAD
 		final int mPosition=position;
 //		View view=null;
 //		if(convertView!=null){
 //			view=convertView;
 //		}
 		convertView = lf.inflate(layout, null);
+=======
+		convertView = lf.inflate(layout, null);
+		final int pp = position;
+>>>>>>> 11db0f8... 更新数据
 		
 		TextView textListContent,textListCategory;
 		textListContent = (TextView) convertView
 				.findViewById(R.id.textListContent);
 		textListCategory = (TextView) convertView.findViewById(R.id.textListCategory);
 		btn_state = (Button) convertView.findViewById(R.id.btn_state);
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 11db0f8... 更新数据
 		btn_state.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+<<<<<<< HEAD
 				// TODO Auto-generated method stub
 				String campusId=list_campusid.get(mPosition);
 				String flag=v.getTag().toString();
@@ -76,6 +85,14 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 				}else{
 					Toast.makeText(context, "状态异常，请重试", Toast.LENGTH_SHORT).show();
 				}
+=======
+				
+				int i = pp;
+				
+//				Toast.makeText(context,list_campusid.get(i) , Toast.LENGTH_SHORT).show();
+				Toast.makeText(context,list_campusid.get(i)  + "    " + v.getTag().toString() , Toast.LENGTH_SHORT).show();
+
+>>>>>>> 11db0f8... 更新数据
 				
 			}
 		});
@@ -103,7 +120,11 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 		
 		int CampusstateIndex = cursor.getColumnIndex("campusstate");
 		String Campusstate = cursor.getString(CampusstateIndex);
+<<<<<<< HEAD
 		btn_state.setTag(Campusstate);
+=======
+		btn_state.setTag(Campusstate);//aaa
+>>>>>>> 11db0f8... 更新数据
 		if(Campusstate.equals("N"))
 		{
 			btn_state.setText("未关注");
