@@ -53,9 +53,11 @@ public interface IMemoService {
 	//
 	public boolean uploadMemoDBFile(@WebParam(name = "tel") String tel,
 			@WebParam(name = "db") byte[] db);
+	public byte[] downloadMemoDBFile(@WebParam(name="tel")String tel);
+	public boolean deleteMemoDBFile(@WebParam(name="tel")String tel);
+	
+	
 
-	public byte[] downloadMemoDBFile(String tel);
 
-	public boolean deleteMemoDBFile(String tel);
 
 }
