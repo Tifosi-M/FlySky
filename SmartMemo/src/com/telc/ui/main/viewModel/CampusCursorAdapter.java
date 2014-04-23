@@ -1,5 +1,6 @@
 package com.telc.ui.main.viewModel;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CampusCursorAdapter extends SimpleCursorAdapter {
 	private Context context;
@@ -44,6 +46,7 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		LayoutInflater lf = LayoutInflater.from(context);
+		final int mPositon = position;
 		View view = lf.inflate(layout, null);
 		
 		
@@ -57,8 +60,15 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				String test=cursor.getString(cursor.getColumnIndex("campusid"));
-				campusService.
+				String campusId=cursor.getString(cursor.getColumnIndex("campusid"));
+				String flag=cursor.getString(cursor.getColumnIndex("campusstate"));
+				if("Y".equals(flag)){
+					campusService.updateCampusStatus(campusId,false);
+				}else if("N".equals(flag)){
+					campusService.updateCampusStatus(campusId,true);
+				}else{
+					Toast.makeText(context, "状态异常，请重试", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 		campusListView=new CampusListView(textListContent, textListCategory, btn_state);
