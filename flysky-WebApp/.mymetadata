@@ -3,7 +3,7 @@
   type="WEB"
   name="flysky-WebApp"
   id="myeclipse.1398425570812"
-  context-root="/web"
+  context-root="/flysky"
   j2ee-spec="6.0"
   archive="flysky-WebApp.war">
   <attributes>

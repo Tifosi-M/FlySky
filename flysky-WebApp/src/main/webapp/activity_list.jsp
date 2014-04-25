@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -55,7 +56,7 @@ valid -->
         <li> <a href="#" class="nav-top-item"> 校园活动管理 </a>
           <ul>
             <li><a href="activity_publish.jsp">发布校园活动</a></li>
-            <li><a href="activity_list.jsp">已发布校园活动</a></li>
+            <li><a href="<c:url value="showMemoList.do"/>">已发布校园活动</a></li>
           </ul>
         </li>
         <li> <a href="#" class="nav-top-item">校园名片管理 </a>
@@ -119,9 +120,9 @@ valid -->
                   
                   <div class="pagination"> <a href="#" title="First Page">&laquo;首页</a><a 
 
-href="#" title="Previous Page">&laquo; 上一页</a> <a href="#" class="number" title="1">1</a> <a 
+href="#" title="Previous Page">&laquo; 上一页</a> <a href="#" class="number current" title="1">1</a> <a 
 
-href="#" class="number" title="2">2</a> <a href="#" class="number current" title="3">3</a> <a 
+href="#" class="number" title="2">2</a> <a href="#" class="number" title="3">3</a> <a 
 
 href="#" class="number" title="4">4</a> <a href="#" title="Next Page">下一页 &raquo;</a><a href="#" 
 
@@ -132,70 +133,16 @@ title="Last Page">尾页&raquo;</a> </div>
               </tr>
             </tfoot>
             <tbody>
-              <tr>
-                <td>义务维修</td>
-                <td>2014.4.27上午</td>
-                <td>南区食堂</td>
-                <td>零点装机协会</td>
+               <c:forEach var="campus" items="${campusList}">
+              <tr>            
+                <td>${campus.campusName}</td>
+                <td>${campus.campusTime}</td>
+                <td>${campus.campusAddress}</td>
+                <td>${campus.campusBy}</td>
                 <td><a href="#" title="title">已审核</td>
                 <td><a href="client_detail.jsp" >无</td>
               </tr>
-             <tr>
-                <td>义务维修</td>
-                <td>2014.4.27上午</td>
-                <td>南区食堂</td>
-                <td>零点装机协会</td>
-                <td><a href="#" title="title">已审核</td>
-                <td><a href="client_detail.jsp" >无</td>
-              </tr>
-             <tr>
-                <td>义务维修</td>
-                <td>2014.4.27上午</td>
-                <td>南区食堂</td>
-                <td>零点装机协会</td>
-                <td><a href="#" title="title">未审核</td>
-                <td><a href="activity_modify.jsp" >修改</td>
-              </tr>
-              <tr>
-                <td>义务维修</td>
-                <td>2014.4.27上午</td>
-                <td>南区食堂</td>
-                <td>零点装机协会</td>
-                <td><a href="#" title="title">已审核</td>
-                <td><a href="client_detail.jsp" >无</td>
-              </tr>
-             <tr>
-                <td>义务维修</td>
-                <td>2014.4.27上午</td>
-                 <td>南区食堂</td>
-                <td>零点装机协会</td>
-                <td><a href="#" title="title">已审核</td>
-                <td><a href="client_detail.jsp" >无</td>
-              </tr>
-             <tr>
-                <td>义务维修</td>
-                <td>2014.4.27上午</td>
-                  <td>南区食堂</td>
-                <td>零点装机协会</td>
-                <td><a href="#" title="title">已审核</td>
-                <td><a href="client_detail.jsp" >无</td>
-              </tr>
-             <tr>
-                <td>义务维修</td>
-                <td>2014.4.27上午</td>
-                  <td>南区食堂</td>
-                <td>零点装机协会</td>
-                <td><a href="#" title="title">未审核</td>
-                <td><a href="activity_modify.jsp" >修改</td>
-              </tr>
-             <tr>
-                <td>义务维修</td>
-                <td>2014.4.27上午</td>
-                  <td>南区食堂</td>
-                <td>零点装机协会</td>
-                <td><a href="#" title="title">已审核</td>
-                <td><a href="client_detail.jsp" >无</td>
-              </tr>
+              </c:forEach>
             </tbody>
           </table>
         </div>

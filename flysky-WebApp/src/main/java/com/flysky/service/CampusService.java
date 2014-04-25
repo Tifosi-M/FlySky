@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class CampusService {
 		jedis.set("10000".getBytes(), getBytesFromFile("e:/10000.db3"));
 	}
 
+	public List<CampusMemo> getAllCampusMemos(){
+		return campusDAO.getAllCampus();
+	}
+	
+	
 	/**
 	 * 二进制字节流转换为文件
 	 * 

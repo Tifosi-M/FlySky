@@ -2,6 +2,7 @@ package com.flysky.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -39,5 +40,11 @@ public class CampusServiceTest extends TestCase {
 	@Test
 	public void saveTest(){
 		campusService.saveCampus(campus);
+		assertEquals(true,true);
+	}
+	@Test
+	public void getCampusTest(){
+		List list=campusService.getAllCampusMemos();
+		assertEquals(list.size()>0, true);
 	}
 }
