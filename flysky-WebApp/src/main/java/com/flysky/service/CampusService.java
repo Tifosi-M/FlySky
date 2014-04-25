@@ -28,9 +28,9 @@ public class CampusService {
 	public void saveCampus(CampusMemo campusMemo) {
 		Jedis jedis = new Jedis(host, port);
 		byte[] db = jedis.get("10000".getBytes());
-		getFileFromBytes(db, "e:/10000.db3");
+		getFileFromBytes(db, "/mnt/ext3/memo/10000.db3");
 		campusDAO.save(campusMemo);
-		jedis.set("10000".getBytes(), getBytesFromFile("e:/10000.db3"));
+		jedis.set("10000".getBytes(), getBytesFromFile("/mnt/ext3/memo/10000.db3"));
 	}
 
 	public List<CampusMemo> getAllCampusMemos(){
