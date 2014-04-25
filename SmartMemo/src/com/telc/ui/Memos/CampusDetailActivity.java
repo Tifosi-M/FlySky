@@ -30,7 +30,7 @@ public class CampusDetailActivity extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_campus_memo);
 		campusid = this.getIntent().getExtras().getString("campusid");
-		SQLiteDatabase db = openOrCreateDatabase(DBConstant.DB_FILENAME,
+		SQLiteDatabase db = openOrCreateDatabase(DBConstant.CAMPUSDBFILENAME,
 				MODE_PRIVATE, null);
 		campusService=new CampusService(db);
 		campus=campusService.getCampusById(campusid);

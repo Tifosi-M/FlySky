@@ -397,14 +397,13 @@ public class newSettingFragment extends Fragment implements WebServiceDelegate {
 	}
 
 	public byte[] getbyte() {
-
 		byte[] tmp = new byte[1000];
 		byte[] db = null;
 		ByteArrayOutputStream os = new ByteArrayOutputStream(1000);
 		int n;
 		try {
 			File file = new File(
-					"/data/data/com.telc.smartmemo/databases/mydb.db3");
+					"/data/data/com.telc.smartmemo/databases/campus.db3");
 			FileInputStream is = new FileInputStream(file);
 			while ((n = is.read(tmp)) != -1) {
 				os.write(tmp, 0, n);

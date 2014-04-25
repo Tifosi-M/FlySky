@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import org.kobjects.base64.Base64;
 
+import webservice.MemoWebPara;
 import webservice.WebServiceDelegate;
 import webservice.WebServiceUtils;
 
@@ -60,6 +61,8 @@ public class MenuFragment extends Fragment implements WebServiceDelegate{
 		super.onCreate(savedInstanceState);
 		sp=getActivity().getSharedPreferences("Login",
 				getActivity().MODE_PRIVATE);
+		webService = new WebServiceUtils(MemoWebPara.MM_NAMESPACE,
+				MemoWebPara.MM_URL, this);
 	}
 
 	@Override

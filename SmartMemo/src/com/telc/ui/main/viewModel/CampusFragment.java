@@ -1,11 +1,20 @@
 package com.telc.ui.main.viewModel;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import com.telc.data.dbDriver.DBConstant;
+import com.telc.domain.Emtity.Campus;
+import com.telc.domain.Emtity.Timing;
 import com.telc.domain.Service.CampusService;
+import com.telc.domain.time.Service.TimeService;
 import com.telc.smartmemo.R;
 import com.telc.ui.Memos.CampusDetailActivity;
 
+import android.app.AlarmManager;
 import android.app.Fragment;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -26,7 +35,10 @@ import android.widget.Toast;
 public class CampusFragment extends Fragment{
 	private SQLiteDatabase db;
 	private ListView campusList;
+	private List<Campus> mList;
+	private TimeService timService;
 	private CampusService campusService;
+	private Campus mCampus;
 	// listView适配器
 	SimpleAdapter mAdapter = null;
 	// 适配器中的key
@@ -43,6 +55,7 @@ public class CampusFragment extends Fragment{
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		timService=TimeService.getInstance();
 	}
 	
 
@@ -55,11 +68,12 @@ public class CampusFragment extends Fragment{
 		campusList=(ListView) view.findViewById(R.id.list_campus);
 		// 实例化Adapter
 		// 打开数据库
-		db = getActivity().openOrCreateDatabase(DBConstant.DB_FILENAME,
+		db = getActivity().openOrCreateDatabase(DBConstant.CAMPUSDBFILENAME,
 				getActivity().MODE_PRIVATE, null);
 		// 实例化数据库服务
 		campusService=new CampusService(db);
 		cursor=campusService.findCampus();
+		mList=campusService.getAllCampus();
 		campusCursorAdapter=new CampusCursorAdapter(getActivity(),
 				R.layout.listview_campus_layout, cursor, new String[] {
 						"campusid","campusname", "campusstate","campusby" }, new int[] {
@@ -73,7 +87,9 @@ public class CampusFragment extends Fragment{
 					long arg3) {
 				// TODO Auto-generated method stub
 				String campus_id=CampusCursorAdapter.list_campusid.get(arg2);
-
+				if(0==arg2){
+					remind();
+				}
 				Intent intent=new Intent(getActivity(),CampusDetailActivity.class);
 				Bundle bundle = new Bundle(); 
 				bundle.putString("campusid", campus_id); 
@@ -124,6 +140,27 @@ public class CampusFragment extends Fragment{
 	public void onStop() {
 		getActivity().unregisterReceiver(mBroadcastReceiver);
 		super.onStop();
+	}
+	
+	private void remind(){
+		if (mList != null) {
+			mCampus=mList.get(0);
+			long endTime = timService.getSecondsFromDate(mCampus.getCampustime());
+			Intent timingAlarm = new Intent(getActivity(),
+					Receiver.class);
+			Bundle bund = new Bundle();
+			bund.putString("class", "timing");
+			bund.putString("user", "18046041517");
+			bund.putString("content", mCampus.getCampuscontent());
+			timingAlarm.putExtras(bund);
+			PendingIntent pendingIntent = PendingIntent.getBroadcast(
+					getActivity(), 0, timingAlarm,
+					PendingIntent.FLAG_UPDATE_CURRENT);
+			AlarmManager timingManager = (AlarmManager) getActivity()
+					.getSystemService(getActivity().ALARM_SERVICE);
+			timingManager.set(AlarmManager.RTC_WAKEUP, endTime,
+					pendingIntent);
+		}
 	}
 	
 }
