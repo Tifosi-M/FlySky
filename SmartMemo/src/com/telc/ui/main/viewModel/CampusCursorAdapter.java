@@ -41,7 +41,7 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 			String[] from, int[] to,ListView list) {
 		super(context, layout, c, from, to);
 		// TODO Auto-generated constructor stub
-		db = context.openOrCreateDatabase(DBConstant.DB_FILENAME,
+		db = context.openOrCreateDatabase(DBConstant.CAMPUSDBFILENAME,
 				context.MODE_PRIVATE, null);
 		campusService=new CampusService(db);
 		this.context = context;

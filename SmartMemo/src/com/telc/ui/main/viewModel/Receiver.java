@@ -32,26 +32,26 @@ public class Receiver extends BroadcastReceiver{
 		String index=bundle.getString("Id");
 		String location=bundle.getString("location");
 		String mclass=bundle.getString("class");
-		if(location!=null&& !location.isEmpty()){
-			content="到"+location;
-		}
-		if(mclass.equals("timing")){
-			TimingService timing=new TimingService(db);
-			timing.updateIsfinish(index);
-		}else if(mclass.equals("periodic")){
-			PeriodicService periodic=new PeriodicService(db);
-			Periodic temp=periodic.findPeriodicById(index);
-				if(temp.getPeriod().equals("每天")){
-					long endTime=time.getSecondsFromDate(temp.getEnd_time());
-					endTime=endTime+86400000l;
-					temp.setEnd_time(time.longSwithToString(endTime));
-				}else if(temp.getPeriod().equals("每月")){
-					long endTime=time.getSecondsFromDate(temp.getEnd_time());
-					endTime=endTime+2592000000l;
-					temp.setEnd_time(time.longSwithToString(endTime));
-				}
-			periodic.updatePeriodic(temp);
-		}
+//		if(location!=null&& !location.isEmpty()){
+//			content="到"+location;
+//		}
+//		if(mclass.equals("timing")){
+//			TimingService timing=new TimingService(db);
+//			timing.updateIsfinish(index);
+//		}else if(mclass.equals("periodic")){
+//			PeriodicService periodic=new PeriodicService(db);
+//			Periodic temp=periodic.findPeriodicById(index);
+//				if(temp.getPeriod().equals("每天")){
+//					long endTime=time.getSecondsFromDate(temp.getEnd_time());
+//					endTime=endTime+86400000l;
+//					temp.setEnd_time(time.longSwithToString(endTime));
+//				}else if(temp.getPeriod().equals("每月")){
+//					long endTime=time.getSecondsFromDate(temp.getEnd_time());
+//					endTime=endTime+2592000000l;
+//					temp.setEnd_time(time.longSwithToString(endTime));
+//				}
+//			periodic.updatePeriodic(temp);
+//		}
 		remindContent.Content=content;
 		remindContent.useId=user;
 		new connentNet().start();
