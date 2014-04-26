@@ -29,9 +29,12 @@ public class FindYouApplication extends  Application{
      * 
      * zyc-社交名片debug：9wbm32lD9NKtV7vNttUYZMKu
      * zyc-社交名片发布：AbUlyP3e9eDcfUGEb7DAvGO5
+     * 
+     * 
+     * flysky.keystore  发布版  Z1n2a6wHwseSMvHeOy9LfkAP 
      */
 
-    public static final String strKey = "9wbm32lD9NKtV7vNttUYZMKu";	
+    public static final String strKey = "Z1n2a6wHwseSMvHeOy9LfkAP";	
 
 	
 	@Override
