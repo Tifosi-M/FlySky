@@ -3,12 +3,20 @@ package com.flysky.domain;
 import java.util.Date;
 
 public class CampusMemo {
+	private String campusId;
 	private String campusName;
 	private String campusBy;
 	private String campusTime;
 	private String campusState;
 	private String campusAddress;
 	private String campusContent;
+	
+	public String getCampusId() {
+		return campusId;
+	}
+	public void setCampusId(String campusId) {
+		this.campusId = campusId;
+	}
 	public String getCampusName() {
 		return campusName;
 	}

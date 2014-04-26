@@ -56,7 +56,7 @@ valid -->
         <li> <a href="#" class="nav-top-item"> 校园活动管理 </a>
           <ul>
             <li><a href="activity_publish.jsp">发布校园活动</a></li>
-            <li><a href="activity_list.jsp">已发布校园活动</a></li>
+            <li><a href="<c:url value="showMemoList.do"/>">已发布校园活动</a></li>
           </ul>
         </li>
         <li> <a href="#" class="nav-top-item">校园名片管理 </a>

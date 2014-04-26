@@ -35,6 +35,7 @@ public class CampusDAO {
 			@Override
 			public void processRow(ResultSet re) throws SQLException {
 				CampusMemo campusMemo = new CampusMemo();
+				campusMemo.setCampusId(re.getString("campusid"));
 				campusMemo.setCampusAddress(re.getString("campusaddress"));
 				campusMemo.setCampusBy(re.getString("campusby"));
 				campusMemo.setCampusContent(re.getString("campuscontent"));
@@ -44,6 +45,11 @@ public class CampusDAO {
 			}
 		});
 		return list;
+	}
+	public void deleteById(String id){
+		String sql = "delete from campus where campusid=?";
+		jdbcTemplate.update(sql,new Object[]{id});
+		
 	}
 	
 }

@@ -33,6 +33,12 @@ valid -->
 <!-- jQuery Datepicker Plugin -->
 <script type="text/javascript" src="scripts/jquery.datePicker.js"></script>
 <script type="text/javascript" src="scripts/jquery.date.js"></script>
+<script type="text/javascript">
+	function deleteById(id){
+		location.href='<c:url value="deleteById.do?id="/>'+id;
+	}
+	
+</script>
 </head>
 <body>
 <div id="body-wrapper">
@@ -110,7 +116,6 @@ valid -->
                 <th>地点</th>
                 <th>时间</th>
                 <th>发起人</th>
-                <th>审核状态</th>
                 <th>操作</th>
               </tr>
             </thead>
@@ -139,8 +144,7 @@ title="Last Page">尾页&raquo;</a> </div>
                 <td>${campus.campusTime}</td>
                 <td>${campus.campusAddress}</td>
                 <td>${campus.campusBy}</td>
-                <td><a href="#" title="title">已审核</td>
-                <td><a href="client_detail.jsp" >无</td>
+                <td><a href=javascript:void(0) onclick="deleteById(${campus.campusId});">删除</a></td>
               </tr>
               </c:forEach>
             </tbody>
