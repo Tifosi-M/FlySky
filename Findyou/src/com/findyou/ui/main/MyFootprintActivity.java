@@ -1,25 +1,33 @@
 package com.findyou.ui.main;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.BMapManager;
+import com.baidu.mapapi.map.ItemizedOverlay;
 import com.baidu.mapapi.map.LocationData;
 import com.baidu.mapapi.map.MapController;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationOverlay;
+import com.baidu.mapapi.map.OverlayItem;
 import com.baidu.mapapi.map.PopupClickListener;
 import com.baidu.mapapi.map.PopupOverlay;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.findyou.R;
 import com.findyou.app.FindYouApplication;
 import com.findyou.domain.Service.MyNewsService;
+import com.findyou.domain.entity.News;
 import com.findyou.domain.tool.BMapUtil;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.Menu;
@@ -35,12 +43,13 @@ public class MyFootprintActivity extends Activity{
 		private FindYouApplication app;
 		private MyNewsService mNewsService=null;
 		
-//		OverlayTest itemOverlay=null;
-//		private OverlayItem mCurItem = null;
+		OverlayTest itemOverlay=null;
+		private OverlayItem mCurItem = null;
 		
 		// 定位相关
 		private LocationClient mLocClient;
 		private LocationData locData = null;
+		private LocationClientOption option = null;
 		
 		public MyLocationListenner myListener = new MyLocationListenner();
 		
@@ -62,7 +71,6 @@ public class MyFootprintActivity extends Activity{
 		
 		
 		//UI 相关
-//		OnCheckedChangeListener radioButtonListener = null;
 		private Button mClearBtn;
 		private Button mResetBtn;
 		private Button mLocationBtn;
@@ -88,7 +96,7 @@ public class MyFootprintActivity extends Activity{
 			
 			@Override
 			public void onClick(View v) {
-//				clearOverlay();
+				clearOverlay();
 			}
 		});
 		
@@ -98,7 +106,7 @@ public class MyFootprintActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 	
-//				initOverlay();
+				initOverlay();
 			}
 		});
 	    
@@ -116,20 +124,19 @@ public class MyFootprintActivity extends Activity{
         mMapView.getController().setZoom(14);
         mMapView.getController().enableClick(true);
         mMapView.setBuiltInZoomControls(true);
-      //创建 弹出泡泡图层
+       //创建 弹出泡泡图层
         createPaopao();
         
 		//定位初始化
 		mLocClient = new LocationClient(getApplicationContext());
 		locData = new LocationData();
-//		MyLocationListenner myListenner = new MyLocationListenner();
 		mLocClient.registerLocationListener(myListener);
-		LocationClientOption option = new LocationClientOption();
+		option = new LocationClientOption();
 		option.setOpenGps(true);
 		option.setScanSpan(1000);
 		mLocClient.setLocOption(option);
 		mLocClient.start();
-//		
+		
 		 //定位图层初始化
 		myLocationOverlay = new MyLocationOverlay(mMapView);
 		//设置定位数据
@@ -143,27 +150,8 @@ public class MyFootprintActivity extends Activity{
 		mMapView.refresh();
 		
 	
-//	    pop = new PopupOverlay(mMapView,popListener);
-		    
 		}
 		
-//		//创建pop对象，注册点击事件监听接口
-//		PopupOverlay pop = new PopupOverlay(mMapView,new PopupClickListener() {                
-//		        @Override
-//		        public void onClickedPopup(int index) {
-//		                //在此处理pop点击事件，index为点击区域索引,点击区域最多可有三个
-//		        }
-//		});
-		
-		/**
-		 * 创建一个popupoverlay
-		 */
-//		PopupClickListener popListener = new PopupClickListener(){
-//			@Override
-//			public void onClickedPopup(int index) {
-//				//写上 pop的响应事件
-//			}
-//		};
 
 		public void createPaopao(){
 			viewCache = getLayoutInflater().inflate(R.layout.map_custom_text_view, null);
@@ -172,7 +160,7 @@ public class MyFootprintActivity extends Activity{
 	        PopupClickListener popListener = new PopupClickListener(){
 				@Override
 				public void onClickedPopup(int index) {
-
+//					Toast.makeText(getApplicationContext(), "haha", 200).show();
 				}
 	        };
 	        pop = new PopupOverlay(mMapView,popListener);
@@ -185,108 +173,105 @@ public class MyFootprintActivity extends Activity{
 			
 			isRequest =true;
 			 mLocClient.requestLocation();
-		    Toast.makeText(MyFootprintActivity.this, "正在定位……", Toast.LENGTH_SHORT).show();
+		    Toast.makeText(MyFootprintActivity.this, "定位中 请稍后。。。", Toast.LENGTH_SHORT).show();
 		}
 		
 		
 		//清除屏幕上的标志 
-//		public  void clearOverlay(){
-//			
-//			if (pop != null){
-//		        pop.hidePop();
-//			}
-//			//清除overlay  
-//			 itemOverlay.removeAll();  
-//			 mMapView.refresh();
-//		}
+		public  void clearOverlay(){
+			
+			if (pop != null){
+		        pop.hidePop();
+			}
+			//清除overlay  
+			 itemOverlay.removeAll();  
+			 mMapView.refresh();
+		}
 		
 		//添加标志
-//		public void initOverlay(){
-//			List<News> mNewsList = new ArrayList<News>();
-//			//这里填写要显示的地点的经纬度  举例四个
-////			double mLat1 = 39.90923;
-////			double mLon1 = 116.397428;
-////			double mLat2 = 39.9022;
-////			double mLon2 = 116.3922;
-////			double mLat3 = 39.917723;
-////			double mLon3 = 116.3722;
-//			
-//			
-//			News new1 = new News();
-//			News new2 = new News();
-//			News new3 = new News();
-//			
-//			new1.setNewsLatitude(39.90923);
-//			new1.setNewsLongtitude(116.397428);
-//			new1.setNewsContent("这里的景色很好哦");
-//			
-//			new2.setNewsLatitude(39.9022);
-//			new2.setNewsLongtitude(116.3922);
-//			new2.setNewsContent("宣武门···");
-//			
-//			new3.setNewsLatitude(39.917723);
-//			new3.setNewsLongtitude(116.3722);
-//			new3.setNewsContent("天啦！北京西城也有福建小吃");
-//			
-//			mNewsList.add(new1);
-//			mNewsList.add(new2);
-//			mNewsList.add(new3);
-//			
-//			/*
-//			 * 暂时注释掉     这个地方是从服务器上获取列表数据  现在用上面的假数据代替下
-//			 * */
-////			mNewsList=mNewsService.getMyNewsList();
-//			
-//		
-//			List<GeoPoint> listPoint =  new ArrayList<GeoPoint>();
-//			
-//			GeoPoint[] point=new GeoPoint[mNewsList.size()];
-//
-//			for(int i=0;i<mNewsList.size();i++){
-//				point[i] =new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
-//				listPoint.add(point[i]);
-//			}
-//			//准备overlay图像数据，根据实情情况修复
-//			Drawable mark= getResources().getDrawable(R.drawable.icon_marka);
-//			//用OverlayItem准备Overlay数据
-////			OverlayItem item1 = new OverlayItem(p1,"这里的景色很好哦","item1");
-//		
-//			//使用setMarker()方法设置overlay图片,如果不设置则使用构建ItemizedOverlay时的默认设置
-////			OverlayItem item2 = new OverlayItem(p2,"宣武门····","item2");
-////			item2.setMarker(mark);
-////			OverlayItem item3 = new OverlayItem(p3,"天啦！北京西城也有福建小吃","item3");
-//			
-//			//创建IteminizedOverlay
-//			itemOverlay = new OverlayTest(mark, mMapView);
-//			 
-//			List<OverlayItem> listItems = new ArrayList<OverlayItem>();
-//
-//			//创建IteminizedOverlay
-//			itemOverlay = new OverlayTest(mark, mMapView);
-//			//将IteminizedOverlay添加到MapView中
-//			for(int i=0;i<mNewsList.size();i++){
-//				OverlayItem item =new OverlayItem(listPoint.get(i), mNewsList.get(i).getNewsContent(), "");
-//				itemOverlay.addItem(item);
-//			}
-//			mMapView.getOverlays().clear();
-//			mMapView.getOverlays().add(itemOverlay);
-//			
-//			
-//			viewCache = getLayoutInflater().inflate(R.layout.map_custom_text_view, null);
-//		    popupInfo = (View) viewCache.findViewById(R.id.popinfo);
+		public void initOverlay(){
+			List<News> mNewsList = new ArrayList<News>();
+			//这里填写要显示的地点的经纬度  举例四个
+	
+			// 119.21749
+			//26.026232
+			
+			
+			News new1 = new News();
+			News new2 = new News();
+			News new3 = new News();
+			
+			new1.setNewsLatitude(26.030000);
+			new1.setNewsLongtitude(119.21749);
+			new1.setNewsContent(" 旗山师大很漂亮 ");
+			
+			new2.setNewsLatitude(26.046232);
+			new2.setNewsLongtitude(119.22749);
+			new2.setNewsContent("  我在闽江旁看风景 ");
+			
+			new3.setNewsLatitude(26.012409174100426);
+			new3.setNewsLongtitude(119.21682000160217);
+			new3.setNewsContent("  溪源江，看风景。。  ");
+			
+			mNewsList.add(new1);
+			mNewsList.add(new2);
+			mNewsList.add(new3);
+			
+			/*
+			 * 暂时注释掉     这个地方是从服务器上获取列表数据  现在用上面的假数据代替下
+			 * */
+//			mNewsList=mNewsService.getMyNewsList();
+			
+		
+			List<GeoPoint> listPoint =  new ArrayList<GeoPoint>();
+			
+			GeoPoint[] point=new GeoPoint[mNewsList.size()];
+
+			for(int i=0;i<mNewsList.size();i++){
+				point[i] =new GeoPoint((int)(mNewsList.get(i).getNewsLatitude() * 1E6),(int)(mNewsList.get(i).getNewsLongtitude() * 1E6));
+				listPoint.add(point[i]);
+			}
+			//准备overlay图像数据，根据实情情况修复
+			Drawable mark= getResources().getDrawable(R.drawable.icon_marka);
+			//用OverlayItem准备Overlay数据
+//			OverlayItem item1 = new OverlayItem(p1,"这里的景色很好哦","item1");
+		
+			//使用setMarker()方法设置overlay图片,如果不设置则使用构建ItemizedOverlay时的默认设置
+//			OverlayItem item2 = new OverlayItem(p2,"宣武门····","item2");
+//			item2.setMarker(mark);
+//			OverlayItem item3 = new OverlayItem(p3,"天啦！北京西城也有福建小吃","item3");
+			
+			//创建IteminizedOverlay
+			itemOverlay = new OverlayTest(mark, mMapView);
+			 
+			List<OverlayItem> listItems = new ArrayList<OverlayItem>();
+
+			//创建IteminizedOverlay
+			itemOverlay = new OverlayTest(mark, mMapView);
+			//将IteminizedOverlay添加到MapView中
+			for(int i=0;i<mNewsList.size();i++){
+				OverlayItem item =new OverlayItem(listPoint.get(i), mNewsList.get(i).getNewsContent(), "");
+				itemOverlay.addItem(item);
+			}
+			mMapView.getOverlays().clear();
+			mMapView.getOverlays().add(itemOverlay);
+			
+			
+			viewCache = getLayoutInflater().inflate(R.layout.map_custom_text_view, null);
+		    popupInfo = (View) viewCache.findViewById(R.id.popinfo);
 //		    popupLeft = (View) viewCache.findViewById(R.id.popleft);
 //		    popupRight = (View) viewCache.findViewById(R.id.popright);
-//		    popupText =(TextView) viewCache.findViewById(R.id.textcache);
-//		    
-//			 
-//			//现在所有准备工作已准备好，使用以下方法管理overlay.
-//			//添加overlay, 当批量添加Overlay时使用addItem(List<OverlayItem>)效率更高
-////			itemOverlay.addItem(item1);
-////			itemOverlay.addItem(item2);
-////			itemOverlay.addItem(item3);
-//			mMapView.refresh();
-//			 
-//		}
+		    popupText =(TextView) viewCache.findViewById(R.id.textcache);
+		    
+			 
+			//现在所有准备工作已准备好，使用以下方法管理overlay.
+			//添加overlay, 当批量添加Overlay时使用addItem(List<OverlayItem>)效率更高
+//			itemOverlay.addItem(item1);
+//			itemOverlay.addItem(item2);
+//			itemOverlay.addItem(item3);
+			mMapView.refresh();
+			 
+		}
 		
 		
 		
@@ -296,29 +281,16 @@ public class MyFootprintActivity extends Activity{
 		        if(mLocClient != null)
 		        	mLocClient.stop();
 		        
-//		        if(app.mBMapManager!=null){
-//		                app.mBMapManager.destroy();
-//		                app.mBMapManager=null;
-//		        }
-//		        if (pop != null){
-//		            pop.hidePop();
-//		    	}
 		        super.onDestroy();
 		}
 		@Override
 		protected void onPause(){
 		        mMapView.onPause();
-//		        if(app.mBMapManager!=null){
-//		            app.mBMapManager.stop();
-//		        }
 		        super.onPause();
 		}
 		@Override
 		protected void onResume(){
 		        mMapView.onResume();
-//		        if(app.mBMapManager!=null){
-//		                app.mBMapManager.start();
-//		        }
 		    super.onResume();
 		}
 		
@@ -345,32 +317,32 @@ public class MyFootprintActivity extends Activity{
 		 * 要处理overlay点击事件时需要继承ItemizedOverlay
 		 * 不处理点击事件时可直接生成ItemizedOverlay.
 		 */
-//		class OverlayTest extends ItemizedOverlay<OverlayItem> {
-//		    //用MapView构造ItemizedOverlay
-//		    public OverlayTest(Drawable mark,MapView mapView){
-//		            super(mark,mapView);
-//		    }
-//		    protected boolean onTap(int index) {
-//		        //在此处理item点击事件
-//		       OverlayItem item = getItem(index);
-//				mCurItem = item ;
-//				   popupText.setText(getItem(index).getTitle());
-//				   Bitmap[] bitMaps={
+		class OverlayTest extends ItemizedOverlay<OverlayItem> {
+		    //用MapView构造ItemizedOverlay
+		    public OverlayTest(Drawable mark,MapView mapView){
+		            super(mark,mapView);
+		    }
+		    protected boolean onTap(int index) {
+		        //在此处理item点击事件
+		       OverlayItem item = getItem(index);
+				mCurItem = item ;
+				   popupText.setText(getItem(index).getTitle());
+				   Bitmap[] bitMaps={
 //					    BMapUtil.getBitmapFromView(popupLeft), 		
-//					    BMapUtil.getBitmapFromView(popupInfo), 		
+					    BMapUtil.getBitmapFromView(popupInfo), 		
 //					    BMapUtil.getBitmapFromView(popupRight) 		
-//				    };
-//				    pop.showPopup(bitMaps,item.getPoint(),32);
-//				    
-//		        return true;
-//		    }
-//		        public boolean onTap(GeoPoint pt, MapView mapView){
-//		                //在此处理MapView的点击事件，当返回 true时
-//		                super.onTap(pt,mapView);
-//		                return false;
-//		        }
-//
-//		}     
+				    };
+				    pop.showPopup(bitMaps,item.getPoint(),32);
+				    
+		        return true;
+		    }
+		        public boolean onTap(GeoPoint pt, MapView mapView){
+		                //在此处理MapView的点击事件，当返回 true时
+		                super.onTap(pt,mapView);
+		                return false;
+		        }
+
+		}     
 		
 		
 		    
@@ -383,7 +355,7 @@ public class MyFootprintActivity extends Activity{
 				if(location == null)
 					return;
 				
-				Toast.makeText(getApplicationContext(), "dingwei", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "a", 200).show();
 				
 				locData.latitude = location.getLatitude();
 	            locData.longitude = location.getLongitude();
@@ -399,10 +371,12 @@ public class MyFootprintActivity extends Activity{
 	            if (isRequest || isFirstLoc){
 	            	//移动地图到定位点
 	                mMapController.animateTo(new GeoPoint((int)(locData.latitude* 1e6), (int)(locData.longitude *  1e6)));
-//	            	mMapController.setCenter(new GeoPoint((int)(locData.latitude* 1e6), (int)(locData.longitude *  1e6)));
-//	                mMapController.setZoom(12);
 
 	                isRequest = false;
+	                
+	        		option.setScanSpan(30000);
+	        		mLocClient.setLocOption(option);
+
 	            }
 	            //首次定位完成
 	            isFirstLoc = false;
@@ -417,27 +391,6 @@ public class MyFootprintActivity extends Activity{
 			
 		}
 		
-		//继承MyLocationOverlay重写dispatchTap实现点击处理
-	  	public class locationOverlay extends MyLocationOverlay{
-
-	  		public locationOverlay(MapView mapView) {
-	  			super(mapView);
-	  			// TODO Auto-generated constructor stub
-	  		}
-	  		@Override
-	  		protected boolean dispatchTap() {
-	  			// TODO Auto-generated method stub
-	  			//处理点击事件,弹出泡泡
-//	  			popupText.setBackgroundResource(R.drawable.popup);
-				popupText.setText("我的位置");
-				pop.showPopup(BMapUtil.getBitmapFromView(popupText),
-						new GeoPoint((int)(locData.latitude*1e6), (int)(locData.longitude*1e6)),
-						8);
-	  			return true;
-	  		}
-	  		
-	  	}
-	  	
 }
 
 	class MyLocationMapView extends MapView{
