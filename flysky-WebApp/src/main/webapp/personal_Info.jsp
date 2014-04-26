@@ -98,22 +98,18 @@ valid -->
             <fieldset>
             <p>账号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="text" id="small-input" name="small-input" />
-            <span class="input-notification success png_bg"></span><br />
             </p>
             <p>姓名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="text" id="medium-input" name="medium-input" />
-            <span class="input-notification error png_bg"></span> </p>
             <p>证件号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="text" id="small-input" name="small-input" />
             </p>
           
             <p>联系方式：&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="text" id="small-input" name="small-input" />
-            <span class="input-notification success png_bg"></span><br />
             </p>
              <p>照片：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="file" id="medium-input" name="medium-input" />
-            <span class="input-notification error png_bg"></span> </p>
              <p>个人描述：&nbsp;&nbsp;&nbsp;
             <textarea class="text-input textarea wysiwyg" id="textarea" name="textfield" 
             cols="79" rows="3"></textarea>

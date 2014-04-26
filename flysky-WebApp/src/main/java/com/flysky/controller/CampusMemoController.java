@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.flysky.domain.CampusMemo;
@@ -32,5 +33,16 @@ public class CampusMemoController {
 		mv.addObject("campusList", list);
 		mv.setViewName("activity_list");
 		return mv;
+	}
+	@RequestMapping(value="/deleteById.do")
+	public ModelAndView deleteCampus(@RequestParam("id")String id){
+		System.out.println("======"+id);
+		campusService.deleteCampusMemoById(id);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("activity_list");
+		List<CampusMemo> list = campusService.getAllCampusMemos();
+		mv.addObject("campusList",list);
+		return mv;
+		
 	}
 }

@@ -95,7 +95,6 @@ valid -->
             <fieldset>
             <p>名片名称：&nbsp;&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="text" id="small-input" name="small-input" />
-            <span class="input-notification success png_bg"></span><br />
             </p>
            
             <p>微博：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -103,18 +102,14 @@ valid -->
             </p>
             <p>QQ：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="text" id="small-input" name="small-input" />
-            <span class="input-notification success png_bg"></span><br />
             </p>
             <p>联系方式：&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="text" id="small-input" name="small-input" />
-            <span class="input-notification success png_bg"></span><br />
             </p>
              <p>地址：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="text" id="medium-input" name="medium-input" />
-            <span class="input-notification error png_bg"></span> </p>
              <p>图片：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="file" id="medium-input" name="medium-input" />
-            <span class="input-notification error png_bg"></span> </p>
            </br>
               <input class="button" type="submit" value="添    加" />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

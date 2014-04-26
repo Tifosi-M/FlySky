@@ -29,12 +29,22 @@ public class CampusService {
 		Jedis jedis = new Jedis(host, port);
 		byte[] db = jedis.get("10000".getBytes());
 		getFileFromBytes(db, "/mnt/ext3/memo/10000.db3");
+		//getFileFromBytes(db, "e:/10000.db3");
 		campusDAO.save(campusMemo);
 		jedis.set("10000".getBytes(), getBytesFromFile("/mnt/ext3/memo/10000.db3"));
+		//jedis.set("10000".getBytes(), getBytesFromFile("e:/10000.db3"));
 	}
 
 	public List<CampusMemo> getAllCampusMemos(){
+
 		return campusDAO.getAllCampus();
+	}
+	
+	public void deleteCampusMemoById(String id){
+		campusDAO.deleteById(id);
+		Jedis jedis = new Jedis(host,port);
+		jedis.set("10000".getBytes(), getBytesFromFile("/mnt/ext3/memo/10000.db3"));
+		//jedis.set("10000".getBytes(), getBytesFromFile("e:/10000.db3"));
 	}
 	
 	
