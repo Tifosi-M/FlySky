@@ -234,14 +234,7 @@ public class MyFootprintActivity extends Activity{
 				listPoint.add(point[i]);
 			}
 			//准备overlay图像数据，根据实情情况修复
-			Drawable mark= getResources().getDrawable(R.drawable.icon_marka);
-			//用OverlayItem准备Overlay数据
-//			OverlayItem item1 = new OverlayItem(p1,"这里的景色很好哦","item1");
-		
-			//使用setMarker()方法设置overlay图片,如果不设置则使用构建ItemizedOverlay时的默认设置
-//			OverlayItem item2 = new OverlayItem(p2,"宣武门····","item2");
-//			item2.setMarker(mark);
-//			OverlayItem item3 = new OverlayItem(p3,"天啦！北京西城也有福建小吃","item3");
+			Drawable mark= getResources().getDrawable(R.drawable.map_mark);
 			
 			//创建IteminizedOverlay
 			itemOverlay = new OverlayTest(mark, mMapView);
@@ -265,12 +258,6 @@ public class MyFootprintActivity extends Activity{
 //		    popupRight = (View) viewCache.findViewById(R.id.popright);
 		    popupText =(TextView) viewCache.findViewById(R.id.textcache);
 		    
-			 
-			//现在所有准备工作已准备好，使用以下方法管理overlay.
-			//添加overlay, 当批量添加Overlay时使用addItem(List<OverlayItem>)效率更高
-//			itemOverlay.addItem(item1);
-//			itemOverlay.addItem(item2);
-//			itemOverlay.addItem(item3);
 			mMapView.refresh();
 			 
 		}
@@ -357,7 +344,7 @@ public class MyFootprintActivity extends Activity{
 				if(location == null)
 					return;
 				
-				Toast.makeText(getApplicationContext(), "a", 200).show();
+//				Toast.makeText(getApplicationContext(), "a", 200).show();
 				
 				locData.latitude = location.getLatitude();
 	            locData.longitude = location.getLongitude();
