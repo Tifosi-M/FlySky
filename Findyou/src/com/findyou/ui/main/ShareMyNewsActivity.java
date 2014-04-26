@@ -73,7 +73,7 @@ public class ShareMyNewsActivity extends Activity{
 //				if(mNewsService.shareMyUserInfo(mNews.getNewsLatitude(), mNews.getNewsLongtitude(), categoryString, shareinfoString))
 //				{
 //					Toast.makeText(ShareMyNewsActivity.this, "发布成功！", Toast.LENGTH_SHORT).show();
-//					progressDialog = ProgressDialog.show(ShareMyNewsActivity.this, "请稍后", "正在上传数据到服务器。。。", true, false); //暂时
+					progressDialog = ProgressDialog.show(ShareMyNewsActivity.this, "请稍后", "正在上传数据到服务器。。。", true, false); //暂时
 					
 					new Thread(){
 
@@ -81,7 +81,7 @@ public class ShareMyNewsActivity extends Activity{
 							Calculation.calculate(4);//在8秒时间内获取数据
 							
 							//向handler发消息
-//							pd_handler.sendEmptyMessage(0);//暂时
+							pd_handler.sendEmptyMessage(0);//暂时
 						}}.start();
 
 					
@@ -120,14 +120,14 @@ public class ShareMyNewsActivity extends Activity{
 		
 //		progressDialog = ProgressDialog.show(ShareMyNewsActivity.this, "请稍后", "正在定位。。。。", true, false);
 		
-		new Thread(){
-
-			public void run() {
-				Calculation.calculate(4);//在8秒时间内获取数据
-				
-				//向handler发消息
-				pd_handlerFirst.sendEmptyMessage(0);
-			}}.start();
+//		new Thread(){
+//
+//			public void run() {
+//				Calculation.calculate(4);//在8秒时间内获取数据
+//				
+//				//向handler发消息
+//				pd_handlerFirst.sendEmptyMessage(0);
+//			}}.start();
 
 		
 
@@ -141,7 +141,7 @@ public class ShareMyNewsActivity extends Activity{
 				
 					Toast.makeText(getApplicationContext(), "服务器已迁移，数据上传失败！", Toast.LENGTH_SHORT).show();
 					//关闭ProgressDialog
-//					progressDialog.dismiss();
+					progressDialog.dismiss();
 			}};
 			private Handler pd_handlerFirst = new Handler(){
 
@@ -226,8 +226,6 @@ public class ShareMyNewsActivity extends Activity{
 		        tv.setTextColor(Color.BLACK);  
 		        return convertView; 
 		}
-		
-		
 		
 	}
 	
