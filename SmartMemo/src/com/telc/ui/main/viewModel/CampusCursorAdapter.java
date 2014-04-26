@@ -87,10 +87,6 @@ public class CampusCursorAdapter extends SimpleCursorAdapter {
 				
 				int i = pp;
 				
-//				Toast.makeText(context,list_campusid.get(i) , Toast.LENGTH_SHORT).show();
-				Toast.makeText(context,list_campusid.get(i)  + "    " + v.getTag().toString() , Toast.LENGTH_SHORT).show();
-
-				
 				Intent mIntent = new Intent("UPDATE_ADAPTER");
 				context.sendBroadcast(mIntent);
 				
