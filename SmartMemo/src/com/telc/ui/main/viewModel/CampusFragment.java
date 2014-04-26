@@ -1,12 +1,9 @@
 package com.telc.ui.main.viewModel;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import com.telc.data.dbDriver.DBConstant;
 import com.telc.domain.Emtity.Campus;
-import com.telc.domain.Emtity.Timing;
 import com.telc.domain.Service.CampusService;
 import com.telc.domain.time.Service.TimeService;
 import com.telc.smartmemo.R;
@@ -18,6 +15,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -29,7 +27,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 
 public class CampusFragment extends Fragment{
@@ -38,7 +35,9 @@ public class CampusFragment extends Fragment{
 	private List<Campus> mList;
 	private TimeService timService;
 	private CampusService campusService;
+	private SharedPreferences sp;
 	private Campus mCampus;
+	private String userId="";
 	// listView适配器
 	SimpleAdapter mAdapter = null;
 	// 适配器中的key
@@ -56,6 +55,8 @@ public class CampusFragment extends Fragment{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		timService=TimeService.getInstance();
+		sp = getActivity().getSharedPreferences("Login",
+				getActivity().MODE_PRIVATE);
 	}
 	
 
@@ -64,7 +65,7 @@ public class CampusFragment extends Fragment{
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.activity_campus_list, null);
-		
+		userId = sp.getString("user", null);
 		campusList=(ListView) view.findViewById(R.id.list_campus);
 		// 实例化Adapter
 		// 打开数据库
@@ -150,7 +151,7 @@ public class CampusFragment extends Fragment{
 					Receiver.class);
 			Bundle bund = new Bundle();
 			bund.putString("class", "timing");
-			bund.putString("user", "18046041517");
+			bund.putString("user", userId);
 			bund.putString("content", mCampus.getCampuscontent());
 			timingAlarm.putExtras(bund);
 			PendingIntent pendingIntent = PendingIntent.getBroadcast(
