@@ -59,10 +59,12 @@ public class CampusDetailActivity extends SherlockFragmentActivity {
 				// TODO Auto-generated method stub
 				if(campus.getCampusstate().equals("Y")){
 					campusService.updateCampusStatus(campusid, false);
+					campus.setCampusstate("N");
 					btn_state.setText("未关注");
 					btn_state.setBackgroundColor(getResources().getColor(R.color.main_bg));
 				}else {
 					campusService.updateCampusStatus(campusid, true);
+					campus.setCampusstate("Y");
 					btn_state.setText("已关注");
 					btn_state.setBackgroundColor(getResources().getColor(R.color.red));
 				}
