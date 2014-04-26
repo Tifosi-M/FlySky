@@ -183,9 +183,11 @@ public class MyFootprintActivity extends Activity{
 			if (pop != null){
 		        pop.hidePop();
 			}
-			//清除overlay  
-			 itemOverlay.removeAll();  
-			 mMapView.refresh();
+			if(itemOverlay != null  && itemOverlay.size() > 0){
+				 //清除overlay  
+				 itemOverlay.removeAll();  
+				 mMapView.refresh();
+			 }
 		}
 		
 		//添加标志
