@@ -13,8 +13,10 @@ public class UserController {
 	public ModelAndView login(User user){
 		ModelAndView mv = new ModelAndView();
 		System.out.println(user);
-		if(user.getTel().equals("admin")&&user.getPassword().equals("admin"))
-			mv.setViewName("personal_Info");
+		if(user.getTel().equals("admin")&&user.getPassword().equals("admin")){
+			String url = "redirect:showMemoList.do";
+			mv.setViewName(url);
+		}
 		else {
 			mv.setViewName("login_error");
 		}

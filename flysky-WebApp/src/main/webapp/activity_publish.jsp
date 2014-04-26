@@ -97,14 +97,11 @@ valid -->
             </p>
             <p>地点：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input class="text-input small-input" type="text" name="campusAddress" />
-            <span class="input-notification success png_bg"></span><br />
             </p>
              <p>时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="text" name="campusTime" />
-            <span class="input-notification error png_bg"></span> </p>
              <p>发起人：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input class="text-input small-input" type="text" name="campusBy" />
-            <span class="input-notification error png_bg"></span> </p>
             <p>内容：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <textarea class="text-input textarea wysiwyg" name="campusContent" 
             cols="79" rows="3"></textarea>
