@@ -49,7 +49,7 @@ public class locationService extends Service {
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
-		Toast.makeText(getApplicationContext(), "service 被创建", Toast.LENGTH_SHORT).show();
+//		Toast.makeText(getApplicationContext(), "service 被创建", Toast.LENGTH_SHORT).show();
 		
 		app = (FindYouApplication)this.getApplication();
         if (app.mBMapManager == null) {
@@ -85,7 +85,7 @@ public class locationService extends Service {
 			if (location == null)
 				return;
 			
-			Toast.makeText(getApplicationContext(), "i am service ", Toast.LENGTH_LONG).show();
+//			Toast.makeText(getApplicationContext(), "i am service ", Toast.LENGTH_LONG).show();
 			
 			
 			locData.longitude = location.getLongitude();
@@ -144,7 +144,7 @@ public class locationService extends Service {
 				
 				MKGeocoderAddressComponent kk = result.addressComponents;
 				String mylocationplcaeString = kk.city + kk.district + kk.street + kk.streetNumber;
-				Toast.makeText(getApplicationContext(), mylocationplcaeString, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(getApplicationContext(), mylocationplcaeString, Toast.LENGTH_SHORT).show();
 				
 				 mLocClient.stop();
 				

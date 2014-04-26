@@ -7,12 +7,16 @@ import com.findyou.domain.entity.News;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -69,7 +73,7 @@ public class ShareMyNewsActivity extends Activity{
 //				if(mNewsService.shareMyUserInfo(mNews.getNewsLatitude(), mNews.getNewsLongtitude(), categoryString, shareinfoString))
 //				{
 //					Toast.makeText(ShareMyNewsActivity.this, "发布成功！", Toast.LENGTH_SHORT).show();
-					progressDialog = ProgressDialog.show(ShareMyNewsActivity.this, "请稍后", "正在上传数据到服务器。。。", true, false);
+					progressDialog = ProgressDialog.show(ShareMyNewsActivity.this, "请稍后", "正在上传数据到服务器。。。", true, false); //暂时
 					
 					new Thread(){
 
@@ -77,7 +81,7 @@ public class ShareMyNewsActivity extends Activity{
 							Calculation.calculate(4);//在8秒时间内获取数据
 							
 							//向handler发消息
-							pd_handler.sendEmptyMessage(0);
+							pd_handler.sendEmptyMessage(0);//暂时
 						}}.start();
 
 					
@@ -106,24 +110,24 @@ public class ShareMyNewsActivity extends Activity{
 		
 		
 		sharemylocation_categorySpinner =  (Spinner) findViewById(R.id.sp_sharemylocation_category);
-		categoryAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,category);
-		categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		categoryAdapter = new SpinnerAdapter(getApplicationContext(), android.R.layout.simple_spinner_item,category);
+
 		sharemylocation_categorySpinner.setAdapter(categoryAdapter);
 		sharemylocation_categorySpinner.setOnItemSelectedListener(new SpinnerCategorySelected());
 		
 		sharemylocation_shareinfoEditText = (EditText) findViewById(R.id.ed_sharemylocation_shareinfo);
 		
 		
-		progressDialog = ProgressDialog.show(ShareMyNewsActivity.this, "请稍后", "正在定位。。。。", true, false);
+//		progressDialog = ProgressDialog.show(ShareMyNewsActivity.this, "请稍后", "正在定位。。。。", true, false);
 		
-		new Thread(){
-
-			public void run() {
-				Calculation.calculate(4);//在8秒时间内获取数据
-				
-				//向handler发消息
-				pd_handlerFirst.sendEmptyMessage(0);
-			}}.start();
+//		new Thread(){
+//
+//			public void run() {
+//				Calculation.calculate(4);//在8秒时间内获取数据
+//				
+//				//向handler发消息
+//				pd_handlerFirst.sendEmptyMessage(0);
+//			}}.start();
 
 		
 
@@ -145,7 +149,7 @@ public class ShareMyNewsActivity extends Activity{
 				public void handleMessage(Message msg) {
 					
 						//关闭ProgressDialog
-						progressDialog.dismiss();
+//						progressDialog.dismiss();
 				}};
 			
 	
@@ -153,13 +157,10 @@ public class ShareMyNewsActivity extends Activity{
 	class SpinnerCategorySelected implements OnItemSelectedListener{
 
 		@Override
-		public void onItemSelected(AdapterView<?> arg0, View view, int num,
-				long arg3) {
+		public void onItemSelected(AdapterView<?> parent, View view, int pos,
+				long id) {
 			
-			TextView tv = (TextView)view;
-			tv.setTextColor(getResources().getColor(R.color.black));//设置显示字体的颜色
-			
-			switch (num) {
+			switch (pos) {
 			case 0:
 				categoryString = "心情";
 				break;
@@ -181,6 +182,51 @@ public class ShareMyNewsActivity extends Activity{
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+	}
+	
+	private class SpinnerAdapter extends ArrayAdapter{
+		
+		Context context;
+		String[] items = new String[]{};
+		
+		public SpinnerAdapter(final Context context,final int textViewResourceId,final String[]objects){
+			super(context, textViewResourceId, objects);
+			this.items = objects;
+			this.context = context;
+		}
+
+		@Override
+		public View getDropDownView(int position, View convertView,
+				ViewGroup parent) {
+			
+			if(convertView == null){
+				LayoutInflater inflater =  LayoutInflater.from(context);
+				convertView = inflater.inflate(android.R.layout.simple_dropdown_item_1line, parent, false);
+			}
+			
+			TextView tv = (TextView) convertView  
+	                .findViewById(android.R.id.text1);  
+	        tv.setText(items[position]); 
+	        tv.setTextColor(Color.BLACK);  
+	        return convertView;  			
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+
+			 if (convertView == null) {  
+		            LayoutInflater inflater = LayoutInflater.from(context);  
+		            convertView = inflater.inflate(  
+		                    android.R.layout.simple_spinner_item, parent, false);  
+		        }  
+		  
+		        TextView tv = (TextView) convertView  
+		                .findViewById(android.R.id.text1);  
+		        tv.setText(items[position]); 
+		        tv.setTextColor(Color.BLACK);  
+		        return convertView; 
+		}
+		
 	}
 	
 }

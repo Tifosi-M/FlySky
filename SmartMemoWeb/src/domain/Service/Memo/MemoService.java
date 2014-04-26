@@ -227,16 +227,22 @@ public class MemoService implements IMemoService {
 
 	@Override
 	public boolean deleteMemoDBFile(String tel) {
-		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-		userDbDao = UserDbDAO.getFromApplicationContext(ctx);
-		UserDb userDb = userDbDao.findById(tel);
-		try {
-			userDbDao.delete(userDb);
+//		ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+//		userDbDao = UserDbDAO.getFromApplicationContext(ctx);
+//		UserDb userDb = userDbDao.findById(tel);
+//		try {
+//			userDbDao.delete(userDb);
+//			return true;
+//		} catch (Exception e) {
+//			return false;
+//		}
+		Jedis jedis = new Jedis(host,port);
+		if(jedis.get(tel.getBytes())!=null){
+			jedis.del(tel.getBytes());
 			return true;
-		} catch (Exception e) {
+		}else {
 			return false;
 		}
-		
 	}
 
 }
