@@ -17,11 +17,11 @@ import com.telc.domain.IService.IRealTimeService;
  */
 public class RealTimeService implements IRealTimeService {
 
-	private SQLiteDatabase db;
+	private SQLiteDatabase memoDb;
 	private Cursor cursor;
 
 	public RealTimeService(SQLiteDatabase db) {
-		this.db = db;
+		this.memoDb = db;
 	}
 
 	/**
@@ -33,7 +33,7 @@ public class RealTimeService implements IRealTimeService {
 		List<RealTime> realTime_list = new ArrayList<RealTime>();
 		String sql = "select a.[rowid] as _id,* from REAL_TIME as a where user_id='"
 				+ user_id + "'";
-		cursor = db.rawQuery(sql, null);
+		cursor = memoDb.rawQuery(sql, null);
 		if (cursor.moveToFirst() == false) {
 			return null;
 		} else {
@@ -106,7 +106,7 @@ public class RealTimeService implements IRealTimeService {
 				+ "','"
 				+ priority
 				+ "','" + isfinish + "','" + location_detail + "')";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 
@@ -117,7 +117,7 @@ public class RealTimeService implements IRealTimeService {
 	public boolean removeRealTime(String real_id) {
 		// TODO Auto-generated method stub
 		String sql = "delete from REAL_TIME where real_id='" + real_id + "'";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 
@@ -127,7 +127,7 @@ public class RealTimeService implements IRealTimeService {
 		RealTime realTime = new RealTime();
 		String sql = "select a.[rowid] as _id,* from REAL_TIME as a where real_id='"
 				+ id + "'";
-		cursor = db.rawQuery(sql, null);
+		cursor = memoDb.rawQuery(sql, null);
 		if (cursor.moveToFirst() == false) {
 			return null;
 		} else {
@@ -180,7 +180,7 @@ public class RealTimeService implements IRealTimeService {
 				+ realTime.getPriority() + "',location_detail='"
 				+ realTime.getLocation_detail() + "' where real_id='"
 				+ realTime.getReal_id() + "'";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 
@@ -190,7 +190,7 @@ public class RealTimeService implements IRealTimeService {
 		// TODO Auto-generated method stub
 		String sql = "update REAL_TIME set isfinish=" + 1
 				+ " where real_id='" + real_id + "'";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 

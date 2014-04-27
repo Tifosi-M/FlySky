@@ -53,7 +53,7 @@ public class newSettingFragment extends Fragment implements WebServiceDelegate {
 	private Spinner sp_remindDistance;
 	private Spinner sp_locationTime;
 	private WebServiceUtils webService;
-	
+
 	private Button bt_setOk;
 	private Button bt_upload;
 	private Button bt_download;
@@ -118,7 +118,7 @@ public class newSettingFragment extends Fragment implements WebServiceDelegate {
 				webflag = false;
 				String tel = sp.getString("user", null);
 				HashMap<String, Object> args = new HashMap<String, Object>();
-				args.put("arg0", tel);
+				args.put("tel", tel);
 				webService.callWebService("downloadMemoDBFile", args,
 						byte[].class);
 
@@ -133,8 +133,7 @@ public class newSettingFragment extends Fragment implements WebServiceDelegate {
 
 			}
 		});
-		
-		
+
 		bt_setOk.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -184,15 +183,15 @@ public class newSettingFragment extends Fragment implements WebServiceDelegate {
 		sp_locationTime
 				.setOnItemSelectedListener(new Spinner_locationTime_SelectedListener());
 
-
 		ArrayAdapter<String> adapter_province;
-		
-		String [] list_sp_province = new String []{"黑龙江","吉林","辽宁","内蒙古","河北","河北","河南","山东","山西","江苏",
-				"安徽","陕西","宁夏","甘肃","青海","湖北","湖南","浙江","福建","贵州","四川","广东","广西","云南","海南"
-				,"新疆","西藏","台湾","北京","上海","天津","重庆","香港","澳门","钓鱼岛"};
-		
 
-		if (!netFlag){
+		String[] list_sp_province = new String[] { "黑龙江", "吉林", "辽宁", "内蒙古",
+				"河北", "河北", "河南", "山东", "山西", "江苏", "安徽", "陕西", "宁夏", "甘肃",
+				"青海", "湖北", "湖南", "浙江", "福建", "贵州", "四川", "广东", "广西", "云南",
+				"海南", "新疆", "西藏", "台湾", "北京", "上海", "天津", "重庆", "香港", "澳门",
+				"钓鱼岛" };
+
+		if (!netFlag) {
 
 			new AlertDialog.Builder(getActivity())
 					.setTitle("网络错误")
@@ -209,13 +208,12 @@ public class newSettingFragment extends Fragment implements WebServiceDelegate {
 									System.exit(0);
 								}
 							}).show();
-			
+
 		}
 
 		adapter_province = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_spinner_item, list_sp_province);
-		
-		
+
 		adapter_province
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -223,7 +221,7 @@ public class newSettingFragment extends Fragment implements WebServiceDelegate {
 		sp_province.setOnItemSelectedListener(new spinner_provinceListen());
 		sp_province.setVisibility(View.VISIBLE);
 
-//		sp_city.setEnabled(false);
+		// sp_city.setEnabled(false);
 
 		return view;
 	}
@@ -328,18 +326,17 @@ public class newSettingFragment extends Fragment implements WebServiceDelegate {
 			sp_city.setEnabled(true);
 
 			ArrayAdapter adapter_city;
-			
-			if (netFlag){
+
+			if (netFlag) {
 				List<String> list_city;
-				
+
 				list_city = WeatherService.getCityListByProvince(mprovince);
-				
+
 				adapter_city = new ArrayAdapter<String>(getActivity(),
 						android.R.layout.simple_spinner_item, list_city);
-				}
-			else{
-				String [] list_sp_city = new String []{""};
-				
+			} else {
+				String[] list_sp_city = new String[] { "" };
+
 				adapter_city = new ArrayAdapter<String>(getActivity(),
 						android.R.layout.simple_spinner_item, list_sp_city);
 			}
@@ -397,14 +394,13 @@ public class newSettingFragment extends Fragment implements WebServiceDelegate {
 	}
 
 	public byte[] getbyte() {
-
 		byte[] tmp = new byte[1000];
 		byte[] db = null;
 		ByteArrayOutputStream os = new ByteArrayOutputStream(1000);
 		int n;
 		try {
 			File file = new File(
-					"/data/data/com.telc.smartmemo/databases/mydb.db3");
+					"/data/data/com.telc.smartmemo/databases/campus.db3");
 			FileInputStream is = new FileInputStream(file);
 			while ((n = is.read(tmp)) != -1) {
 				os.write(tmp, 0, n);
@@ -452,25 +448,35 @@ public class newSettingFragment extends Fragment implements WebServiceDelegate {
 						Toast.LENGTH_SHORT);
 				toast.show();
 			}
-		}else if(webflag == false){
-			String tmp = result.toString();
-			//转化成byte数组
-			byte[] retByte = Base64.decode(tmp);
-			createDatabase(retByte);
+		} else if (webflag == false) {
+			if (result != null) {
+				String tmp = result.toString();
+				// 转化成byte数组
+				byte[] retByte = Base64.decode(tmp);
+				createDatabase(retByte);
+				Toast toast = Toast.makeText(getActivity(), "同步成功",
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}else {
+				Toast toast = Toast.makeText(getActivity(), "同步失败",
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}
 		}
 	}
-	public void createDatabase(byte[] db){
+
+	public void createDatabase(byte[] db) {
 		String path = "/data/data/com.telc.smartmemo/databases/";
-		File file=new File(path);
-	    file.mkdir();
-	    path=path+"mydb.db3";
-	    file=new File(path);
-	    try {
+		File file = new File(path);
+		file.mkdir();
+		path = path + "mydb.db3";
+		file = new File(path);
+		try {
 			file.createNewFile();
-			 FileOutputStream os=new FileOutputStream(file);
-			 os.write(db);
-			 os.close();
-			 System.out.println("success");
+			FileOutputStream os = new FileOutputStream(file);
+			os.write(db);
+			os.close();
+			System.out.println("success");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

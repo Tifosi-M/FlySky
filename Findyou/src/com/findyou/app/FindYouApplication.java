@@ -29,9 +29,14 @@ public class FindYouApplication extends  Application{
      * 
      * zyc-社交名片debug：9wbm32lD9NKtV7vNttUYZMKu
      * zyc-社交名片发布：AbUlyP3e9eDcfUGEb7DAvGO5
+     * 
+     * 
+     * 
+     * flysky.keystore 的发布版key  Z1n2a6wHwseSMvHeOy9LfkAP
+     * 
      */
 
-    public static final String strKey = "9wbm32lD9NKtV7vNttUYZMKu";	
+    public static final String strKey = "Z1n2a6wHwseSMvHeOy9LfkAP";	
 
 	
 	@Override
@@ -73,7 +78,7 @@ public class FindYouApplication extends  Application{
 	
 	
 	// 常用事件监听，用来处理通常的网络错误，授权验证错误等
-	static class MyGeneralListener implements MKGeneralListener {
+	public static class MyGeneralListener implements MKGeneralListener {
 	    
 	    @Override
 	    public void onGetNetworkState(int iError) {

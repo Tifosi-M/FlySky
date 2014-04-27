@@ -48,9 +48,9 @@ public class LoginAndRegisterActivity extends Activity implements DBConstant,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_register);
 		user = new User();
-		SQLiteDatabase db = openOrCreateDatabase(DB_FILENAME,
+		SQLiteDatabase memoDb = openOrCreateDatabase(DB_FILENAME,
 				MODE_PRIVATE, null);
-		service = new UserService(db);
+		service = new UserService(memoDb);
 		initControlsAndRegEvent();
 		// 判断是否状态是否为已登录，如果是则直接进入主界面
 		if (sp.getBoolean("login_in", false)) {

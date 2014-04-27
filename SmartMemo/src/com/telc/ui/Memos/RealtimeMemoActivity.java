@@ -51,7 +51,7 @@ public class RealtimeMemoActivity extends SherlockFragmentActivity {
 
 	
 	//数据库
-	private SQLiteDatabase db;
+	private SQLiteDatabase memoDb;
 	private RealTimeService realTimeHelper;
 		
 	//实时提醒对象
@@ -132,8 +132,8 @@ public class RealtimeMemoActivity extends SherlockFragmentActivity {
 		});
 		
 		sp = getSharedPreferences("Login", MODE_PRIVATE);
-		db=openOrCreateDatabase(DBConstant.DB_FILENAME,MODE_PRIVATE, null);
-		realTimeHelper=new RealTimeService(db);
+		memoDb=openOrCreateDatabase(DBConstant.DB_FILENAME,MODE_PRIVATE, null);
+		realTimeHelper=new RealTimeService(memoDb);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		

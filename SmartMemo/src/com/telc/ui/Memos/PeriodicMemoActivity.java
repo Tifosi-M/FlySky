@@ -34,7 +34,7 @@ import android.widget.TimePicker.OnTimeChangedListener;
 
 public class PeriodicMemoActivity extends SherlockFragmentActivity {
 	// 数据库
-	private SQLiteDatabase db;
+	private SQLiteDatabase memoDb;
 	private PeriodicService periodicHelper;
 	// xml保存userid
 	private SharedPreferences sp;
@@ -67,8 +67,8 @@ public class PeriodicMemoActivity extends SherlockFragmentActivity {
 		setContentView(R.layout.activity_periodic);
 		context = this;
 		sp = getSharedPreferences("Login", MODE_PRIVATE);
-		db = openOrCreateDatabase(DBConstant.DB_FILENAME, MODE_PRIVATE, null);
-		periodicHelper = new PeriodicService(db);
+		memoDb = openOrCreateDatabase(DBConstant.DB_FILENAME, MODE_PRIVATE, null);
+		periodicHelper = new PeriodicService(memoDb);
 
 		ratingBarPeriodicPriority = (RatingBar) findViewById(R.id.ratingBarPeriodicPriority);
 		spinnerPeriodic = (Spinner) findViewById(R.id.spinnerPeriodic);

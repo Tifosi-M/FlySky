@@ -124,11 +124,13 @@ public class getPoisitionActivity extends SherlockFragmentActivity {
 	        });
 				
 		mBMapMan = new BMapManager(getApplication());
-		mBMapMan.init("343a6646c6074de1bb7eb38af921165b", null);
+		mBMapMan.init("lWpKXOmvyAH7xkMTvujj2oHB", null);
 		/*
 		 * A974f3064aefefc68e26feb3503c5fd1    s
 		 * 
 		 * 343a6646c6074de1bb7eb38af921165b   发布版的key
+		 * 
+		 * flysky.keystore 的发布版key  lWpKXOmvyAH7xkMTvujj2oHB
 		 * 
 		 **/
 

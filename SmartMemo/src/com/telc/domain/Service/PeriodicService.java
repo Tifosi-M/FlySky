@@ -17,11 +17,11 @@ import com.telc.domain.IService.IPeriodicService;
  */
 public class PeriodicService implements IPeriodicService {
 
-	private SQLiteDatabase db;
+	private SQLiteDatabase memoDb;
 	private Cursor cursor;
 
 	public PeriodicService(SQLiteDatabase db) {
-		this.db = db;
+		this.memoDb = db;
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class PeriodicService implements IPeriodicService {
 		List<Periodic> periodic_list = new ArrayList<Periodic>();
 		String sql = "select a.[rowid] as _id,* from PERIODIC as a where user_id='"
 				+ user_id + "'";
-		cursor = db.rawQuery(sql, null);
+		cursor = memoDb.rawQuery(sql, null);
 		if (cursor.moveToFirst() == false) {
 			return null;
 		} else {
@@ -104,7 +104,7 @@ public class PeriodicService implements IPeriodicService {
 				+ "','"
 				+ isfinish + "','" + start_time + "','"+end_time+"')";
 
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 
@@ -113,7 +113,7 @@ public class PeriodicService implements IPeriodicService {
 		// TODO Auto-generated method stub
 		String sql = "delete from PERIODIC where periodic_id='" + periodic_id
 				+ "'";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 
@@ -122,7 +122,7 @@ public class PeriodicService implements IPeriodicService {
 		// TODO Auto-generated method stub
 		String sql = "select a.[rowid] as _id,* from PERIODIC as a where periodic_id='"
 				+ id + "'";
-		cursor = db.rawQuery(sql, null);
+		cursor = memoDb.rawQuery(sql, null);
 		Periodic periodic = new Periodic();
 		if (cursor.moveToFirst() == false) {
 			return null;
@@ -177,7 +177,7 @@ public class PeriodicService implements IPeriodicService {
 	public boolean updatePeriodic(Periodic periodic) {
 		// TODO Auto-generated method stub
 		String sql = "update PERIODIC set period='"+periodic.getPeriod()+"',period_detail='"+periodic.getPeriod_detail()+"',content='"+periodic.getContent()+"',priority='"+periodic.getPriority()+"',end_time='"+periodic.getEnd_time()+"' where periodic_id='"+periodic.getPeriodic_id()+"'";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 
@@ -186,7 +186,7 @@ public class PeriodicService implements IPeriodicService {
 	public boolean updateIsfinish(String periodic_id) {
 		// TODO Auto-generated method stub
 		String sql = "update PERIODIC set isfinish="+1+" where periodic_id='"+periodic_id+"'";
-		db.execSQL(sql);
+		memoDb.execSQL(sql);
 		return true;
 	}
 

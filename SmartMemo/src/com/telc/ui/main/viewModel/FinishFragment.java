@@ -47,7 +47,7 @@ import android.widget.Toast;
 public class FinishFragment extends Fragment {
 
 	// 数据库
-	private SQLiteDatabase db;
+	private SQLiteDatabase memoDb,campusDb;
 	private TimingService timingService;
 	private RealTimeService realTimeService;
 	private PeriodicService periodicService;
@@ -135,11 +135,11 @@ public class FinishFragment extends Fragment {
 	private void initAdapert() {
 		// TODO Auto-generated method stub
 		// 打开数据库
-		db = getActivity().openOrCreateDatabase(DBConstant.DB_FILENAME,
+		memoDb = getActivity().openOrCreateDatabase(DBConstant.DB_FILENAME,
 				getActivity().MODE_PRIVATE, null);
 		// 实例化数据库服务
-		timingService = new TimingService(db);
-		realTimeService = new RealTimeService(db);
+		timingService = new TimingService(memoDb);
+		realTimeService = new RealTimeService(memoDb);
 		// 获取userId
 		String userId = sp.getString("user", null);
 		// 数据库中获取的List<Timing>
