@@ -130,7 +130,11 @@ public class getPoisitionActivity extends SherlockFragmentActivity {
 		 * 
 		 * 343a6646c6074de1bb7eb38af921165b   发布版的key
 		 * 
+<<<<<<< HEAD
 		 * flysky.keystore 的发布版key  lWpKXOmvyAH7xkMTvujj2oHB
+=======
+		 * flykey.keystore   发布版key   lWpKXOmvyAH7xkMTvujj2oHB   
+>>>>>>> e0bb52351b86d52f52402cf447a1ac6d1728a38a
 		 * 
 		 **/
 
