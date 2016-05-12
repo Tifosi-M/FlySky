@@ -8,5 +8,3 @@ FlySky Team
 使用Apache CXF+Spring+Hibernate构建的Webservice
 
 使用Spring MVC 构建的web管理端（校园版）
-
-整个项目就给12级的吧，看谁愿意要
